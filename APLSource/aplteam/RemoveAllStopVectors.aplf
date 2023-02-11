@@ -1,0 +1,9 @@
+ RemoveAllStopVectors;⎕ML;⎕IO
+⍝ Remove all stop vectors from the currently suspended fns/opr.
+⍝ Throws an error if there is no fns/opr on the stack.
+ (⎕IO ⎕ML)←0 3
+ :If 1=⍴⎕LC
+     11 ⎕SIGNAL⍨'No fns/opr on stack?!'
+ :Else
+     ⍬ ⎕STOP 1⊃⎕XSI
+ :EndIf

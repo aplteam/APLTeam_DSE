@@ -1,0 +1,8 @@
+ ChangeFontSize←{
+     font←'⎕SE'⎕WG'Font'
+     font[1+⎕IO]+←⍵
+     _←'⎕SE'⎕WS'Font'font
+     newFont←'⎕SE'⎕WG'Font'
+     newFont[1+⎕IO]=font[1+⎕IO]:⍬
+     ∇ ⍵+⍵
+ }

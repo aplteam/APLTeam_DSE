@@ -1,0 +1,3 @@
+ r←IsConnectedToRide
+ r←3501⌶⍬
+⍝Done

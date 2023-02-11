@@ -1,0 +1,17 @@
+ GetScreenCss←{
+     width←⍵
+     r←''
+     r,←'html {background-color:#fffdee; ; margin:0; padding:0; margin:0; padding:0;}',CrNl
+     r,←'h1 {font-family: "Verdana, Helvetica"; padding:10px 0 0 10px; font-size:20px;}',CrNl
+     r,←'table {',CrNl
+     r,←'        border-collapse:collapse; margin:0; padding:0; border: 1px solid #98bf21; ',CrNl
+     r,←'        width:',(⍕width),'px;} ',CrNl
+     r,←'div#cont1, div#cont2, div#cont3, div#cont4 {float:left; margin:10px 10px 20px 10px;}',CrNl
+     r,←'div#cont3 {clear:both;}',CrNl
+     r,←'th, td {',CrNl
+     r,←'              font-family: "APL385 Unicode"; font-size:16px; font-weight:800; padding:5px; border: 1px solid black;}',CrNl
+     r,←'th {text-align: left; background-color: #A7C942;}',CrNl
+     r,←'tr:nth-child(even) {color: #000000; background-color: #EAF2D3;}',CrNl
+     r,←'tr:nth-child(odd) {color:black; background-color: #FFFFFF}',CrNl
+     r
+ }

@@ -1,0 +1,18 @@
+ {filename}←CreateAplcore dummy;regKey;wsname;⎕ML;⎕IO
+ ⎕IO←1 ⋄ ⎕ML←1
+ :If YesOrNo'Are you sure that you want to create an aplcore from the current WS ?'
+     wsname←'aplcore_',⎕AN,'_',(,¨': ')⎕R'_'⊣##.APLTreeUtils2.FormatDateTime ⎕TS
+     :If (,'W')≡3⊃# ⎕WG'APLVersion'
+         regKey←BuildRegKeyForCurrentAPL,'\aplcorename'
+         :If ##.WinReg.DoesValueExist regKey
+             filename←(1⊃⎕NPARTS ##.WinReg.GetString regKey),wsname
+         :Else
+             filename←##.FilesAndDirs.GetTempPath,wsname
+         :EndIf
+     :Else
+         filename←'/tmp/',wsname
+     :EndIf
+     2 ⎕NQ'.' 'dumpws'filename
+     ⎕←'aplcore created: ',filename
+ :EndIf
+⍝Done

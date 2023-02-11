@@ -1,0 +1,7 @@
+This namespace contains functions you might find useful in one way or another.
+
+Use ∆List to produce a list of all of them.
+
+Note that after firing up an instance of APL this namespace appears to contain
+not much more then README and ∆List, but once you call ∆List it will bring in
+everything it finds in the Snippets\\ directory.

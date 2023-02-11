@@ -1,0 +1,8 @@
+ rk←GetRegKey path;version
+ rk←'HKEY_CURRENT_USER\Software\Dyalog\Dyalog APL'
+ version←# ⎕WG'APLVersion'
+ rk,←('Win'≡3↑1⊃version)/'/W'
+ rk,←(∨/'-64'⍷1⊃version)/'-64'
+ rk,←' ',↑{⍺,'.',⍵}/2↑'.'A.Split 2⊃version
+ rk,←(80=⎕DR' ')/' Unicode'
+ rk,←((~0∊⍴path)/'\'),path

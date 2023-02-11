@@ -1,0 +1,84 @@
+ OnDropObjects msg;⎕IO;⎕ML;obj;event;files;dummy;shiftState;extensions;i;thisOne;thisExtension;rc;hint;tp;folder;list
+⍝ Handles files and directories dropped onto the statusbar.\\
+⍝ * For any `*.dyalog` file a SALT load command is printed.
+⍝ * For any `*.dws` a )XLOAD statement is printed.
+⍝ * For any `aplcore*` a )COPY statement for that aplcore is printed.
+⍝ * For a filename "apl-dependencies.txt" (path is ignored) a command ]Tatin.LoadDependencies is printed.
+⍝ * For any file with the extension ".demo" `]demo {thatFilename}` is printed.
+⍝ * For any directory that hosts a file acre.config an `]OpenMyAcreProject` statement is printed.
+⍝ * For anything else the fully qualified filename is printed.
+⍝ If however the control key was pressed during the drag'n-drop operation than the current dir
+⍝ is changed to that directory or, in case of a file, to the directory holding that file.\\
+⍝ Version 2.7.0 ⋄ 2022-07-23
+⍝ Kai Jaeger
+ ⎕IO←1 ⋄ ⎕ML←1
+ (obj event files dummy shiftState)←5↑msg
+ extensions←1 ⎕C ⎕SE.APLTreeUtils2.Last¨files
+ :If 2=shiftState
+     :If 1<⍴files
+         'I get mixed signals I''m afraid...'⎕SIGNAL 11
+     :Else
+         :If ⎕SE.FilesAndDirs.IsDir folder←1⊃files
+             ⎕←'      ]cd ',folder
+         :ElseIf ⎕SE.FilesAndDirs.IsDir folder←{⎕IO⊃⎕SE.APLTreeUtils2.SplitPath ⍵}1⊃files
+             ⎕←'      ]cd ',folder
+         :Else
+             11 ⎕SIGNAL⍨'Folder "',folder,'" does not exist?!'
+         :EndIf
+     :EndIf
+ :Else
+     :For i :In ⍳⍴files
+         thisOne←i⊃files
+         thisExtension←i⊃extensions
+         :Select ⊃shiftState
+         :Case 0
+             :If 'apl-dependencies.txt'≡⊃{⍺,⍵}/1↓⎕NPARTS thisOne
+             :AndIf 9=⎕SE.⎕NC'Tatin'
+                 ⎕←'      ]TATIN.LoadDependencies ',(⊃⎕NPARTS thisOne),' #'
+             :ElseIf ⎕SE.FilesAndDirs.IsDir thisOne
+                 :If ⎕SE.FilesAndDirs.IsFile thisOne,'/cider.config'
+                     ⎕←'      ]Cider.OpenProject ',thisOne
+                 :ElseIf ⎕SE.FilesAndDirs.IsFile thisOne,'/apl-dependencies.txt'
+                     ⎕←'      ]TATIN.LoadDependencies ',thisOne,' #'
+                 :EndIf
+             :Else
+                 :Select thisExtension
+                 :Case 'DWS'
+                     ⎕←'      )XLOAD ',{b←' '∊⍵ ⋄ (b/'"'),⍵,(b/'"')}thisOne
+                 :CaseList 'DYALOG' 'APLF' 'APLN' 'APLC' 'APLO'
+                     :If 9=⎕NC'⎕SE.SALT'
+                         :If (,'#')≡,1⊃⎕NSI
+                             tp←''''
+                         :Else
+                             tp←' -Target=',(1⊃⎕NSI),''''
+                         :EndIf
+                         ⎕←'      ⎕SE.SALT.Load ''',thisOne,'',tp
+                     :EndIf
+                 :Case 'DEMO'
+                     ⎕←'      ]demo ',thisOne
+                 :Else
+                     :If 'aplcore'{⍺≡##.APLTreeUtils2.Lowercase(⍴⍺)↑⍵}2⊃##.APLTreeUtils2.SplitPath thisOne
+                         ⎕←'      )COPY ',{b←' '∊⍵ ⋄ (b/'"'),⍵,(b/'"')}thisOne,'.'
+                     :Else
+                         :If ##.FilesAndDirs.Exists thisOne
+                             :If ##.FilesAndDirs.IsFile thisOne,'\acre.config'
+                                 ⎕←'      ]acre.OpenProject "',thisOne,'" '
+                             :Else
+                                 ⎕←'"',({b←' '∊⍵ ⋄ (b/'"'),⍵,(b/'"')}thisOne),'"'
+                                 list←⎕SE.SALT.List thisOne
+                                 :If 1<⊃⍴list
+                                 :AndIf 1 YesOrNo'Do you want to execute SALT''s "List" command on that folder?'
+                                     ⎕←{1<⊃⍴l←⎕SE.SALT.List ⍵:l ⋄ ⍵}thisOne
+                                 :EndIf
+                             :EndIf
+                         :Else
+                             ⎕←thisOne
+                         :EndIf
+                     :EndIf
+                 :EndSelect
+             :EndIf
+         :Else
+             11 ⎕SIGNAL⍨'This modifier key has no effect in this context: ',(1 2 3 4 5 6 7⍳shiftState)⊃'Shift' 'Ctrl' 'Ctrl+Shift' 'Alt' 'Alt+Shift' 'Alt+Ctrl' 'Alt+Ctrl+Shift'
+         :EndSelect
+     :EndFor
+ :EndIf

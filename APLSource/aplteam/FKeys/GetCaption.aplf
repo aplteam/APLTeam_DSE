@@ -1,0 +1,8 @@
+ GetCaption←{
+⍝ Returns a proper header for an F-Key block
+     (row col)←⍵
+     captions←2 2⍴'' 'Shift' 'Ctrl' 'Ctrl+Shift'
+     caption←↑captions[row;col]
+     nos←↑(2 2⍴'1-12' '13-24' '25-36' '37-48')[row;col]
+     caption,((2<row+col)/'+'),'F-Keys ',nos
+ }

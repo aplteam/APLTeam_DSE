@@ -1,0 +1,11 @@
+ GotoQLC_WithStopOn←{
+⍝ Set stop vector on line ⍵ of the currently suspended function and return "→⎕LC" then
+⍝ If ⍵ is empty the stop vetor goes to the current line
+     (⎕IO ⎕ML)←1 3
+     1=⍴⎕XSI:'→⎕LC'                         ⍝ There is no suspended function
+     fn←↑1↓⎕XSI                             ⍝ Function name
+     sv←⎕STOP fn                            ⍝ Get current settings of ⎕STOP for "fn"
+     0∊⍴⍵:'→⎕LC'{⍺}(sv,↑1↓⎕LC)⎕STOP fn      ⍝ ⍵ is empty: Add stop on currently suspended line
+     _←(sv,⍵)⎕STOP fn                       ⍝ Add stop on desired line
+     '→⎕LC'
+ }

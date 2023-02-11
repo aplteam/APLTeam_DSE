@@ -1,0 +1,5 @@
+ ShowFunctionKeysInBrowser size;fn
+ fn←(¯4↓##.##.FilesAndDirs.GetTempFilename''),'.html'
+ {}PrintFunctionKeys fn size
+ ##.##.APLTreeUtils2.GoToWebPage'file:///',fn
+⍝Done

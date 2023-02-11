@@ -1,0 +1,25 @@
+ cmpx←{                                      ⍝ Approx expression timings.
+     1=≡,⍵:∇⊂,⍵                              ⍝ single expression: enclose.
+     1{                                      ⍝ starting with one,
+         ⍬⍴2↓(⍎⍵)-⎕AI                        ⍝ time ⍺ expr-iterations.
+     }{⎕IO ⎕ML←0                             ⍝ local sysvars (see Notes).
+         times←⍺ ⍺⍺{                         ⍝ time each expression.
+             ⍺ ⍺⍺'{0<⍵:∇⍵-1{⍺}(',⍵,')⋄⎕AI}⍺'  ⍝ execute expression in ⍺-loop.
+         }¨⍵                                 ⍝ ... for each expression.
+         1000>+/times÷⍴,⍵:(⍺×2)∇ ⍵           ⍝ too quick: reiterate × 2.
+         null←'{0<⍵:∇⍵-{⍵}(1)⋄⎕AI}⍺'         ⍝ null loop for "control" time.
+         nett←times-⍺ ⍺⍺ null                ⍝ times - null loop overhead.
+         hist←↑40{(⌊0.5+⍺×⍵÷⌈/⍵)⍴¨'⎕'}nett   ⍝ simple histogram.
+         secs←⍺{↑6 ¯2∘⍕¨⍵÷⍺×1000}nett        ⍝ e-format seconds.
+         rels←⌊100×¯1+nett÷1⌈⊃nett           ⍝ percentages relative to 1st.
+         sign←{(1+×⍵)⊃'- +'}                 ⍝ sign: - +.
+         fpcs←⌽↑{'%',⌽(sign ⍵),⍕|⍵}¨rels     ⍝ formatted percentages.
+         diff←{⍵⊃' *'}¨×{⍵⍳⍵},⍵⍵¨⍵           ⍝ result differences.
+         exps←diff,' ',↑⍵                    ⍝ exprs with diff markers.
+         pref←{↑⍺∘,¨↓⍵}                      ⍝ ⍺-prefix of rows of matrix ⍵.
+         cmps←' | 'pref fpcs,' ',hist        ⍝ percents and histogram.
+         exps,' → 'pref secs,(1<⍴,⍵)/cmps    ⍝ [*] expr → secs[ | %s histogram].
+     }{                                      ⍝ right operand:
+         ⍎⍵                                  ⍝ execute expr in its native envt.
+     }⍵                                      ⍝ vector of subject expressions.
+ }

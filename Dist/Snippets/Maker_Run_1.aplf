@@ -1,0 +1,15 @@
+ Run_1;⎕IO;⎕ML;⎕WX;pathToSource;targetPath
+⍝ This is a template for a script-only project. This needs no input whatsoever, it rather
+⍝ works everything out itself. For that to work the current directory must be where the
+⍝ project lives.\\
+⍝ If this is executed on a non-scripted project an error is thrown.\\
+⍝ ⍝ For other, more complex scenarios see `Run_2` and `Run_3`.\\
+⍝ Note that this function needs nothing but the `Maker` and a couple of scripts which are
+⍝ defined in and can be loaded by calling `Maker.U.LoadAllScriptsNeededByMaker`.
+ ⎕IO←1 ⋄ ⎕ML←1 ⋄ ⎕WX←3
+ pathToSource←(⎕SE.UCMD'GetAcreProjectPath'),'_Source\'
+ targetPath←'Dist\'
+ ⎕CY'C:\Users\',⎕AN,'\Documents\MyUCMDs\Maker.dws'
+ #.Make.Maker.Maker.ProcessSingleScriptProjects(pathToSource targetPath)
+ ⎕OFF
+⍝Done

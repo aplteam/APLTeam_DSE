@@ -1,0 +1,6 @@
+ {r}←Initialize;⎕TRAP
+ ⎕TRAP←0 'S'
+ r←⍬
+ {}FilesAndDirs.Cd CiderConfig.HOME
+ aplteam.Check_FunctionKeyDefinition
+⍝Done

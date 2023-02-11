@@ -1,0 +1,16 @@
+ R←About;⎕ML;⎕IO;NewLine;Text;a
+ ⎕IO←1
+ ⎕ML←3
+ NewLine←2⊃⎕TC
+ Text←((⎕PW-1)⍴'-'),NewLine
+ Text,←'Kai Jaeger''s session Object',NewLine
+ Text,←'Email:  kai@aplteam.com',NewLine
+ Text,←'https://github.com/aplteam/APLTeam_DSE',NewLine
+ Text,←'Version ',(1⊃Version),' from ',(2⊃Version),NewLine
+ Text,←(⎕PW-1)⍴'-'
+ a←'StartUp'
+ :If a≡(⍴a)↑↑1↓⎕SI
+     R←Text
+ :Else
+     ⎕←Text
+ :EndIf

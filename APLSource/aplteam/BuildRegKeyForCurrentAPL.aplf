@@ -1,0 +1,5 @@
+ rk←BuildRegKeyForCurrentAPL
+ rk←'HKEY_CURRENT_USER\Software\Dyalog\Dyalog APL/W'
+ rk,←('64'≡¯2↑1⊃'.'⎕WG'APLVersion')/'-64'
+ rk,←' ',{⍵/⍨2>+\'.'=⍵}2⊃'.'⎕WG'APLVersion'
+ rk,←(80=⎕DR' ')/' Unicode'

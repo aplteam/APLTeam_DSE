@@ -1,0 +1,8 @@
+ R←MenubarName
+ :If 8>⍎3↑2⊃'.'⎕WG'AplVersion'
+     'Needs version 8 or higher!'⎕SIGNAL 11
+ :ElseIf 9>⍎3↑2⊃'.'⎕WG'AplVersion'
+     R←'⎕SE.cbtop.bandmb.tb.mb'
+ :Else
+     R←'⎕SE.mb'
+ :EndIf

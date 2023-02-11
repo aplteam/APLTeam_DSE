@@ -1,0 +1,21 @@
+ {r}←SetFunctionKeys def;make;key;fkey;code;mod;no;⎕IO;⎕ML
+⍝ Takes a matrix with two columns as right argument:
+⍝ [;1] = something like 'F09' or 'Shift+F01' or 'Ctrl+F12'.
+⍝ [;2] = The F-key definition.
+⍝ [;3] = Alternative description (optional); used by PrintFunctionKeys.
+⍝ Typically the right argument stems from the result of "DefineKeys".
+⍝ For display and print purposes of F-keys see "PrintFunctionKeys" as
+⍝ well as ShowFunctionKeysInBrowser.
+⍝ Sets a global ∆FKeys with a description.
+ (⎕IO ⎕ML)←0 3
+ make←{61::shy←⍬ ⋄ shy←⍺ ⎕PFKEY⍨⍵}   ⍝ 61 is KEY NOT RECOGNIZED. Can happen in case a key was newly introduced in the latest version of Dyalog
+ :For key code :In ↓def[;⍳2]
+     key←key~' '
+     no←⍎¯2↑key
+     fkey←(112+⍳12)[no-1]
+     mod←+/(∨/¨'Shift' 'Ctrl'⍷¨⊂key)/1 2
+     no+←12×mod
+     no make code
+ :EndFor
+ ∆FKeys←def
+ r←'*** Function keys are defined'

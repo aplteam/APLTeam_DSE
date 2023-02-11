@@ -1,0 +1,6 @@
+ CrashTheInterpreter flag;MEMCPY;width
+ :If flag
+     width←(⎕IO++∨/'-64'⍷⎕IO⊃'#'⎕WG'APLVersion')⊃'32' '64'
+     ⎕NA'dyalog',width,'|MEMCPY u4 u4 u4'
+     MEMCPY 0 0 4
+ :EndIf

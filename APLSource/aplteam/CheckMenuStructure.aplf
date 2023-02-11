@@ -1,0 +1,60 @@
+ CheckMenuStructure EnforceNew;a;Version;Flag;MB;MB2;Flag;⎕IO;⎕ML;∆
+ Version←3
+ (⎕IO ⎕ML)←1 3
+ :If 15>⍎3↑2⊃'.'⎕WG'AplVersion'
+     'Needs version 15.0 or higher!'⎕SIGNAL 11
+ :Else
+     MB←'⎕SE.mb'
+ :EndIf
+ :If (,1)≡,EnforceNew
+     Flag←1
+ :Else
+     :If (⊂MB,'.mb.Util')∊⎕WN MB
+     :AndIf (⊂MB,'.About')∊⎕WN MB,'.util'
+     :AndIf (⊂MB,'.F_Keys')∊⎕WN MB,'.util'
+         ⎕EX MB,'.util' ⍝ drop old version
+     :EndIf
+     :If ~(⊂MB,'.aplteam')∊⎕WN MB          ⍝ If unknown...
+         Flag←1
+     :ElseIf ~0∊⍴a←(MB,'.aplteam')⎕WG'Data'
+     :AndIf Version>a                        ⍝ ... or an old version, create new one!
+         Flag←0
+     :Else
+         Flag←0
+     :EndIf
+ :EndIf
+ MB2←MB,'.aplteam'
+ :If Flag
+     ⎕EX MB2
+     MB2 ⎕WC'Menu' 'A&PLTeam'
+     ∆←'Define Function Keys'('event' 'select' '⍎{}FKeys.Define ⍬')
+     (MB2,'.L_Keys')⎕WC(⊂'Menuitem'),∆
+     (MB2,'.PrintL_Keys')⎕WC'Menuitem' 'Show Function Keys'('event' 'select' '⍎ShowFKeysInBrowser')
+     (MB2,'.sep01')⎕WC'Separator'
+     (MB2,'.Snippets')⎕WC'Menuitem' 'List code snippets'('event' 'select' 'onSnippets')
+     (MB2,'.sep02')⎕WC'Separator'
+     :If 9=⎕NC'⎕se.aplteam'
+         ∆←⊂'Make []SE font bigger',(⎕UCS 9),'Ctrl++'
+         ∆,←⊂'Accelerator'(107 2)
+         (MB2,'.FontBigger')⎕WC(⊂'Menuitem'),∆,⊂'event' 'select' 'OnChangeFontSize' '+'
+         (MB2,'.FontBigger')⎕WS'Hint' 'Increase the size of the session font'
+         ∆←⊂'Make []SE font smaller',(⎕UCS 9),'Ctrl+-'
+         ∆,←⊂'Accelerator'(109 2)
+         (MB2,'.FontSmaller')⎕WC(⊂'Menuitem'),∆,⊂'event' 'select' 'OnChangeFontSize' '-'
+         (MB2,'.FontSmaller')⎕WS'Hint' 'Decrease the size of the session font'
+         ∆←⊂'Restore original font size',(⎕UCS 9),'Ctrl+0'
+         ∆,←⊂'Accelerator'(96 2)
+         (MB2,'.RestoreFont')⎕WC(⊂'Menuitem'),∆,⊂'event' 'select' 'OnRestoreFontSize'
+         (MB2,'.RestoreFont')⎕WS'Hint' 'Restore the font size used when APL was fires up'
+         (MB2,'.sep30')⎕WC'Separator'
+         (MB2,'.About')⎕WC'Menuitem' 'About...'('event' 'select' 'About')
+         (MB2,'.About')⎕WS'Hint' 'Display details (version-no, release-no and the like)'
+         (MB,'.help')⎕WS'Caption' '&Help'
+     :EndIf
+     :If ((MB,'.help')⎕WG'Posn')<MB2 ⎕WG'Posn'
+         (MB,'.help')⎕WS'Posn' 99
+     :EndIf
+     :If 9=⎕NC'⎕SE.cbtop.bandtb3.tb.tsm'
+         '⎕SE.cbtop.bandtb3.tb.DummyTSM'⎕WC'Label'('Visible' 0)('Event' 9999 '[ClearTSM]')
+     :EndIf
+ :EndIf

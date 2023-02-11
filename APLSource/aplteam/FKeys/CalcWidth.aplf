@@ -1,0 +1,10 @@
+ CalcWidth←{
+     ref←⍺
+     (size weight)←⍵
+     noOfChars←20+⌈/↑∘⍴¨ref.buffer
+     myFnt←⎕NEW'Font'(('PName' 'APL385 Unicode')('Size'size)('Weight'weight))
+     myForm←⎕NEW'Form'(('FontObj'myFnt)('Visible' 0)('Size'(1 1))('Coord' 'Pixel'))
+     2⊃myForm.GetTextSize noOfChars⍴'9'
+⍝ Calculates the size for the number of chars ruled by the strings in ref.buffer:
+⍝ The longest one rules the day.
+ }

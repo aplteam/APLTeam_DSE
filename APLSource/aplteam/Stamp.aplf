@@ -1,0 +1,6 @@
+ {txt}←Stamp;ts;cl
+⍝ Creates a string ⎕an,⎕TS and copies it into the function key 48
+ ts←¯3↓##.APLTreeUtils2.FormatDateTime ⎕TS
+ txt←' ⍝ ',⎕AN,' ',ts,' : '
+ {}txt ⎕PFKEY 48
+ ⎕←'Insert stamp with Ctrl+Shift+F11'

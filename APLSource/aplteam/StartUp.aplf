@@ -1,0 +1,52 @@
+ {r}←StartUp verbose;⎕ML;⎕IO
+ ⍝ `verbose` is a Boolean. If it is 1 (and only then) the version information is printed to the session
+ ⎕IO←1 ⋄ ⎕ML←3
+ r←⍬
+ :If IsWindows
+     ⎕SE.cbtop.bandtb5.tb.(font size).(Active Visible)←0    ⍝ Get rid of "Font" & "Size"
+     ⎕SE.mb.session.⎕EX¨'sesave' 'sesaveas'                 ⍝ Get rid of the "Save" & "Save as..." for session
+     :If 2≥+/⎕SI[1]≡¨⎕SI
+         :If ~IsConnectedToRide
+             :Trap 0
+                 SetFont ⍬
+             :Else
+                 ⎕←'Executing ⎕SE.aplteam.SetFont failed with a ',(1⊃⎕DM),'; details:'
+                 ⎕←2⊃⎕DM
+             :EndTrap
+         :EndIf
+         :Trap 0
+             FixFunctionKeyClass ⍬
+         :Else
+             ⎕←'Executing ⎕SE.aplteam.FixFunctionKeyClass failed with a ',(1⊃⎕DM),'; details:'
+             ⎕←2⊃⎕DM
+         :EndTrap
+         :If ~IsConnectedToRide
+             :Trap 0
+                 {}FKeys.Define ⍬
+             :Else
+                 ⎕←'Executing ⎕SE.aplteam.FKeys.Define failed with a ',(1⊃⎕DM),'; details:'
+                 ⎕←2⊃⎕DM
+             :EndTrap
+         :EndIf
+         :If ~IsConnectedToRide
+             :Trap 0
+                 CheckMenuStructure 1
+             :Else
+                 ⎕←'Executing ⎕SE.aplteam.CheckMenuStructure failed with a ',(1⊃⎕DM),'; details:'
+                 ⎕←2⊃⎕DM
+             :EndTrap
+         :EndIf
+         :If ~IsConnectedToRide
+             :Trap 0
+                 EstablishDropOnSession
+             :Else
+                 ⎕←'Executing ⎕SE.aplteam.EstablishDropOnSession failed with a ',(1⊃⎕DM),'; details:'
+                 ⎕←2⊃⎕DM
+             :EndTrap
+         :EndIf
+         2 ⎕NQ'⎕SE' 'Create'
+     :EndIf
+ :EndIf
+ :If ((,1)≡,verbose)∧0=≢⎕LX
+     About2
+ :EndIf

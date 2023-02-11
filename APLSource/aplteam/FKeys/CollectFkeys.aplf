@@ -1,0 +1,33 @@
+ r←CollectFkeys ns;b;k;row;col;i;no;this;j
+⍝ Collect the function keys, either from global ∆FKeys or from ⎕PFKEY if that does not exist
+⍝ "ns" is an unnamed namespace. This function creates a vars "buffer" inside this namespace.
+⍝ This is used to stores the actual settings (without HTML) and this in turn is used later
+⍝ to calculate the width of the tables.
+ r←0⍴b←' '
+ k←1
+ ns.buffer←''
+ :For j :In ⍳4
+     (row col)←j⊃(1 1)(1 2)(2 1)(2 2)
+     r,←b,'<div id="cont',(⍕(row×row≠1)+col),'">',CrNl
+     r,←(2⍴b),'<table>',CrNl
+     r,←(2⍴b),'<thead>',CrNl
+     r,←(3⍴b),'<tr>',CrNl
+     r,←(4⍴b),'<th colspan="2">',(GetCaption row col),'</th>',CrNl
+     r,←(3⍴b),'</tr>',CrNl
+     r,←(2⍴b),'</thead>',CrNl
+     r,←(2⍴b),'<tbody>',CrNl
+     :For i :In ⍳12
+         no←i+(24×row-1)+12×col-1
+         this←GetFunctionKey no
+         this{⍵>⍴,⍺:⍺ ⋄ ((⍵-3)↑⍺),'...'}←44
+         ns.buffer,←⊂this
+         r,←(3⍴b),'<tr>',CrNl
+         r,←(4⍴b),'<td>',('F',(¯2↑'00',⍕i)),(4⍴b),'</td>',CrNl
+         r,←(4⍴b),'<td>',this,'</td>',CrNl
+         r,←(3⍴b),'</tr>',CrNl
+         (i k)←i k+1
+     :EndFor
+     r,←(2⍴b),'</tbody>',CrNl
+     r,←(2⍴b),'</table>',CrNl
+     r,←b,'</div>',CrNl
+ :EndFor

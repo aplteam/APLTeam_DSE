@@ -1,0 +1,33 @@
+ Clear;list;bool
+ :If 9=⎕SE.⎕NC'acre'
+ :AndIf 0<≢list←⎕SE.acre.Projects''
+     ⎕←'Currently opened acre-managed projects:'
+     ⎕←list
+     ⎕←''
+     :If 1 YesOrNo'Are you sure that you want to close all acre-managed projects?'
+         {}⎕SE.acre.CloseProject list[;⎕IO]
+         ⎕←'acre project',((1<≢list)/'s'),' closed: '
+         ⎕←⍪list[;⎕IO]
+     :Else
+         :Return
+     :EndIf
+ :EndIf
+ :If 9=⎕SE.⎕NC'Cider'
+ :AndIf 0<≢list←⎕SE.Cider.ListOpenProjects 0
+     ⎕←'Currently opened Cider-managed projects:'
+     ⎕←list
+     ⎕←''
+     :If 1 YesOrNo'Are you sure that you want to close all Cider-managed projects?'
+         {}⎕SE.Cider.CloseProject ⍬
+         ⎕←'Cider project',((1<≢list)/'s'),' closed: '
+         ⎕←⍪list[;⎕IO]
+     :Else
+         :Return
+     :EndIf
+ :EndIf
+ :If 0<≢#.⎕NL 2 3 4 9
+     ⎕←'      ⎕EX ⎕NL ⍳16    ⍝ )CLEAR causes a Rumba problem, see <02006>'
+ :Else
+     ⎕←'The workspace is apparently empty'
+ :EndIf
+⍝Done

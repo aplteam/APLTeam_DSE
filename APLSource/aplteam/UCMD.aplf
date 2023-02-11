@@ -1,0 +1,60 @@
+ r←{THIS}UCMD Input;dcl;in;nma;rlb;ur;notQ;cmd;BS;edFlag
+ ⍝ User Command Processor. The result may be assigned to a global variable.
+ ⍝ Most of the implementation is in ⎕SE.SALTUtils.Spice; this function only implements
+ ⍝ "assignment syntax", i.e. ]varname←ucmd   and   ]⎕←ucmd
+ ⍝ plus the "show-in-editor" syntaxL:  ]⎕ed ucmd
+
+ rlb←{(+/∧\' '=⍵)↓⍵}
+
+ :If edFlag←'⎕ed '{⍺≡0(819⌶)(⍴⍺)↑⍵}Input
+     Input←(⍴'⎕ed ')↓Input
+ :EndIf
+
+ in←rlb Input
+ cmd←'"[^"]*"|''[^'']*''' ' *(⍝.*)?$'⎕R'&' ''⊢in
+
+ :Select cmd
+ :Case '' ⍝ ] now gives general help
+     in←'??'
+ :Case '-?' ⍝ ] -? is like ]?
+     in←,'?'
+ :CaseList '??' '-??' ⍝ ]?? and ] -?? now gives more help on each cmd
+     in←'?+'
+ :Case '?+'
+     ⎕←']?+ is deprecated. Please use ]??'
+     →0
+ :EndSelect
+
+ :If 0=⎕NC'THIS' ⋄ THIS←⎕IO⊃⎕RSI ⋄ :EndIf     ⍝ record calling environment
+
+ ⍝ ]var←Cmd accepted; see if it makes sense if present. No spaces allowed.
+ notQ←'⎕←'≢nma←(~' '∊nma)/nma←(⌽∨\⌽<\('←'=in)>∨\in∊'''"')/in
+ dcl←'*'∊4⍴⎕STACK                             ⍝ were we at Desk Calculator Level?
+ :If notQ∧(1<⍴nma)>0 2 9∊⍨THIS.⎕NC ¯1↓nma     ⍝ is the assignment legal?
+     ur←'* assignment syntax error' ⋄ ur ⎕SIGNAL dcl↓2 ⋄ ⎕←ur ⋄ →
+ :EndIf
+ →(⍴in←(⍴nma)↓in)↓0                           ⍝ ]v← is the same as ]
+
+ ur←(dcl,⍨dcl≤notQ×⍴nma)⎕SE.SALTUtils.Spice in
+ :If 17≤⊃(//)⎕VFI{⍵/⍨2>+\'.'=⍵}(⎕IO+1)⊃'#'⎕WG'APLVersion'
+     ⎕SIGNAL 0                                ⍝ reset ⎕DM
+ :EndIf
+ BS←⎕UCS 8
+ :If (0 2∊⍨10|⎕DR ur)∧1∊⍴⍴ur
+ :AndIf (2↑ur)≡BS,'*'                         ⍝ error signature
+     ur~←BS
+     ur ⎕SIGNAL dcl↓911 ⋄ ⎕←ur ⋄ →0           ⍝ signal error only if called by a program
+ :EndIf
+
+ →(1=⍴nma)⍴0                                  ⍝ ]←cmd    discard result
+ :If edFlag
+     {{}(#.⎕NS'').(⎕ED⍠('ReadOnly' 1)&{'ed'}ed←⍵)}ur
+     r←''
+ :ElseIf 0∊⍴nma
+     r←ur                                     ⍝ no '←'   return result by this fn
+ :ElseIf ~notQ
+     {⎕←⌽rlb⌽⍵}¨↓⎕FMT ur                      ⍝ ]⎕←      display line by line
+ :Else
+     {THIS⍎nma,'⍵'}ur                         ⍝ ]xx←cmd  store result in xx in calling namespace
+ :EndIf
+ 

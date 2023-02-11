@@ -1,0 +1,11 @@
+ r←ResetFunctionKeys;⎕IO;⎕ML
+⍝ Toggles between active and inactive functions keys
+ (⎕IO ⎕ML)←1 3
+ :If 0∊⍴↑,/⎕PFKEY¨⍳10
+     {}FKeys.Define ⍬
+     r←'Function keys are restored'
+ :Else
+     {}FKeys.SetFunctionKeys(↑,/{↑(⊂⍵)∘{⍺,¨⍵}¨⊂{'F',¨¯2↑¨'00'∘,¨⍵}⍕¨⍳12}¨'' 'Ctrl+' 'Shift+' 'Ctrl+Shift+'),[1.5]⊂''
+     {}FKeys.SetFunctionKeys 1 2⍴'Ctrl+Shift+F11'(↑⎕XSI)
+     r←'All but one function keys are turned off but Ctrl+Shift+F11 will bring them back'
+ :EndIf

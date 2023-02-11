@@ -1,0 +1,6 @@
+ r←acreConfig AcreUserExit y
+ r←⍬ ⍝ Don't interefre with acre at all: let it do its job.
+ :If 9=⎕SE.⎕NC'APLGit2'
+ :AndIf ⎕SE.FilesAndDirs.IsDir'.git'
+     {}'Acre auto-commit (user-exit)'⎕SE.APLGit2.Commit''
+ :EndIf

@@ -1,0 +1,6 @@
+ EstablishDropOnSession;List
+ :If 3=⎕NC'⎕se.aplteam.OnDropObjects'
+     {⍵ ⎕WS('Event' 'DropObjects' '⎕se.aplteam.OnDropObjects')('Event' 'DropFiles' '⎕se.aplteam.OnDropObjects')('AcceptFiles' 1)}¨'⎕se.cbbot.bandsb2.sb' '⎕se.cbbot.bandsb1.sb'
+ :Else
+     ⎕←'Function "OnDropObjects" not found in ⎕SE.aplteam'
+ :EndIf

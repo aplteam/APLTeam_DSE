@@ -1,0 +1,11 @@
+ r←SetStopVector;fn
+⍝ If there is a function suspended then this function put a stop
+⍝ to its current line and return the string "→⎕LC" as result.
+⍝ If no function is suspended an error is thrown.
+ :If 1=⍴⎕LC
+     11 ⎕SIGNAL⍨'There is no function suspended?!'
+ :Else
+     fn←2⊃⎕XSI
+     (∪(⎕STOP fn),2⊃⎕LC)⎕STOP fn
+     r←'→⎕LC'
+ :EndIf

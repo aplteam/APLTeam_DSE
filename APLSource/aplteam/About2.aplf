@@ -1,0 +1,2 @@
+ R←About2;No
+ R←'⎕SE of Kai Jaeger ⋄ Version ',((1+⎕IO)⊃Version),' from ',(2+⎕IO)⊃Version

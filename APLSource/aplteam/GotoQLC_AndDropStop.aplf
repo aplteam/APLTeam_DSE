@@ -1,0 +1,14 @@
+ r←GotoQLC_AndDropStop;cf;sv;⎕IO;⎕ML
+⍝ First it drops any stop set on the current line of the currently
+⍝ suspended function, then it returns "→⎕LC".
+ (⎕IO ⎕ML)←1 3
+ :If 1<⍴⎕XSI
+     r←'→⎕LC'
+     cf←↑1↓⎕XSI                     ⍝ Current function
+     sv←⎕STOP cf                    ⍝ Stop vectors
+     sv~←↑1↓⎕LC                     ⍝ Drop the current line
+     sv ⎕STOP cf                    ⍝ Re-establish the (potentially reduced) stop vector
+ :Else
+     r←⍬
+ :EndIf
+⍝Done

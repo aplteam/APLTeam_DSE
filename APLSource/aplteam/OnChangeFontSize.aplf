@@ -1,0 +1,9 @@
+ OnChangeFontSize←{
+     hasFocus←2 ⎕NQ'#' 'GetFocus'
+     '⎕SE'≢hasFocus:1
+     font←'⎕SE'⎕WG'Font'
+     (fontName fontSize)←2↑font
+     dir←1 ¯1['+-'⍳⍺]
+     _←ChangeFontSize dir
+     0
+ }

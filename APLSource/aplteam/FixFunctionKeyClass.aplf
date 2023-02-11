@@ -1,0 +1,8 @@
+ {r}←FixFunctionKeyClass dummy;filename;body
+ r←⍬
+ filename←(##.WinSys.ExpandEnv'%USERPROFILE%'),'\Documents\MyUCMDs\APLTeam\FunctionKeyDefinition.aplc'
+ :If ##.FilesAndDirs.IsFile filename
+     body←1⊃⎕NGET filename 1
+     FKeys.⎕FIX body
+ :EndIf
+⍝Done

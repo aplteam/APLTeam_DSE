@@ -1,0 +1,4 @@
+ GetFunctionKey←{
+     (2=⎕NC'∆FKeys'):({(0 1∊⍨≡⍵):⍵ ⋄ ⍵/⍨0=≡¨⍵}3⊃∆FKeys[no;])
+     A.dtb{0∊⍴⍵:'' ⋄ ⊃,/⍵}showCommandFlag{0∊⍴⍵:'' ⋄ 0 1∊⍨b←≡⍵:⍵ ⋄ ~⍺:{b←0=≡¨⍵ ⋄ b\b/⍵}⍵ ⋄ {0=≡⍵:⍵ ⋄ ' "',⍵,'" '}¨⍵}⎕PFKEY no
+ }

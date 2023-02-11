@@ -1,0 +1,4 @@
+:Class QuadVars
+⍝ Makes sure that we get the correct values for ⎕IO and ⎕ML in case a project is loaded with acre
+    ##.⎕IO←1 ⋄ ##.⎕ML←1
+:EndClass

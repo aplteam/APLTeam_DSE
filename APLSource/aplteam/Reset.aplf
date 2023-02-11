@@ -1,0 +1,18 @@
+ Reset
+⍝ General Reset function
+ :If 1<⍴⎕LC
+     →0,⎕←'First clear SI by executing:',(⎕UCS 13),')RESET'
+ :EndIf
+ :If 1<⍴⎕TNUMS
+     →0,⎕←'First stop running threads by executing:',(⎕UCS 13),')RESET'
+ :EndIf
+ ⎕FUNTIE ⎕FNUMS
+ ⎕NUNTIE ⎕NNUMS
+ #.CursorObj←0
+ #.Caption←''
+ :If 9=#.⎕NC'acre'
+     {}#.acre.CloseAll ⍬
+ :EndIf
+ :If 3=#.⎕NC'Reset'
+     #.Reset
+ :EndIf

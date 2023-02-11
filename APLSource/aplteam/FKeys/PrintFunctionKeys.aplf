@@ -1,0 +1,20 @@
+ {r}←{showCommandFlag}PrintFunctionKeys y;⎕IO;⎕WX;⎕ML;A;html;ref;filename;printSize
+⍝ Creates a file that contains HTML describing the current function key settings.
+⍝ If "filename" does not specify an extension it defaults to ".html".
+⍝ Needs ∆FKeys.
+ ⎕IO←1 ⋄ ⎕WX←⎕ML←3
+ A←##.##.APLTreeUtils2
+ showCommandFlag←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'showCommandFlag'
+ y←(⊂⍣(↑0 1∊⍨≡y))y
+ (filename printSize)←2↑y,(⍴y)↓'' 6
+ filename{⍵:¯4↓##.##.FilesAndDirs.GetTempFilename'' ⋄ ⍺}←0=≢filename
+ filename,←(~'.'∊filename)/'.html'
+ html←'<h1>Function key settings for Dyalog Version '
+ html,←{⍵/⍨2>+\⍵='.'}2⊃# ⎕WG'APLVersion'
+ html,←'</h1>',CrNl
+ html,←CollectFkeys ref←⎕NS''
+ html←'<body>',CrNl,'<div>',html,'</div></body>',CrNl
+ html←'<html>',CrNl,(printSize GetHeader ref),html,'</html>',CrNl
+ html←'<!DOCTYPE html>',CrNl,html
+ (⊂html)⎕NPUT filename
+ r←'*** Done - now run:',(⎕UCS 13),' ⎕SE.APLTreeUtils2.GoToWebPage ''file:///',filename,''''

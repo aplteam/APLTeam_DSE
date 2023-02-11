@@ -1,0 +1,28 @@
+ {r}←Check_FunctionKeyDefinition;filename;my;proj;format;my_ts;proj_ts;body;sourceFilename
+ r←⍬
+ filename←(⎕SE.WinSys.ExpandEnv'%USERPROFILE%'),'\Documents\MyUCMDs\FunctionKeyDefinition.aplc'
+ :If ⎕SE.FilesAndDirs.IsFile filename
+     my←⊃⊃('type' 3)⎕SE.FilesAndDirs.Dir filename
+     sourceFilename←'APLSource\aplteam\FKeys\FunctionKeyDefinition.aplc'
+     :If ⎕SE.FilesAndDirs.IsFile sourceFilename
+         ⍝ We are in development mode
+         proj←⊃⊃('type' 3)⎕SE.FilesAndDirs.Dir sourceFilename
+     :Else
+         sourceFilename←(⎕SE.UCMD'getacreprojectpath'),'APLTeam\APLTeam_DSE\APLSource\aplteam\FKeys\FunctionKeyDefinition.aplc'
+         proj←⊃⊃('type' 3)⎕SE.FilesAndDirs.Dir sourceFilename
+     :EndIf
+     format←{⍎,⊃,/'ZI4' 'ZI2' 'ZI2' 'ZI2' 'ZI2' 'ZI2' 'ZI4'⎕FMT¨⍵}
+     my_ts←format my
+     proj_ts←format proj
+     :If my_ts>proj_ts
+         ⎕←'Function key definition found in:'
+         ⎕←⊃⎕NPARTS filename
+         ⎕←'is better then the project''s one and therefore loaded!'
+         body←⊃⎕NGET filename
+         FKeys.⎕FIX body
+         :If YesOrNo'Would you like to execute acre''s "SetChanged" to make this version part of the project?'
+             ⎕SE.UCMD'acre.SetChanged #._aplteam.aplteam.FKeys.FunctionKeyDefinition'
+         :EndIf
+     :EndIf
+ :EndIf
+ ⍝Done

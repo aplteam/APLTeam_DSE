@@ -1,0 +1,136 @@
+:Class FunctionKeyDefinition
+⍝ This class attempts to make defining function key definitions as easy as possible.\\
+⍝ For all the common "commands" one can use like `ER` for <enter> or `LC` for <Cursor left> are
+⍝ available as niladic functions returning their names as text vectors, therefore:  `'ER' ←→ ER`.\\
+⍝ That makes using them easier and more readable.\\
+⍝ Note that "LL" is not available in Ride and must therefore be used with care.\\
+⍝ To actually define the setting call `aplteam.FKeys.Define ⍬`.\\
+⍝ For display and print purposes of F-shortcuts see `aplteam.FKeys.PrintFunctionKeys`.\\
+⍝ Note that you can use the private function `IfAtLeastVersion` to check for a minimum version of
+⍝ Dyalog APL currently  running.\\
+⍝ Kai Jaeger\\
+⍝ 2023-01-15
+
+
+    ⎕IO←1 ⋄ ⎕ML←3 ⋄ ⎕WX←3
+    make←{⍵,'←⊂''',⍵,''''}
+    ⍎¨make¨ 'AO'  'BH' 'DO' 'DB' 'DC' 'DI' 'ER' 'GL' 'LC'  'LL' 'Ll'  'PT' 'RD' 'RL' 'RC' 'Rl' 'UC'
+    ⍎¨make¨'AC' 'BP' 'MA' 'RM' 'NX' 'PV' 'RD' 'TT' 'FT'
+
+    ∇ r←Version
+      r←'FunctionKeyDefinition' '4.7.0.2' '2022-06-27'
+    ∇
+
+    ⍝ ##.History
+
+    ∇ {r}←DefineFunctionKeys
+      :Access Public Shared
+      r←0 3⍴''
+⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
+      r⍪←'F01'('')('(Reserved for help)')
+      r⍪←'F02'('⎕TRAP←0 ''S''')'⎕TRAP←0 ''S'''
+      r⍪←'F03'(NX)('Show next hit (NX)')
+      r⍪←'F04'(LL,'⎕se.aplteam.Display ')('Display')
+      r⍪←'F05'('→⎕LC+1 ⍝ ',ER)('→⎕LC+1 (current thread only)')
+      r⍪←'F06'('')('Continue all threads (MA, defined in config)')
+      r⍪←'F07'('⍝',ER,'⍎⎕SE.aplteam.GotoQLC_AndSetStopVector',ER)('→⎕LC & set ⎕STOP')
+      r⍪←'F08'('⍝',ER,'⍎⎕SE.aplteam.GotoQLC_AndDropStop',ER)('→⎕LC & drop stop')
+      r⍪←'F09'(LL,'⍝',ER)('⍝')
+      r⍪←'F10'(LL,'⎕THIS ⍝',ER)('⎕THIS')
+      r⍪←'F11'('')('Full screen (Ride only)')
+      r⍪←'F12'('')('Inspect object (Ride only)')
+     
+      r⍪←'Shift+F01' '' '' ⍝ Cannot be used  in Ride anyway, so we leave it undefined
+      r⍪←'Shift+F02'(FT)('Toggle between TOC, "Find" and & edit pane')
+      r⍪←'Shift+F03'(']Listobjects')(']ListObjects ',ER)
+      r⍪←'Shift+F04'(']latest')(']Latest ',ER)
+      r⍪←'Shift+F05'('∘∘∘ ')('Inject break point (∘∘∘)')
+      r⍪←'Shift+F06'(BH,ER)('Run to exit')
+      r⍪←'Shift+F07'('')('')
+      r⍪←'Shift+F08'('')('Toggle language bar (Ride only)')
+      r⍪←'Shift+F09'('')('')
+      r⍪←'Shift+F10'('')('(Reserved for context menu)')
+      r⍪←'Shift+F11'('⎕DMX.(⍪{⍵(⍎⍵)}¨⎕NL-2) ⍝',ER)('List contents of ⎕DMX')
+      r⍪←'Shift+F12'('⎕SE.aplteam.Clear',ER)('Close (acre) & )Clear')
+     
+      r⍪←'Ctrl+F01'('')('')
+      r⍪←'Ctrl+F02'(TT)('Toggle tree view in editor')
+      r⍪←'Ctrl+F03'(PV)('Show previous hit (PV)')
+      r⍪←'Ctrl+F04'(LL,'⊣⎕SE.Link.Expunge ''''',LC)('⎕EX with Link')
+      r⍪←'Ctrl+F05'(AC)('Align comments (AC)')
+      r⍪←'Ctrl+F06'(ER,RM)('Continue just the current thread')
+      r⍪←'Ctrl+F07'(BP)('Toggle stop (BP)')
+      r⍪←'Ctrl+F08'('({0::0 0⍴⍬⋄ 0 0⍴⎕ED &⎕SE.∆LastEdited}⍬)',ER)('<edit last object again>')
+      r⍪←'Ctrl+F09'(LL,']Udebug ')(']Udebug on|off')
+      r⍪←'Ctrl+F10'(' ⍝TODO⍝ ')('⍝TODO⍝')
+      r⍪←'Ctrl+F11'(LL,'{{}(#.⎕NS'''').(⎕ED⍠(''ReadOnly'' 1)&{''ed''}ed←⍵)}')('⎕ED vars (read-only)')
+      r⍪←'Ctrl+F12'('')('Show log file (Ride only)')
+     
+      r⍪←'Ctrl+Shift+F01'(LL,']Cider.')(']Cider.')
+      r⍪←'Ctrl+Shift+F02'(LL,']Cider.OpenProject ')(']Cider.OpenProject')
+      r⍪←'Ctrl+Shift+F03'(LL,']Cider.ListOpenProjects',ER)(']Cider.ListProjects')
+      r⍪←'Ctrl+Shift+F04'(LL,']Cider.CloseProject ')(']CiderCloseProject')
+      r⍪←'Ctrl+Shift+F05'('')('')
+      r⍪←'Ctrl+Shift+F06'(LL,']APLGit2.')(']Git.')
+      r⍪←'Ctrl+Shift+F07'(LL,']APLGit2.Status ')(']Git.Status')
+      r⍪←'Ctrl+Shift+F08'(LL,']APLGit2.OpenGitShell')(']Git.OpenGitShellOpenGitShell')
+      r⍪←'Ctrl+Shift+F09'(LL,']APLGit2.Commit -m=""',LC)(']Git.Commit -m=""')
+      r⍪←'Ctrl+Shift+F10'(LL,']Tatin.')(']Tatin.')
+      r⍪←'Ctrl+Shift+F11'(LL,']Tatin.ListPackages ')(']Tatin.ListPackages')
+      r⍪←'Ctrl+Shift+F12'(LL,']Tatin.ListRegistries')(']Tatin.ListRegistries')
+      Check r
+    ∇
+
+      IfAtLeastVersion←{
+      ⍝ ⍵ is supposed to be a number like 15 or 17.1, representing a version of Dyalog APL.
+      ⍝ Returns a Boolean that is 1 only if the current version is at least as good in case
+      ⍝ not left argument is specified. If a left argument is specified it must be a 3-item vector:
+      ⍝ * Char vector specifying the function key in question
+      ⍝ * Command to be issued
+      ⍝ * Comment\\
+      ⍝ [2] and [3] are reduced to an empty vector if the version is not appropriate.
+      ⍝ So in version 16.0:
+      ⍝ 0 ←→ IfAtLeastVersion 15
+      ⍝ 1 ←→ IfAtLeastVersion 17
+      ⍝ la←'F12' ']adoc ' 'Automated documentation generation' ← 'F12' ']adoc ' 'Automated documentation generation'
+      ⍝ 'F12' ']adoc ' 'Automated documentation generation' ← la IfAtLeastVersion 16
+      ⍝ 'F12' '' ''          ← la IfAtLeastVersion 14.1
+          ⍺←⍬
+          flag←⍵≤{⊃(//)⎕VFI ⍵/⍨2>+\'.'=⍵}2⊃# ⎕WG'APLVersion'
+          ⍬≡⍺:flag
+          ⍺[1],(1+flag)⊃('' 'Not available in this version of Dyalog')(1↓⍺)
+      }
+
+    ∇ Check r;rk;shortcuts;allFkeys;ind;bool;ind2;bool2
+      rk←CompileRegistryKey
+      :If 0≠≢shortcuts←⎕SE.WinReg.GetTreeWithValues rk
+      :AndIf 0≠≢shortcuts←1↓shortcuts
+      :AndIf 0≠≢shortcuts←((↑¨shortcuts[;3])∊111+⍳12)⌿shortcuts
+          allFkeys←(≢r)↑↑,/(4⍴⊂111+⍳12),¨¨⊂¨,¨0 1 2 3
+          shortcuts←((2↑¨shortcuts[;3])∊allFkeys)⌿shortcuts
+          ind←(allFkeys)⍳2↑¨shortcuts[;3]
+          bool←0<↑∘⍴¨r[;2]
+          :If 1∊bool[ind]
+              ⎕←'Defined as F-KEY but also defined in Dyalog config ("Keyboard Shortcuts" tab):'
+              ind2←bool/(2↑¨shortcuts[;3])⍳allFkeys
+              bool2←ind2≤1↑⍴shortcuts
+              ⎕←'  F-Keys: ',↑{⍺,',',⍵}/bool[ind]/r[ind;1]
+              ⎕←'  Shortcuts: ',↑{⍺,',',⍵}/2⊃¨⎕NPARTS¨((2↑¨shortcuts[;3])∊(0<↑∘⍴¨r[;2])⌿allFkeys)⌿shortcuts[;2]
+              ∘∘∘             ⍝ deliberate stop: you need to sort this out!
+          :EndIf
+          :If 1∊bool←0=↑∘⍴¨r[ind;3]
+              r[bool/ind;3]←'Executes: '∘,¨'\'##.##.##.APLTreeUtils2.Last¨bool/shortcuts[;2]
+          :EndIf
+      :EndIf
+    ∇
+
+    ∇ rk←CompileRegistryKey
+      rk←'Software\Dyalog\Dyalog APL/W'
+      rk,←'-64'/⍨∨/'64'⍷⎕IO⊃'#'⎕WG'APLVersion'
+      rk,←,' ',{⍵/⍨1≥+\'.'=⍵}(⎕IO+1)⊃'#'⎕WG'APLVersion'
+      rk,←' Unicode'/⍨80=⎕DR' '
+      rk,←'\KeyboardShortcuts\keys'
+      ⍝Done
+    ∇
+
+:EndClass

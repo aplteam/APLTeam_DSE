@@ -1,0 +1,4 @@
+ r←IsWindows;⎕ML
+ ⎕ML←1
+ r←'W'=⊃⊃'#'⎕WG'APLVersion'
+⍝Done

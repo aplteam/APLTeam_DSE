@@ -1,0 +1,12 @@
+ R←{CalledFromNamespace}GetVarsFromParms Parms;∆DUMMY;⎕IO;⎕ML
+ ⎕IO←1
+ ⎕ML←3
+ R←''
+ :If 0=⎕NC'CalledFromNamespace'
+     CalledFromNamespace←↑⎕NSI
+ :EndIf
+ ⎕CS CalledFromNamespace            ⍝ Change to the namespace this fns was called from
+ Parms⍪←'DUMMY'⍬                    ⍝ DUMMY is added to make the statement run if Parms is empty.
+ Parms[;1]←'∆',¨Parms[;1]           ⍝ Add "∆" to avoid name conflicts.
+ ⍎(↑,/' ',¨Parms[;1]),'←Parms[;2]'  ⍝ Create external parameters.
+ R←¯1↓Parms[;1]                     ⍝ ¯1↓ drops the DUMMY.

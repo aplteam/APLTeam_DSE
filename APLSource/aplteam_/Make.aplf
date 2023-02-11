@@ -1,0 +1,7 @@
+ Make
+ Cleanup
+ '⎕SE'⎕WS'Event' 'Create' '⎕SE.aplteam_.OnCreateDSE'
+ '⎕SE'⎕WS'Event' 'WorkspaceLoaded' '⎕SE.Dyalog.Callbacks.WSLoaded'
+ '⎕SE'⎕WS'Event' 3611 0
+ '⎕SE'⎕WS'Event' 4885 0
+ ⍝Done

@@ -1,0 +1,8 @@
+ OnRestoreFontSize←{
+     hasFocus←2 ⎕NQ'#' 'GetFocus'
+     '⎕SE'≢hasFocus:1
+     font←'⎕SE'⎕WG'Font'
+     font[1+⎕IO]←∆OrigFontSize
+     '⎕SE'⎕WS'Font'font
+     ⍬
+ }

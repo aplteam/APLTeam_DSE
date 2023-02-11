@@ -1,0 +1,3 @@
+ r←Define dummy
+⍝ (Re(-define all PFKEY definitions.
+ r←SetFunctionKeys FunctionKeyDefinition.DefineFunctionKeys

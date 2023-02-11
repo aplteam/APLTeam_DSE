@@ -1,0 +1,6 @@
+ Cleanup
+⍝ This functions tidies up ⎕SE from anything that should not be there.
+⍝ Execute this in aplteam.dws only, typically when an existing aplteam
+⍝ session file is updated.
+ ⎕SE.⎕EX¨#.aplteam.copylist
+ ⎕SE.⎕EX'Fire'

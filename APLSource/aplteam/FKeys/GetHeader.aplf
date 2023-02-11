@@ -1,0 +1,13 @@
+ GetHeader←{
+     ⍺←6
+     ns←⍵
+     printSize←⍺
+     header←'<head>',CrNl
+     header,←'<title>Dyalog Function Key Setting</title>',CrNl
+     header,←'<meta charset="utf-8">',CrNl
+     width←ns CalcWidth 16 800
+     header,←('<style type="text/css" media="screen">',CrNl),(GetScreenCss width),'</style>',CrNl
+     header,←('<style type="text/css" media="print">',CrNl),(GetPrintCss printSize),'</style>',CrNl
+     header,←'</head>',CrNl
+     header
+ }

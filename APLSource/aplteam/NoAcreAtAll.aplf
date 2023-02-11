@@ -1,0 +1,9 @@
+ NoAcreAtAll dummy;paths;rk;value
+ rk←GetRegKey'\SALT\CommandFolder'
+ value←W.GetString rk
+ paths←⎕SE.SALT.PATHDEL{⍵⊂⍨~⍵∊⍺}value
+ (('/'=∊paths)/∊paths)←'\'
+ paths←(~∨/¨'\acre'∘⍷¨paths)/paths
+ paths←1↓↑,/(¯1↑⎕SE.SALT.PATHDEL),¨paths
+ W.PutString rk paths
+⍝Done

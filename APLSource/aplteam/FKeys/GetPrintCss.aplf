@@ -1,0 +1,14 @@
+ GetPrintCss←{
+     size←⍵
+     r←''
+     r,←'html {font-size: 6pt; margin:0; padding:0; }',CrNl
+     r,←'table {',CrNl
+     r,←'        border-collapse:collapse; margin:0; padding:0; border: 1pt solid black; }',CrNl
+     r,←'div#cont1, div#cont2, div#cont3, div#cont4 {float:left; margin:10pt 10pt 20pt 0;}',CrNl
+     r,←'h1 {font-family: "Verdana, Helvetica"; padding-bottom:10pt; font-size: 120%; margin:0;}',CrNl
+     r,←'th {text-align: left; border: 1pt solid black; }',CrNl
+     r,←'th, td {font-family: "APL385 Unicode"; font-size:',(⍕size),'pt; font-weight:200; padding:2pt;}',CrNl
+     r,←'tr:nth-child(even) {color:black; background-color:#F9F9F9;}',CrNl
+     r,←'tr:nth-child(odd)  {color:black; background-color:#FFFFFF;}',CrNl
+     r
+ }

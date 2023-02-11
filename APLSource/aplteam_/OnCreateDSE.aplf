@@ -1,0 +1,11 @@
+ OnCreateDSE←{
+     ⎕IO←1 ⋄ ⎕ML←1
+     path←{⍵↓⍨1+-1⍳⍨'\'=⌽⍵}2 ⎕NQ'#' 'GetEnvironment' 'session_file'
+     rf←⎕NS''
+     _←path{6::⍬ ⋄ '#.aplteam.copylist'rf.⎕CY ⍺,⍵}'aplteam.dws'
+     _←(↑rf.copylist){6::⍬ ⋄ ⍺ ⎕SE.⎕CY ⍵}path,'aplteam.dws'
+     a←⎕SE.aplteam
+     _←a.StartUp
+     _←⎕SE.⎕FX ⎕SE.aplteam.⎕CR'UCMD'
+     1
+ }

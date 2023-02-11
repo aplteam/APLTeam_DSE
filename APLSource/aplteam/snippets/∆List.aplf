@@ -1,0 +1,32 @@
+ r←∆List;⎕ML;⎕IO;r2;r1;c1;c2;list;this;body;path
+ ⍝ Lists all functions and operators within this namespace except ∆List itself.
+ ⍝ The function always creates all snippets from scratch from disk.
+ ⎕IO←1 ⋄ ⎕ML←1
+ r←''
+ path←'expand'⎕SE.FilesAndDirs.NormalizePath(⎕SE.UCMD'GetAcreProjectPath'),'..\DSE\Snippets/*'
+ ⎕EX↑(' '~⍨¨↓⎕NL 3)~' '~⍨¨↓'∆'⎕NL 3
+ :If 0<≢list←⊃⎕SE.FilesAndDirs.Dir path
+     :For this :In list
+         body←⊃⎕NGET this 1
+         :If (¯1↑⎕NPARTS this)∊'.aplf' '.aplo'
+             ⎕FX,⊂⍣(1=≡body)⊣body
+         :Else
+             ⎕FIX body
+         :EndIf
+     :EndFor
+     r1←' '~¨⍨↓⎕NL 3 4
+     r1~←⎕SI[1]                 ⍝ Without itself
+     c1←{3::'' ⋄ 2⊃⎕NR ⍵}¨r1
+     c1←{w←(+/∧\' '=⍵)↓⍵ ⋄ '⍝'≠⊃w:'' ⋄ 2↓w}¨c1
+     c1←{(¯2×'\\'≡¯2↑⍵)↓⍵}¨c1
+     :If 0=≢r2←' '~¨⍨↓⎕NL 9
+         r2←c2←''
+     :Else
+         c2←{2⊃⎕SRC⍎⍵}¨r2
+         c2←{w←(+/∧\' '=⍵)↓⍵ ⋄ '⍝'≠⊃w:'' ⋄ 2↓w}¨c2
+         c2←{(¯2×'\\'≡¯2↑⍵)↓⍵}¨c2
+     :EndIf
+     r←(⍕⎕THIS)∘,¨'.',¨r1,r2
+     r←r,[1.5]c1,c2
+ :EndIf
+⍝Done
