@@ -32,4 +32,5 @@
          (##.CiderConfig.HOME,'/APLsource/aplteam/FKeys/FunctionKeyDefinition.aplc')M.CopyTo myUcmdFolder,'/APLTeam/'
          (targetPath,'packages')M.CopyTo myUcmdFolder,'/APLTeam/'
      :EndIf
+     ⎕CLEAR
  :EndIf

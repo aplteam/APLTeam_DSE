@@ -1,0 +1,7 @@
+ r←Public
+ r←''
+ r,←⊂'Select'
+ r,←⊂'YesOrNo'
+ r,←⊂'Pause'
+ r,←⊂'Cleanup'
+ r,←⊂'Help'
