@@ -3,7 +3,11 @@
  ⍝ The function always creates all snippets from scratch from disk.
  ⎕IO←1 ⋄ ⎕ML←1
  r←''
- path←'expand'⎕SE.FilesAndDirs.NormalizePath(⎕SE.UCMD'GetAcreProjectPath'),'..\DSE\Snippets/*'
+ :If 9=##.##.⎕NC'CiderConfig' ⍝ Development?
+     path←##.##.CiderConfig.HOME,'/Snippets/'
+ :Else ⍝ Nope!
+     path←⎕SE.Tatin.GetMyUCMDsFolder'/APLTeam/Snippets/'
+ :EndIf
  ⎕EX↑(' '~⍨¨↓⎕NL 3)~' '~⍨¨↓'∆'⎕NL 3
  :If 0<≢list←⊃⎕SE.FilesAndDirs.Dir path
      :For this :In list

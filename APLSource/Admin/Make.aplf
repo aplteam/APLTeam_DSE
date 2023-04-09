@@ -1,12 +1,11 @@
  Make;targetPath;M;myUcmdFolder;name;copyToPath;aplVersion
-⍝ Run;pathToAPLTreeSource;targetPath;M;A;copyToPath;myucmdFolder;name;list;F;_SomethingHasChange
-⍝ Version 5.1.0 ⋄ 2023-02-11 ⋄ Kai Jaeger
+⍝ Version 5.2.0 ⋄ 2023-04-09 ⋄ Kai Jaeger
 ⍝ Runs under Windows only
  ⎕IO←1 ⋄ ⎕ML←1
  aplVersion←'18.0'
  ('Invalid version of APL, use ',aplVersion)⎕SIGNAL 11/⍨aplVersion≢{⍵/⍨2>+\'.'=⍵}2⊃# ⎕WG'APLVersion '
  targetPath←##.CiderConfig.HOME,'/Dist/'
- {' '≠1↑0⍴∊⍵:.}⎕FX↑'r←M' 'r←⎕SE.MakeHelpers'
+ M←⎕SE.MakeHelpers
  :If M.YesOrNo'Sure you want to create a new version? The workspace will be destroyed in the process!'
      copyToPath←'expand'M.##.F.NormalizePath ##.CiderConfig.HOME,'/../../../DSE/'
      myUcmdFolder←M.GetMyUCMDsFolder''
@@ -17,11 +16,13 @@
      M.##.F.PolishCurrentDir
      M.IncreaseBuildIDInFunction'#.aplteam.aplteam.Version'
      ⎕LX←''
+     ⎕EX'M'
      0 ⎕SAVE ⎕WSID
      #.⎕EX #.⎕NL⍳16
      '#.aplteam.aplteam'#.⎕CY ⎕WSID
      #.aplteam.snippets.{⎕EX¨(⊂'∆List')~⍨' '~¨⍨↓⎕NL 3 4 9}⍬
      0 ⎕SAVE ⎕WSID
+     M←⎕SE.MakeHelpers
      M.RecreateFolder copyToPath,'Snippets\'
      (##.CiderConfig.HOME,'/Snippets/')M.CopyTo copyToPath
      (##.CiderConfig.HOME,'/Snippets/')M.CopyTo targetPath
@@ -29,6 +30,7 @@
      :If 1 M.YesOrNo'Copy WS, F-Key defs & packages over to MyUCMDs\?'
          M.RecreateFolder myUcmdFolder,'/APLTeam/'
          (targetPath,name,'.dws')M.CopyTo myUcmdFolder,'/APLTeam/'
+         (copyToPath,'Snippets')M.CopyTo myUcmdFolder,'/APLTeam/'
          (##.CiderConfig.HOME,'/APLsource/aplteam/FKeys/FunctionKeyDefinition.aplc')M.CopyTo myUcmdFolder,'/APLTeam/'
          (targetPath,'packages')M.CopyTo myUcmdFolder,'/APLTeam/'
      :EndIf

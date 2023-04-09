@@ -1,2 +1,0 @@
-aplteam-Tester2-3.3.1
-aplteam-CodeCoverage-0.9.4
