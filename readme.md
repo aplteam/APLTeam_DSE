@@ -15,6 +15,6 @@ That WS is created by the following steps:
 
 1. Ask Cider to print the "Make" expression to the session and then execute it
 
-Which implies that all development is made in project of course: _**don't** change anything in the workspace `DSE\aplteam18.dws`!_
+Which implies that all development is made in the project of course: _**don't** change anything in the workspace `DSE\aplteam18.dws`!_
 
 Kai Jaeger ⋄ 2023-02-11
