@@ -1,3 +1,0 @@
- onSnippets
- ⎕←'      ⎕←',(⍕⎕THIS),'.snippets.∆List'
- ⎕←snippets.∆List

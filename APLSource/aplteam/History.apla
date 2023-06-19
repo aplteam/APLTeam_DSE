@@ -1,4 +1,6 @@
 (
+ '* 7.7.0 ⋄ 2023-06-19'
+ '  * Snippets removed, is now a user command:  ]Snippets'
  '* 7.6.0 ⋄ 2023-06-02'
  '  * Packages updated'
  '* 7.5.0 ⋄ 2023-04-20'

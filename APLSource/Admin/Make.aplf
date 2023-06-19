@@ -1,5 +1,5 @@
  Make;targetPath;M;myUcmdFolder;name;copyToPath;aplVersion
-⍝ Version 5.2.0 ⋄ 2023-04-09 ⋄ Kai Jaeger
+⍝ Version 5.3.0 ⋄ 2023-06-19 ⋄ Kai Jaeger
 ⍝ Runs under Windows only
  ⎕IO←1 ⋄ ⎕ML←1
  aplVersion←'18.0'
@@ -20,7 +20,6 @@
      0 ⎕SAVE ⎕WSID
      #.⎕EX #.⎕NL⍳16
      '#.aplteam.aplteam'#.⎕CY ⎕WSID
-     #.aplteam.snippets.{⎕EX¨(⊂'∆List')~⍨' '~¨⍨↓⎕NL 3 4 9}⍬
      0 ⎕SAVE ⎕WSID
      M←⎕SE.MakeHelpers
      M.RecreateFolder copyToPath,'Snippets\'

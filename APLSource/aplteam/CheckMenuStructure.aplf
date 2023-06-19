@@ -31,8 +31,6 @@
      (MB2,'.L_Keys')⎕WC(⊂'Menuitem'),∆
      (MB2,'.PrintL_Keys')⎕WC'Menuitem' 'Show Function Keys'('event' 'select' '⍎ShowFKeysInBrowser')
      (MB2,'.sep01')⎕WC'Separator'
-     (MB2,'.Snippets')⎕WC'Menuitem' 'List code snippets'('event' 'select' 'onSnippets')
-     (MB2,'.sep02')⎕WC'Separator'
      :If 9=⎕NC'⎕se.aplteam'
          ∆←⊂'Make []SE font bigger',(⎕UCS 9),'Ctrl++'
          ∆,←⊂'Accelerator'(107 2)
