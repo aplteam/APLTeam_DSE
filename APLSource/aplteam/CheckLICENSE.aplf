@@ -1,0 +1,20 @@
+ CheckLICENSE cfg;path;txt
+⍝ * Checks whether a file `LICENSE` exists and reports to the session if not
+⍝ * If it does exist it checks whether it contains...
+⍝   * "APL Team" and reports to the session if so
+⍝   * "Copyright" and reports to the session if not
+ path←⍎(⊃{⍺,'.',⍵}/cfg.CIDER.(parent projectSpace)),'.CiderConfig.HOME'
+ :If 0=cfg.USER.⎕NC'noLicenseCheck'
+ :OrIf 1≢cfg.USER.noLicenseCheck
+     :If ⎕NEXISTS path,'/LICENSE'
+         txt←⊃⎕NGET path,'/LICENSE'
+         :If ∨/'APL Team'⍷txt
+             ⎕←'>>> ATTENTION: The file LICENSE in ',path,' contains the string "APL Team"'
+         :EndIf
+         :If ~∨/'copyright'⍷⎕C txt
+             ⎕←'>>> ATTENTION: The file LICENSE in ',path,' does NOT contain "Copyright"'
+         :EndIf
+     :Else
+         ⎕←'>>> ATTENTION: There is no file LICENSE in ',path
+     :EndIf
+ :EndIf

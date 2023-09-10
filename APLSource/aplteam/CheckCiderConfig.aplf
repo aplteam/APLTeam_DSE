@@ -1,0 +1,25 @@
+ CheckCiderConfig cfg;path;filename;noOf;names;version;json
+⍝ * Checks the Cider config:
+⍝ * Reduces the "LINK" options to the non-defaults ("watch")
+⍝ * Injects [CIDER]version
+⍝ * Writes `cfg` back to disk
+ path←⍎(⊃{⍺,'.',⍵}/cfg.CIDER.(parent projectSpace)),'.CiderConfig.HOME'
+ filename←path,'/cider.config'
+ :If 0=cfg.CIDER.⎕NC'version'
+     names←' '~⍨¨↓cfg.LINK.⎕NL⍳16
+     :If 'both'≢cfg.LINK.watch                  ⍝ Not on default?
+         names~←⊂'watch'
+     :EndIf
+     noOf←≢names
+     :If 0<noOf
+     :AndIf ##.CommTools.YesOrNo'Remove ',(⍕noOf),' entries in [LINK] from the Cider config file?'
+         cfg.LINK.⎕EX¨names
+     :EndIf
+     version←{⍵↑⍨¯1+⍵⍳'+'}⎕SE.Cider.Version     ⍝ Without build number
+     :If 0=≢version~'.',⎕D                      ⍝ Only when it not a test or beta version
+         cfg.CIDER.version←version
+         json←⎕JSON⍠('Dialect' 'JSON5')('Compact' 0)⊣cfg
+         (⊂json)⎕NPUT filename 1
+     :EndIf
+ :EndIf
+⍝Done

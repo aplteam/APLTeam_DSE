@@ -18,7 +18,7 @@
     ⍎¨make¨'AC' 'BP' 'MA' 'RM' 'NX' 'PV' 'RD' 'TT' 'FT'
 
     ∇ r←Version
-      r←'FunctionKeyDefinition' '4.7.0.2' '2022-06-27'
+      r←'FunctionKeyDefinition' '4.8.0.0' '2023-09-10'
     ∇
 
     ⍝ ##.History
@@ -31,7 +31,7 @@
       r⍪←'F02'('⎕TRAP←0 ''S''')'⎕TRAP←0 ''S'''
       r⍪←'F03'(NX)('Show next hit (NX)')
       r⍪←'F04'(LL,'⎕se.aplteam.Display ')('Display')
-      r⍪←'F05'('→⎕LC+1 ⍝ ',ER)('→⎕LC+1 (current thread only)')
+      r⍪←'F05'('⍎(1=≢⎕tnums)/''→⎕LC''',ER)('→⎕LC (current thread only)')
       r⍪←'F06'('')('Continue all threads (MA, defined in config)')
       r⍪←'F07'('⍝',ER,'⍎⎕SE.aplteam.GotoQLC_AndSetStopVector',ER)('→⎕LC & set ⎕STOP')
       r⍪←'F08'('⍝',ER,'⍎⎕SE.aplteam.GotoQLC_AndDropStop',ER)('→⎕LC & drop stop')
@@ -46,7 +46,7 @@
       r⍪←'Shift+F04'(']latest')(']Latest ',ER)
       r⍪←'Shift+F05'('∘∘∘ ')('Inject break point (∘∘∘)')
       r⍪←'Shift+F06'(BH,ER)('Run to exit')
-      r⍪←'Shift+F07'('')('')
+      r⍪←'Shift+F07'('⎕TRAP')('⎕TRAP')
       r⍪←'Shift+F08'('')('Toggle language bar (Ride only)')
       r⍪←'Shift+F09'('')('')
       r⍪←'Shift+F10'('')('(Reserved for context menu)')
