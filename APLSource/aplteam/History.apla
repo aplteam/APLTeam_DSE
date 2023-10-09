@@ -1,4 +1,6 @@
 (
+ '* 7.10.0 ⋄ 2023-09-10'
+ '  * Packages updated'
  '* 7.9.0 ⋄ 2023-09-10'
  '  * Has now a function `KaisCiderChecks` that performs several checks on any newly opened Cider project'
  '* 7.8.0 ⋄ 2023-08-02'

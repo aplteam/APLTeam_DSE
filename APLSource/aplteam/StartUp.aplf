@@ -15,6 +15,13 @@
              :EndTrap
          :EndIf
          :Trap 0
+             {}⎕SE.Tatin.LoadDependencies'[MyUCMDs]aplteam/packages'⎕SE
+         :Else
+             ⎕←'Loading APLTeam''s dependencies failed with a ',(1⊃⎕DM)
+             ⎕←'Other steps of the initializing process will fail as well because of that; details:'
+             ⎕←2⊃⎕DM
+         :EndTrap
+         :Trap 0
              FixFunctionKeyClass ⍬
          :Else
              ⎕←'Executing ⎕SE.aplteam.FixFunctionKeyClass failed with a ',(1⊃⎕DM),'; details:'
