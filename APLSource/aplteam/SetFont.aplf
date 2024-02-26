@@ -1,8 +1,12 @@
- SetFont dummy
- :If 82=⎕DR' '
-     ⎕SE.FontObj←'Dyalog Alt' 18 1 0 0 700 0 0
-     ∆OrigFontSize←18
+ SetFont dummy;fontSize
+ :If 82=⎕DR' '  ⍝ Classic?
+     ⎕SE.FontObj←'Dyalog Alt' 20 1 0 0 700 0 0
+     ∆OrigFontSize←20
  :Else
-     ⎕SE.FontObj←'APL385 Unicode' 22 1 0 0 400 0 0
-     ∆OrigFontSize←22
+     fontSize←##.APLTreeUtils2.ToNum #.GetEnvironment'FONTSIZE'
+     :If 0=fontSize
+         fontSize←20
+     :EndIf
+     ⎕SE.FontObj←'APL385 Unicode' fontSize 1 0 0 400 0 0
+     ∆OrigFontSize←fontSize
  :EndIf
