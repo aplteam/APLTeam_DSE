@@ -1,4 +1,6 @@
 (
+ '* 7.12.1 ⋄ 2024-02-27'
+ '  Function SetFont was buggy'
  '* 7.12.0 ⋄ 2024-02-26'
  '  Font size can be defined via aommand line parameter FONTSIZE= now'
  '* 7.11.0 ⋄ 2023-12-10'

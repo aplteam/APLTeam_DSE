@@ -4,9 +4,10 @@
      ∆OrigFontSize←20
  :Else
      fontSize←##.APLTreeUtils2.ToNum #.GetEnvironment'FONTSIZE'
-     :If 0=fontSize
+     :If 0≡fontSize
+     :OrIf 0=≢fontSize
          fontSize←20
      :EndIf
-     ⎕SE.FontObj←'APL385 Unicode' fontSize 1 0 0 400 0 0
+     ⎕SE.FontObj←'APL385 Unicode'fontSize 1 0 0 400 0 0
      ∆OrigFontSize←fontSize
  :EndIf
