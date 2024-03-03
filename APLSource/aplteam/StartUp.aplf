@@ -5,6 +5,12 @@
  :If IsWindows
      ⎕SE.cbtop.bandtb5.tb.(font size).(Active Visible)←0    ⍝ Get rid of "Font" & "Size"
      ⎕SE.mb.session.⎕EX¨'sesave' 'sesaveas'                 ⍝ Get rid of the "Save" & "Save as..." for session
+     2 ⎕NQ'⎕se' 'CloseSessionItem' 'Editor'
+     2 ⎕NQ'⎕se' 'CloseSessionItem' 'Debugger'
+     2 ⎕NQ'⎕se' 'CloseSessionItem' 'LanguageBar'
+     :If 'APLTEAM2'≡1 ⎕C #.GetEnvironment'Computername'
+         ⎕PW←190
+     :EndIf
      :If 2≥+/⎕SI[1]≡¨⎕SI
          :If ~IsConnectedToRide
              :Trap 0
@@ -14,13 +20,6 @@
                  ⎕←2⊃⎕DM
              :EndTrap
          :EndIf
-         :Trap 0
-             {}⎕SE.Tatin.LoadDependencies'[MyUCMDs]aplteam/packages'⎕SE
-         :Else
-             ⎕←'Loading APLTeam''s dependencies failed with a ',(1⊃⎕DM)
-             ⎕←'Other steps of the initializing process will fail as well because of that; details:'
-             ⎕←2⊃⎕DM
-         :EndTrap
          :Trap 0
              FixFunctionKeyClass ⍬
          :Else
