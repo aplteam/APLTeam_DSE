@@ -9,7 +9,7 @@
 ⍝ * For anything else the fully qualified filename is printed.
 ⍝ If however the control key was pressed during the drag'n-drop operation than the current dir
 ⍝ is changed to that directory or, in case of a file, to the directory holding that file.\\
-⍝ Version 2.7.0 ⋄ 2022-07-23
+⍝ Version 2.7.1 ⋄ 2024-08-03
 ⍝ Kai Jaeger
  ⎕IO←1 ⋄ ⎕ML←1
  (obj event files dummy shiftState)←5↑msg
@@ -37,9 +37,9 @@
                  ⎕←'      ]TATIN.LoadDependencies ',(⊃⎕NPARTS thisOne),' #'
              :ElseIf ⎕SE.FilesAndDirs.IsDir thisOne
                  :If ⎕SE.FilesAndDirs.IsFile thisOne,'/cider.config'
-                     ⎕←'      ]Cider.OpenProject ',thisOne
+                     ⎕←'      ]Cider.OpenProject "',thisOne,'"'
                  :ElseIf ⎕SE.FilesAndDirs.IsFile thisOne,'/apl-dependencies.txt'
-                     ⎕←'      ]TATIN.LoadDependencies ',thisOne,' #'
+                     ⎕←'      ]TATIN.LoadDependencies "',thisOne,'" #'
                  :EndIf
              :Else
                  :Select thisExtension

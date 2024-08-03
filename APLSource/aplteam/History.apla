@@ -1,4 +1,6 @@
 (
+ '* 7.15.1 ⋄ 2024-08-03'
+ '  * Bug fix in OnDropObjects: did not put " around the path (spaces!)'
  '* 7.15.0 ⋄ 2024-08-03'
  '  * Package dependencies updated'
  '* 7.14.0 ⋄ 2024-07-14'
