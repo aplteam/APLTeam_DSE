@@ -1,5 +1,5 @@
  Make;targetPath;M;myUcmdFolder;name;copyToPath;aplVersion
-⍝ Version 5.3.0 ⋄ 2023-06-19 ⋄ Kai Jaeger
+⍝ Version 5.4.0 ⋄ 2024-07-14 ⋄ Kai Jaeger
 ⍝ Runs under Windows only
  ⎕IO←1 ⋄ ⎕ML←1
  aplVersion←'18.0'
@@ -11,10 +11,10 @@
      myUcmdFolder←M.GetMyUCMDsFolder''
      name←'aplteam18'
      ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
-     M.RecreateFolder targetPath
+     {}M.RecreateFolder targetPath
      ⎕WSID←targetPath,'/',name,'.dws'
      M.##.F.PolishCurrentDir
-     M.IncreaseBuildIDInFunction'#.aplteam.aplteam.Version'
+     {}M.IncreaseBuildIDInFunction'#.aplteam.aplteam.Version'
      ⎕LX←''
      ⎕EX'M'
      0 ⎕SAVE ⎕WSID
@@ -22,12 +22,12 @@
      '#.aplteam.aplteam'#.⎕CY ⎕WSID
      0 ⎕SAVE ⎕WSID
      M←⎕SE.MakeHelpers
-     M.RecreateFolder copyToPath,'Snippets\'
+     {}M.RecreateFolder copyToPath,'Snippets\'
      (##.CiderConfig.HOME,'/Snippets/')M.CopyTo copyToPath
      (##.CiderConfig.HOME,'/Snippets/')M.CopyTo targetPath
      (##.CiderConfig.HOME,'/packages')M.CopyTo targetPath
      :If 1 M.YesOrNo'Copy WS, F-Key defs & packages over to MyUCMDs\?'
-         M.RecreateFolder myUcmdFolder,'/APLTeam/'
+         {}M.RecreateFolder myUcmdFolder,'/APLTeam/'
          (targetPath,name,'.dws')M.CopyTo myUcmdFolder,'/APLTeam/'
          (copyToPath,'Snippets')M.CopyTo myUcmdFolder,'/APLTeam/'
          (##.CiderConfig.HOME,'/APLsource/aplteam/FKeys/FunctionKeyDefinition.aplc')M.CopyTo myUcmdFolder,'/APLTeam/'

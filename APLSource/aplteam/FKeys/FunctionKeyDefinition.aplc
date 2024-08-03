@@ -48,7 +48,7 @@
       r⍪←'Shift+F06'(BH,ER)('Run to exit')
       r⍪←'Shift+F07'('⎕TRAP')('⎕TRAP')
       r⍪←'Shift+F08'('')('Toggle language bar (Ride only)')
-      r⍪←'Shift+F09'('')('')
+      r⍪←'Shift+F09'(']Box off')(']Box off')
       r⍪←'Shift+F10'('')('(Reserved for context menu)')
       r⍪←'Shift+F11'('⎕DMX.(⍪{⍵(⍎⍵)}¨⎕NL-2) ⍝',ER)('List contents of ⎕DMX')
       r⍪←'Shift+F12'('⎕SE.aplteam.Clear',ER)('Close (acre) & )Clear')

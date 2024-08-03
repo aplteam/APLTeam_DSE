@@ -1,4 +1,9 @@
 (
+ '* 7.15.0 ⋄ 2024-08-03'
+ '  * Package dependencies updated'
+ '* 7.14.0 ⋄ 2024-07-14'
+ '  * F-Keys amended'
+ '  * Packages updated'
  '* 7.13.1 ⋄ 2024-03-03'
  '  * Superfluous loading of the aplteam packages removed from "StartUp" function'
  '* 7.13.0 ⋄ 2024-02-29'
