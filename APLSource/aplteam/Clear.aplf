@@ -4,7 +4,7 @@
      ⎕←'Currently opened acre-managed projects:'
      ⎕←list
      ⎕←''
-     :If 1 YesOrNo'Are you sure that you want to close all acre-managed projects?'
+     :If 1 ##.CommTools.YesOrNo'Are you sure that you want to close all acre-managed projects?'
          {}⎕SE.acre.CloseProject list[;⎕IO]
          ⎕←'acre project',((1<≢list)/'s'),' closed: '
          ⎕←⍪list[;⎕IO]
@@ -17,7 +17,7 @@
      ⎕←'Currently opened Cider-managed projects:'
      ⎕←list
      ⎕←''
-     :If 1 YesOrNo'Are you sure that you want to close all Cider-managed projects?'
+     :If 1 ##.CommTools.YesOrNo'Are you sure that you want to close all Cider-managed projects?'
          {}⎕SE.Cider.CloseProject ⍬
          ⎕←'Cider project',((1<≢list)/'s'),' closed: '
          ⎕←⍪list[;⎕IO]

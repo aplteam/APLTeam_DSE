@@ -1,4 +1,9 @@
 (
+ '* 7.16.0 ⋄ 2024-09-08    '
+ '  * F-Key definitions enhanced'
+ '  * Package dependencies updated'
+ '  * Bug fixed'
+ '    `Clear` had a problem'
  '* 7.15.1 ⋄ 2024-08-03'
  '  * Bug fix in OnDropObjects: did not put " around the path (spaces!)'
  '* 7.15.0 ⋄ 2024-08-03'
