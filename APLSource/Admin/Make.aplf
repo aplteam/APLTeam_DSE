@@ -1,10 +1,11 @@
  Make;targetPath;M;myUcmdFolder;name;copyToPath;aplVersion
-⍝ Version 5.5.0 ⋄ 2024-11-30 ⋄ Kai Jaeger
+⍝ Version 5.6.0 ⋄ 2024-12-10 ⋄ Kai Jaeger
 ⍝ Runs under Windows only
  ⎕IO←1 ⋄ ⎕ML←1
  aplVersion←'18.0'
  ('Invalid version of APL, use ',aplVersion)⎕SIGNAL 11/⍨aplVersion≢{⍵/⍨2>+\'.'=⍵}2⊃# ⎕WG'APLVersion '
  targetPath←##.CiderConfig.HOME,'/Dist/'
+ :If 0=⎕SE.⎕NC'MakeHelpers' ⋄ {}⎕SE.Tatin.LoadPackages'[tatin]MakeHelpers'⎕SE ⋄ :EndIf
  M←⎕SE.MakeHelpers
  :If M.YesOrNo'Sure you want to create a new version? The workspace will be destroyed in the process!'
      copyToPath←'expand'M.##.F.NormalizePath ##.CiderConfig.HOME,'/../../../DSE/'
@@ -25,7 +26,7 @@
      {}M.RecreateFolder copyToPath,'Snippets\'
      (##.CiderConfig.HOME,'/Snippets/')M.CopyTo copyToPath
      (##.CiderConfig.HOME,'/Snippets/')M.CopyTo targetPath
-     (##.CiderConfig.HOME,'/packages')M.CopyTo targetPath
+     (##.CiderConfig.HOME,'/packages')M.CopyPackageFolderTo targetPath,'/packages'
      :If 1 M.YesOrNo'Copy WS, F-Key defs & packages over to MyUCMDs\?'
          {}M.RecreateFolder myUcmdFolder,'/APLTeam/'
          (targetPath,name,'.dws')M.CopyTo myUcmdFolder,'/APLTeam/'
