@@ -1,5 +1,5 @@
  Make;targetPath;M;myUcmdFolder;name;copyToPath;aplVersion
-⍝ Version 5.4.0 ⋄ 2024-07-14 ⋄ Kai Jaeger
+⍝ Version 5.5.0 ⋄ 2024-11-30 ⋄ Kai Jaeger
 ⍝ Runs under Windows only
  ⎕IO←1 ⋄ ⎕ML←1
  aplVersion←'18.0'

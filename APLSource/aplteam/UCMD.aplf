@@ -6,7 +6,7 @@
 
  rlb←{(+/∧\' '=⍵)↓⍵}
 
- :If edFlag←'⎕ed '{⍺≡0(819⌶)(⍴⍺)↑⍵}Input
+ :If edFlag←'⎕ed '{⍺≡{2::0(819⌶)⍵ ⋄ ¯1 ⎕C ⍵}(⍴⍺)↑⍵}Input
      Input←(⍴'⎕ed ')↓Input
  :EndIf
 
@@ -57,4 +57,3 @@
  :Else
      {THIS⍎nma,'⍵'}ur                         ⍝ ]xx←cmd  store result in xx in calling namespace
  :EndIf
- 
