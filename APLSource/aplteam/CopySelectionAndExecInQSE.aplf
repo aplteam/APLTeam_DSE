@@ -1,0 +1,17 @@
+ r←CopySelectionAndExecInQSE;cl;q;txt
+⍝ Useful to copy the current selection, paste it in the session and execute it
+ cl←⎕NEW⊂'Clipboard'
+ :Trap 0  ⍝ Anything might go wrong here, we don't know what we are doing ;)
+     :If 0<≢txt←cl.Text
+         q←'Sure you want execute:',(⎕UCS 13),txt,(⎕UCS 13),'?'
+         :If 1 ##.CommTools.YesOrNo q
+             r←'(⊂''CP''),(⊂''JP''),(⊂''PT''),(⊂''ER''),(⊂''JP'')'
+         :Else
+             r←'Cancelled by user'
+         :EndIf
+     :Else
+         r←'''There is nothing that could be executed?!'
+     :EndIf
+ :Else
+     r←'''Something went terribly wrong...'''
+ :EndTrap

@@ -1,0 +1,7 @@
+ r←Box;res
+ res←1 ⎕C{⍵↓⍨⍵⍳' '}⎕SE.UCMD'Box'
+ :If 'ON'≡res
+     r←⎕SE.UCMD'Box off'
+ :Else
+     r←⎕SE.UCMD'Box on'
+ :EndIf

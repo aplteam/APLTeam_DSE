@@ -1,13 +1,16 @@
  Make;targetPath;M;myUcmdFolder;name;copyToPath;aplVersion
-⍝ Version 5.6.0 ⋄ 2024-12-10 ⋄ Kai Jaeger
+⍝ Version 5.7.0 ⋄ 2024-12-26 ⋄ Kai Jaeger
 ⍝ Runs under Windows only
  ⎕IO←1 ⋄ ⎕ML←1
- aplVersion←'18.0'
+ aplVersion←'18.2'
  ('Invalid version of APL, use ',aplVersion)⎕SIGNAL 11/⍨aplVersion≢{⍵/⍨2>+\'.'=⍵}2⊃# ⎕WG'APLVersion '
+ :If (⊂'#.aplteam')∊{⍵[;1]}⎕SE.Link.Status''
+     ⎕SE.Link.Break'#.aplteam'
+ :EndIf
  targetPath←##.CiderConfig.HOME,'/Dist/'
  :If 0=⎕SE.⎕NC'MakeHelpers' ⋄ {}⎕SE.Tatin.LoadPackages'[tatin]MakeHelpers'⎕SE ⋄ :EndIf
  M←⎕SE.MakeHelpers
- :If M.YesOrNo'Sure you want to create a new version? The workspace will be destroyed in the process!'
+ :If 1 M.YesOrNo'Sure you want to create a new version? The workspace will be destroyed in the process!'
      copyToPath←'expand'M.##.F.NormalizePath ##.CiderConfig.HOME,'/../../../DSE/'
      myUcmdFolder←M.GetMyUCMDsFolder''
      name←'aplteam18'

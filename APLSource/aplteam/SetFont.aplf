@@ -3,11 +3,19 @@
      ⎕SE.FontObj←'Dyalog Alt' 20 1 0 0 700 0 0
      ∆OrigFontSize←20
  :Else
-     fontSize←##.APLTreeUtils2.ToNum #.GetEnvironment'FONTSIZE'
-     :If 0≡fontSize
+     fontSize←⊃1↑##.APLTreeUtils2.ToNum 2 ⎕NQ #'GetEnvironment' 'FONTSIZE386'
+     :If 0=fontSize
      :OrIf 0=≢fontSize
-         fontSize←20
+         fontSize←18
      :EndIf
-     ⎕SE.FontObj←'APL385 Unicode'fontSize 1 0 0 400 0 0
+     ⎕SE.FontObj←'APL386 Unicode'fontSize 1 0 0 400 0 0
+     :If 'APL386 Unicode'≢↑⎕SE.FontObj
+         fontSize←↑1↑##.APLTreeUtils2.ToNum 2 ⎕NQ #'GetEnvironment' 'FONTSIZE385'
+         :If 0=fontSize
+         :OrIf 0=≢fontSize
+             fontSize←20
+         :EndIf
+         ⎕SE.FontObj←'APL385 Unicode'fontSize 1 0 0 400 0 0
+     :EndIf
      ∆OrigFontSize←fontSize
  :EndIf

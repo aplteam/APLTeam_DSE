@@ -9,16 +9,17 @@
 ⍝ Note that you can use the private function `IfAtLeastVersion` to check for a minimum version of
 ⍝ Dyalog APL currently  running.\\
 ⍝ Kai Jaeger\\
-⍝ 2023-01-15
+⍝ 2024-01-28
 
 
     ⎕IO←1 ⋄ ⎕ML←3 ⋄ ⎕WX←3
     make←{⍵,'←⊂''',⍵,''''}
-    ⍎¨make¨ 'AO'  'BH' 'DO' 'DB' 'DC' 'DI' 'ER' 'GL' 'LC'  'LL' 'Ll'  'PT' 'RD' 'RL' 'RC' 'Rl' 'UC'
-    ⍎¨make¨'AC' 'BP' 'MA' 'RM' 'NX' 'PV' 'RD' 'TT' 'FT'
+    l←'AO'  'BH' 'DO' 'DB' 'DC' 'DI' 'ER' 'GL' 'LC'  'LL' 'Ll'  'PT' 'RD' 'RL' 'RC' 'Rl' 'UC' 'AC' 'BP' 'MA' 'RM' 'NX' 'PV' 'RD' 'TT' 'FT' 'CP' 'JP'
+    l←l[    ⍋l]
+    ⍎¨make¨ l
 
     ∇ r←Version
-      r←'FunctionKeyDefinition' '4.8.0.0' '2023-09-10'
+      r←'FunctionKeyDefinition' '4.9.0.0' '2025-01-19'
     ∇
 
     ⍝ ##.History
@@ -48,20 +49,20 @@
       r⍪←'Shift+F06'(BH,ER)('Run to exit')
       r⍪←'Shift+F07'('⎕TRAP')('⎕TRAP')
       r⍪←'Shift+F08'('')('Toggle language bar (Ride only)')
-      r⍪←'Shift+F09'(']Box o')(']Box off')
+      r⍪←'Shift+F09'('')('')  ⍝ Shift+F09 does not work for some reason
       r⍪←'Shift+F10'('')('(Reserved for context menu)')
       r⍪←'Shift+F11'('⎕DMX.(⍪{⍵(⍎⍵)}¨⎕NL-2) ⍝',ER)('List contents of ⎕DMX')
-      r⍪←'Shift+F12'('⎕SE.aplteam.Clear',ER)('Close (acre) & )Clear')
+      r⍪←'Shift+F12'('⎕SE.aplteam.Clear',ER)('Close (acre∨Cider) & )Clear')
      
       r⍪←'Ctrl+F01'('')('')
       r⍪←'Ctrl+F02'(TT)('Toggle tree view in editor')
       r⍪←'Ctrl+F03'(PV)('Show previous hit (PV)')
-      r⍪←'Ctrl+F04'(LL,'⊣⎕SE.Link.Expunge ''''',LC)('⎕EX with Link')
+      r⍪←'Ctrl+F04'(LL,'⊣⎕SE.Link.Expunge ''''',LC)('⎕SE.Link.Expunge')
       r⍪←'Ctrl+F05'(AC)('Align comments (AC)')
-      r⍪←'Ctrl+F06'(ER,RM)('Continue just the current thread')
+      r⍪←'Ctrl+F06'(CP,JP,PT,ER,JP)('Copy & execute in session')
       r⍪←'Ctrl+F07'(BP)('Toggle stop (BP)')
-      r⍪←'Ctrl+F08'('',ER)('')
-      r⍪←'Ctrl+F09'(LL,']Udebug ')(']Udebug on|off')
+      r⍪←'Ctrl+F08'('⎕SE.aplteam.Box',ER)('Toggle boxing')
+      r⍪←'Ctrl+F09'(LL,']Udebug ')('Toggle Udebug')
       r⍪←'Ctrl+F10'(' ⍝TODO⍝ ')('⍝TODO⍝')
       r⍪←'Ctrl+F11'(LL,'{{}(#.⎕NS'''').(⎕ED⍠(''ReadOnly'' 1)&{''ed''}ed←⍵)}')('⎕ED vars (read-only)')
       r⍪←'Ctrl+F12'('')('Show log file (Ride only)')
@@ -69,15 +70,15 @@
       r⍪←'Ctrl+Shift+F01'(LL,']Cider.')(']Cider.')
       r⍪←'Ctrl+Shift+F02'(LL,']Cider.OpenProject ')(']Cider.OpenProject')
       r⍪←'Ctrl+Shift+F03'(LL,']Cider.ListOpenProjects',ER)(']Cider.ListProjects')
-      r⍪←'Ctrl+Shift+F04'(LL,']Cider.CloseProject ')(']CiderCloseProject')
+      r⍪←'Ctrl+Shift+F04'(LL,']Cider.CloseProject ')(']Cider.CloseProject')
       r⍪←'Ctrl+Shift+F05'(LL,']GitHub.')(']GitHub.')
-      r⍪←'Ctrl+Shift+F06'(LL,']APLGit2.')(']Git.')
+      r⍪←'Ctrl+Shift+F06'(LL,']APLGit2.')(']APLGit2.')
       r⍪←'Ctrl+Shift+F07'(LL,']APLGit2.Status ')(']Git.Status')
-      r⍪←'Ctrl+Shift+F08'(LL,']APLGit2.OpenGitShell')(']Git.OpenGitShellOpenGitShell')
+      r⍪←'Ctrl+Shift+F08'(LL,']APLGit2.OpenGitShell')(']Git.OpenGitShell')
       r⍪←'Ctrl+Shift+F09'(LL,']APLGit2.Commit -m=""',LC)(']Git.Commit -m=""')
       r⍪←'Ctrl+Shift+F10'(LL,']Tatin.')(']Tatin.')
-      r⍪←'Ctrl+Shift+F11'(LL,']Tatin.ListPackages ')(']Tatin.ListPackages')
-      r⍪←'Ctrl+Shift+F12'(LL,']Tatin.ListRegistries')(']Tatin.ListRegistries')
+      r⍪←'Ctrl+Shift+F11'(LL,']Tatin.ListTatinDependencies',ER)(']Tatin.ListTatinDependencies')
+      r⍪←'Ctrl+Shift+F12'(LL,']Tatin.ListRegistries',ER)(']Tatin.ListRegistries')
       Check r
     ∇
 

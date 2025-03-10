@@ -8,7 +8,7 @@
      2 ⎕NQ'⎕se' 'CloseSessionItem' 'Editor'
      2 ⎕NQ'⎕se' 'CloseSessionItem' 'Debugger'
      2 ⎕NQ'⎕se' 'CloseSessionItem' 'LanguageBar'
-     :If 'APLTEAM2'≡1 ⎕C #.GetEnvironment'Computername'
+     :If 'APLTEAM2'≡1 ⎕C 2 ⎕NQ #'GetEnvironment' 'Computername'
          ⎕PW←190
      :EndIf
      :If 2≥+/⎕SI[1]≡¨⎕SI
@@ -53,6 +53,7 @@
          2 ⎕NQ'⎕SE' 'Create'
      :EndIf
  :EndIf
+ {}⎕SE.UCMD'Rows on'
  :If ((,1)≡,verbose)∧0=≢⎕LX
      About2
  :EndIf
