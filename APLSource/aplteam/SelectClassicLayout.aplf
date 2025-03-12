@@ -1,0 +1,5 @@
+ {r}←SelectClassicLayout dummy
+ r←0
+ :If 9=⎕NC'⎕SE.mb.Layout.floating'
+     1 ⎕NQ ⎕SE.mb.Layout.floating'Select'
+ :EndIf

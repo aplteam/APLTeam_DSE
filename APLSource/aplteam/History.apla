@@ -1,4 +1,6 @@
 (
+ '* 7.22.0 ⋄ 2025-03-12'
+ '  * Selects menu item "Layout > Classic" automatically if it exists'
  '* 7.21.1 ⋄ 2025-03-10'
  '  #.GetEnvironment replace by 2 ⎕NQ # ''GetEnvironment'''
  '* 7.21.0 ⋄ 2025-01-28'

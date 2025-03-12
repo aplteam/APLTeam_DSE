@@ -5,6 +5,7 @@
  :If IsWindows
      ⎕SE.cbtop.bandtb5.tb.(font size).(Active Visible)←0    ⍝ Get rid of "Font" & "Size"
      ⎕SE.mb.session.⎕EX¨'sesave' 'sesaveas'                 ⍝ Get rid of the "Save" & "Save as..." for session
+     SelectClassicLayout ⍬
      2 ⎕NQ'⎕se' 'CloseSessionItem' 'Editor'
      2 ⎕NQ'⎕se' 'CloseSessionItem' 'Debugger'
      2 ⎕NQ'⎕se' 'CloseSessionItem' 'LanguageBar'
