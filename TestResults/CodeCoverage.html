@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Coverage</title>
+<meta charset="utf-8"/>
+<style>
+@media screen{
+    html {background-color: #FFFFF0;}
+body {
+    font-size: 16px;
+    font-family : Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
+    margin: 1em;
+}
+th, td {padding: 5px 10px;}
+th {text-align: left;}
+h1, h2, h3, h4, h5, h6 {color: #424242;}
+h1 {font-size: 22px;}
+h2 {font-size: 18px; margin-top: 2em; margin-bottom:0.3em;}
+tbody tr:nth-child(even) {background-color: #F0F0F0;}
+tbody tr:nth-child(odd) {background-color: #FAFAFA;}
+th {background-color: #E6E6E6;color: #424242;}
+table {border: silver 1px solid; font-size: 14px;font-family: APLFont, monospace;}
+code , code a {font-size: 14px; font-family: APLFont, monospace;}
+code.header {
+    font-size: 16px; 
+    font-family: APLFont, monospace; 
+    margin: 1.5em 0.5em 0 0.5em; 
+    padding:0;
+    display: block;
+}
+div.code-block {
+    border: 1px silver dashed;
+    background-color: #F2F2F2;
+    display: block;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+    padding: 0.5em;
+}
+div.code-block.missing {
+    background-color: #fa605254;
+}
+div.code-block code {display: block; white-space: pre-wrap; margin:0; padding:0; word-wrap: break-word;}
+.emphasize { font-weight: 800;}
+ul li, ol li {margin: 0.7em 0.2em;}
+.float-right {float:right;}
+.no-underline {    text-decoration :none;}
+.top-links {font-size:20px; padding-left: 0.6em;}
+.align-right {text-align: right;}
+#footer hr {margin-top:1.5em;}
+#footer p {margin-top:5px; padding-top:0; font-size: 9px;}
+@font-face {
+        font-family: "APLFont";
+    src:
+        local("APL385 Unicode"),
+        url("https://misc.aplteam.com/apl385.ttf") format("truetype");
+}
+.info {border: 1px silver dashed; background-color: #F2F2F2;margin: 0.5em; padding: 0.5em;}
+}
+@media print{@page {size: portrait}
+@page {
+    margin: 1cm 1cm 1cm 1.75cm;
+    @bottom-right {
+        content: counter(page) " / " counter(pages);
+  }
+}
+body {
+    font: 12pt "Times New Roman", Times, serif;
+    line-height: 1.2;
+     /* CSS3 filter, at the moment Webkit only. Prefix it for future implementations */
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); /* future-proof */
+}
+h1 {font-size: 18pt;}
+h2 {font-size: 16pt; margin-top: 10pt; margin-bottom: 3pt;}
+th, td {padding: 2pt 3pt;}
+th {text-align: left;background-color: #DBDBDB;}
+tbody tr:nth-child(odd) {background-color: #EDEDED;}
+table {
+    color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    font-size: 8pt;
+    font-family: APLFont, monospace;
+}
+div.keep-together {break-inside: avoid; break-before:auto;}
+table {border: silver 1pt solid;}
+code , code a {font-size: 8pt; font-family: APLFont, monospace;}
+code.header {
+    font-size: 8pt;
+    font-family: APLFont, monospace;
+    margin: 7pt 3pt 0 10pt;
+    padding:0;
+    display: block;
+}
+div.code-block {
+    border: 1pt silver dashed;
+    background-color: #F2F2F2;
+    display: block;
+    margin: 4pt 4pt 4pt 4pt;
+    padding: 4pt;
+}
+div.code-block code {display: block; white-space: pre-wrap; margin:0; padding:0; word-wrap: break-word;}
+.emphasize { font-weight: 800;}
+a {text-decoration: none;color: black;}
+ul li, ol li {margin: 8pt 3pt;}
+.no-print {display:none;}
+.align-right {text-align: right;}
+#footer hr {margin-top:1.5em;}
+#footer p {margin-top:5pt; padding-top:0; font-size: 6pt;}
+@font-face {
+        font-family: "APLFont";
+    src:
+        local("APL385 Unicode"),
+        url("https://misc.aplteam.com/apl385.ttf") format("truetype");
+}
+.info {border: 1px silver dashed; background-color: #F2F2F2;margin: 8px; padding: 8px;}
+}
+</style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.2/b-2.0.0/b-print-2.0.0/fh-3.1.9/r-2.2.9/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.2/b-2.0.0/b-print-2.0.0/fh-3.1.9/r-2.2.9/datatables.min.js"></script>
+</head>
+<body>
+<h1 id="top">Coverage Report</h1>
+<p>Watched: 61 fns/opr within <code>#.aplteam.aplteam</code></p>
+<p>The test suite was executed once:</p>
+<table>
+<thead>
+<tr><th>Executed at</th><th>APLVersion</th><th>Memory (MB)</th></tr>
+</thead>
+<tbody>
+<tr><td>2025-04-05 19:39:26</td><td>Windows-64 ⋄ 19.0.50771.0 ⋄ W ⋄ Development ⋄ Unicode</td><td>114</td></tr>
+</tbody>
+</table>
+<p>Overall 0% of the testable code is covered.</p>
+<p>(Comment lines, empty lines, all <code>:End</code>* lines etc. are ignored)</p>
+<p>2 of the fns/opr are 100% covered.</p>
+<div id="partly-covered" class="keep-together">
+<table id="percent">
+<thead>
+<tr><th style="text-align:left;">Function/Operator</th><th style="text-align:left;">Lines not executed</th><th style="text-align:left;">Coverage</th><th style="text-align:right;">≢</th></tr>
+</thead>
+<tbody>
+<tr class="uncovered"><td><a href="#listing_1" title="Link to listing">#.aplteam.aplteam.About</a></td><td>13←≢1-12,14</td><td>0</td><td>13</td></tr>
+<tr class="uncovered"><td><a href="#listing_2" title="Link to listing">#.aplteam.aplteam.About2</a></td><td>1</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_3" title="Link to listing">#.aplteam.aplteam.AcreUserExit</a></td><td>4←≢1-4</td><td>0</td><td>4</td></tr>
+<tr class="uncovered"><td><a href="#listing_4" title="Link to listing">#.aplteam.aplteam.Box</a></td><td>4←≢1-3,5</td><td>0</td><td>4</td></tr>
+<tr class="uncovered"><td><a href="#listing_5" title="Link to listing">#.aplteam.aplteam.BuildRegKeyForCurrentAPL</a></td><td>4←≢1-4</td><td>0</td><td>4</td></tr>
+<tr class="uncovered"><td><a href="#listing_6" title="Link to listing">#.aplteam.aplteam.ChangeFontSize</a></td><td>6←≢1-6</td><td>0</td><td>6</td></tr>
+<tr class="uncovered"><td><a href="#listing_7" title="Link to listing">#.aplteam.aplteam.CheckCiderConfig</a></td><td>15←≢5-10,12-15,17-21</td><td>0</td><td>15</td></tr>
+<tr class="uncovered"><td><a href="#listing_8" title="Link to listing">#.aplteam.aplteam.CheckLICENSE</a></td><td>10←≢5-11,13-14,17</td><td>0</td><td>10</td></tr>
+<tr class="uncovered"><td><a href="#listing_9" title="Link to listing">#.aplteam.aplteam.CheckMenuStructure</a></td><td>46←≢1-4,6,8-9,11-14,16-20,22,25-49,51-52,54-55</td><td>0</td><td>46</td></tr>
+<tr class="uncovered"><td><a href="#listing_10" title="Link to listing">#.aplteam.aplteam.Clear</a></td><td>23←≢1-9,11,14-22,24,27-28,30</td><td>0</td><td>23</td></tr>
+<tr class="uncovered"><td><a href="#listing_11" title="Link to listing">#.aplteam.aplteam.CopySelectionAndExecInQSE</a></td><td>9←≢2-7,9,12,15</td><td>0</td><td>9</td></tr>
+<tr class="uncovered"><td><a href="#listing_12" title="Link to listing">#.aplteam.aplteam.CrashTheInterpreter</a></td><td>4←≢1-4</td><td>0</td><td>4</td></tr>
+<tr class="uncovered"><td><a href="#listing_13" title="Link to listing">#.aplteam.aplteam.CreateAplcore</a></td><td>11←≢1-7,9,12,14-15</td><td>0</td><td>11</td></tr>
+<tr class="uncovered"><td><a href="#listing_14" title="Link to listing">#.aplteam.aplteam.Display</a></td><td>23←≢0,2-10,12-18,20-25</td><td>0</td><td>23</td></tr>
+<tr class="uncovered"><td><a href="#listing_15" title="Link to listing">#.aplteam.aplteam.EstablishDropOnSession</a></td><td>1, 2, 4</td><td>0</td><td>3</td></tr>
+<tr class="uncovered"><td><a href="#listing_16" title="Link to listing">#.aplteam.aplteam.FixFunctionKeyClass</a></td><td>5←≢1-5</td><td>0</td><td>5</td></tr>
+<tr class="uncovered"><td><a href="#listing_17" title="Link to listing">#.aplteam.aplteam.GetRegKey</a></td><td>7←≢1-7</td><td>0</td><td>7</td></tr>
+<tr class="uncovered"><td><a href="#listing_18" title="Link to listing">#.aplteam.aplteam.GetVarsFromParms</a></td><td>10←≢1-5,7-11</td><td>0</td><td>10</td></tr>
+<tr class="uncovered"><td><a href="#listing_19" title="Link to listing">#.aplteam.aplteam.GotoQLC_AndDropStop</a></td><td>8←≢3-9,11</td><td>0</td><td>8</td></tr>
+<tr class="uncovered"><td><a href="#listing_20" title="Link to listing">#.aplteam.aplteam.GotoQLC_AndSetStopVector</a></td><td>6←≢4-6,8-10</td><td>0</td><td>6</td></tr>
+<tr class="uncovered"><td><a href="#listing_21" title="Link to listing">#.aplteam.aplteam.GotoQLC_WithStopOn</a></td><td>6←≢3-8</td><td>0</td><td>6</td></tr>
+<tr class="uncovered"><td><a href="#listing_22" title="Link to listing">#.aplteam.aplteam.IsConnectedToRide</a></td><td>1</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_23" title="Link to listing">#.aplteam.aplteam.IsWindows</a></td><td>1, 2</td><td>0</td><td>2</td></tr>
+<tr class="uncovered"><td><a href="#listing_24" title="Link to listing">#.aplteam.aplteam.KaisCiderChecks</a></td><td>1</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_25" title="Link to listing">#.aplteam.aplteam.List</a></td><td>10←≢1-10</td><td>0</td><td>10</td></tr>
+<tr class="uncovered"><td><a href="#listing_26" title="Link to listing">#.aplteam.aplteam.MenubarName</a></td><td>5←≢1-4,6</td><td>0</td><td>5</td></tr>
+<tr class="uncovered"><td><a href="#listing_27" title="Link to listing">#.aplteam.aplteam.NoAcreAtAll</a></td><td>7←≢1-7</td><td>0</td><td>7</td></tr>
+<tr class="uncovered"><td><a href="#listing_28" title="Link to listing">#.aplteam.aplteam.OnChangeFontSize</a></td><td>7←≢1-7</td><td>0</td><td>7</td></tr>
+<tr class="uncovered"><td><a href="#listing_29" title="Link to listing">#.aplteam.aplteam.OnDropObjects</a></td><td>47←≢13-18,20-23,25,29-41,44-50,52,54,56-57,59-60,62-64,66-70,74,80</td><td>0</td><td>47</td></tr>
+<tr class="uncovered"><td><a href="#listing_30" title="Link to listing">#.aplteam.aplteam.OnRestoreFontSize</a></td><td>6←≢1-6</td><td>0</td><td>6</td></tr>
+<tr class="uncovered"><td><a href="#listing_31" title="Link to listing">#.aplteam.aplteam.RemoveAllStopVectors</a></td><td>4←≢3-5,7</td><td>0</td><td>4</td></tr>
+<tr class="uncovered"><td><a href="#listing_32" title="Link to listing">#.aplteam.aplteam.Reset</a></td><td>12←≢2-3,5-6,8-13,15-16</td><td>0</td><td>12</td></tr>
+<tr class="uncovered"><td><a href="#listing_33" title="Link to listing">#.aplteam.aplteam.ResetFunctionKeys</a></td><td>7←≢2-5,7-9</td><td>0</td><td>7</td></tr>
+<tr class="uncovered"><td><a href="#listing_34" title="Link to listing">#.aplteam.aplteam.SelectClassicLayout</a></td><td>1, 2, 3</td><td>0</td><td>3</td></tr>
+<tr class="uncovered"><td><a href="#listing_35" title="Link to listing">#.aplteam.aplteam.SetFont</a></td><td>15←≢1-3,5-8,10-15,17,19</td><td>0</td><td>15</td></tr>
+<tr class="uncovered"><td><a href="#listing_36" title="Link to listing">#.aplteam.aplteam.SetStopVector</a></td><td>5←≢4-5,7-9</td><td>0</td><td>5</td></tr>
+<tr class="uncovered"><td><a href="#listing_37" title="Link to listing">#.aplteam.aplteam.ShowFKeysInBrowser</a></td><td>1</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_38" title="Link to listing">#.aplteam.aplteam.Stamp</a></td><td>4←≢2-5</td><td>0</td><td>4</td></tr>
+<tr class="uncovered"><td><a href="#listing_39" title="Link to listing">#.aplteam.aplteam.StartUp</a></td><td>40←≢2-12,14-17,19-20,23-24,26-27,29-31,33-34,37-39,41-42,45-47,49-50,53,56-58</td><td>0</td><td>40</td></tr>
+<tr class="uncovered"><td><a href="#listing_40" title="Link to listing">#.aplteam.aplteam.UCMD</a></td><td>38←≢6,8-9,12-13,15-24,27,30-33,35,37-39,41-45,48-55,57</td><td>0</td><td>38</td></tr>
+<tr class="uncovered"><td><a href="#listing_41" title="Link to listing">#.aplteam.aplteam.Version</a></td><td>2</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_42" title="Link to listing">#.aplteam.aplteam.cmpx</a></td><td>24←≢0-23</td><td>0</td><td>24</td></tr>
+<tr class="uncovered"><td><a href="#listing_43" title="Link to listing">#.aplteam.aplteam.FKeys.CalcWidth</a></td><td>6←≢1-6</td><td>0</td><td>6</td></tr>
+<tr class="uncovered"><td><a href="#listing_44" title="Link to listing">#.aplteam.aplteam.FKeys.CollectFkeys</a></td><td>26←≢5-27,29-31</td><td>0</td><td>26</td></tr>
+<tr class="uncovered"><td><a href="#listing_45" title="Link to listing">#.aplteam.aplteam.FKeys.CrNl</a></td><td>1</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_46" title="Link to listing">#.aplteam.aplteam.FKeys.Define</a></td><td>2</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_47" title="Link to listing">#.aplteam.aplteam.FKeys.GetCaption</a></td><td>5←≢2-6</td><td>0</td><td>5</td></tr>
+<tr class="uncovered"><td><a href="#listing_48" title="Link to listing">#.aplteam.aplteam.FKeys.GetFunctionKey</a></td><td>1, 2</td><td>0</td><td>2</td></tr>
+<tr class="uncovered"><td><a href="#listing_49" title="Link to listing">#.aplteam.aplteam.FKeys.GetHeader</a></td><td>11←≢1-11</td><td>0</td><td>11</td></tr>
+<tr class="uncovered"><td><a href="#listing_50" title="Link to listing">#.aplteam.aplteam.FKeys.GetPrintCss</a></td><td>12←≢1-12</td><td>0</td><td>12</td></tr>
+<tr class="uncovered"><td><a href="#listing_51" title="Link to listing">#.aplteam.aplteam.FKeys.GetScreenCss</a></td><td>15←≢1-15</td><td>0</td><td>15</td></tr>
+<tr class="uncovered"><td><a href="#listing_52" title="Link to listing">#.aplteam.aplteam.FKeys.PrintFunctionKeys</a></td><td>16←≢4-19</td><td>0</td><td>16</td></tr>
+<tr class="uncovered"><td><a href="#listing_53" title="Link to listing">#.aplteam.aplteam.FKeys.SetFunctionKeys</a></td><td>11←≢9-17,19-20</td><td>0</td><td>11</td></tr>
+<tr class="uncovered"><td><a href="#listing_54" title="Link to listing">#.aplteam.aplteam.FKeys.ShowFunctionKeysInBrowser</a></td><td>1, 2, 3</td><td>0</td><td>3</td></tr>
+<tr class="uncovered"><td><a href="#listing_55" title="Link to listing">#.aplteam.aplteam.FKeys.FunctionKeyDefinition.Version</a></td><td>1</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_56" title="Link to listing">#.aplteam.aplteam.FKeys.FunctionKeyDefinition.DefineFunctionKeys</a></td><td>50←≢2,4-15,17-28,30-41,43-55</td><td>0</td><td>50</td></tr>
+<tr class="uncovered"><td><a href="#listing_57" title="Link to listing">#.aplteam.aplteam.FKeys.FunctionKeyDefinition.Check</a></td><td>17←≢1-15,17-18</td><td>0</td><td>17</td></tr>
+<tr class="uncovered"><td><a href="#listing_58" title="Link to listing">#.aplteam.aplteam.FKeys.FunctionKeyDefinition.CompileRegistryKey</a></td><td>5←≢1-5</td><td>0</td><td>5</td></tr>
+<tr><td><a href="#listing_59" title="Link to listing">#.aplteam.aplteam.Check_FunctionKeyDefinition</a></td><td>17←≢4-6,8,10-11,13-23</td><td>15</td><td>20</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_60" title="Link to listing">#.aplteam.aplteam.Assert</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_61" title="Link to listing">#.aplteam.aplteam.IsScript</a></td><td></td><td>100</td><td>0</td></tr>
+</tbody>
+</table>
+</div>
+<script>
+$(document).ready(function() {
+    var oTable;
+    oTable = $("#percent").DataTable( {
+        paging:   false,
+        ordering: true,
+        info:     true,
+        fixedHeader: true,
+        order: [2,"asc"],
+        dom: "Bft",
+        drawCallback: function( settings ) {
+             var api = this.api();
+             $('.header[id^="listing_"]').next().addBack().css("display","none");
+             api.rows( {page:"current"} ).data().each(function(data){
+              id = data[0];
+              id = id.match(/"(\#.*?)"/);
+              if (id){$(id[1]).next().addBack().css("display","block");}
+             })
+        },      
+        buttons: [
+        {
+            text: "Partly covered (1)",
+            titleAttr: "50%",
+            className: "active",
+            action: function ( e, dt, node, config ) {
+                var text = this.text();
+                var search = "^(?!(0%|100%)).*";
+                oTable.column(2)
+                    .search(search,true,false,false)
+                    .draw();
+                $(".dt-buttons button").removeClass("active");
+                this.active( true );
+            }
+        },
+        {
+            text: "Uncovered (58)",
+            titleAttr: "0%",
+            className: "active",
+            action: function ( e, dt, node, config ) {
+                var text = this.text();
+                var search = "^0%";
+                oTable.column(2)
+                    .search(search,true,false,false)
+                    .draw();
+                $(".dt-buttons button").removeClass("active");
+                this.active( true );
+            }
+        },
+        {
+            text: "Fully covered (2)",
+            titleAttr: "100%",
+            className: "active",
+            action: function ( e, dt, node, config ) {
+                var text = this.text();
+                var search = "100%";
+                oTable.column(2)
+                    .search(search,true,false,false)
+                    .draw();
+                $(".dt-buttons button").removeClass("active");
+                this.active( true );
+            }
+        },
+        {
+            text: "All (61)",
+            titleAttr: "all",
+            className: "active",
+            action: function ( e, dt, node, config ) {
+                var text = this.text();
+                var search = ".";
+                oTable.column(2)
+                    .search(search,true,false,false)
+                    .draw();
+                $(".dt-buttons button").removeClass("active");
+                this.active( true );
+            }
+        },
+    ],
+ 
+        columnDefs: [
+            {className: "align-right", targets: [2,3]
+            },
+            {
+                render: function ( data, type, row, meta ) {
+                            return data+"%" ;        
+                        },
+                targets: 2
+            }
+        ]             
+    } );
+    oTable.button(0).trigger();
+
+} );    
+</script>
+<h2>Listings</h2>
+<code class="header" id="listing_1">#.aplteam.aplteam.About &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  R←About</code>
+<code class="emphasize">→[1]   ⎕IO←1</code>
+<code class="emphasize">→[2]   ⎕ML←3</code>
+<code class="emphasize">→[3]   NewLine←2⊃⎕TC</code>
+<code class="emphasize">→[4]   Text←((⎕PW-1)⍴'-'),NewLine</code>
+<code class="emphasize">→[5]   Text,←'Kai Jaeger''s session Object',NewLine</code>
+<code class="emphasize">→[6]   Text,←'Email:  kai@aplteam.com',NewLine</code>
+<code class="emphasize">→[7]   Text,←'https://github.com/aplteam/APLTeam_DSE',NewLine</code>
+<code class="emphasize">→[8]   Text,←'Version ',(1⊃Version),' from ',(2⊃Version),NewLine</code>
+<code class="emphasize">→[9]   Text,←(⎕PW-1)⍴'-'</code>
+<code class="emphasize">→[10]  a←'StartUp'</code>
+<code class="emphasize">→[11]  :If a≡(⍴a)↑↑1↓⎕SI</code>
+<code class="emphasize">→[12]      R←Text</code>
+<code> [13]  :Else</code>
+<code class="emphasize">→[14]      ⎕←Text</code>
+<code> [15]  :EndIf</code>
+</div>
+<code class="header" id="listing_2">#.aplteam.aplteam.About2 &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> R←About2</code>
+<code class="emphasize">→[1]  R←'⎕SE of Kai Jaeger ⋄ Version ',((1+⎕IO)⊃Version),' from ',(2+⎕IO)⊃Version</code>
+</div>
+<code class="header" id="listing_3">#.aplteam.aplteam.AcreUserExit &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←acreConfig AcreUserExit y</code>
+<code class="emphasize">→[1]  r←⍬ ⍝ Don't interefre with acre at all: let it do its job.</code>
+<code class="emphasize">→[2]  :If 9=⎕SE.⎕NC'APLGit2'</code>
+<code class="emphasize">→[3]  :AndIf ⎕SE.FilesAndDirs.IsDir'.git'</code>
+<code class="emphasize">→[4]      {}'Acre auto-commit (user-exit)'⎕SE.APLGit2.Commit''</code>
+<code> [5]  :EndIf</code>
+</div>
+<code class="header" id="listing_4">#.aplteam.aplteam.Box &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←Box</code>
+<code class="emphasize">→[1]  res←1 ⎕C{⍵↓⍨⍵⍳' '}⎕SE.UCMD'Box'</code>
+<code class="emphasize">→[2]  :If 'ON'≡res</code>
+<code class="emphasize">→[3]      r←⎕SE.UCMD'Box off'</code>
+<code> [4]  :Else</code>
+<code class="emphasize">→[5]      r←⎕SE.UCMD'Box on'</code>
+<code> [6]  :EndIf</code>
+</div>
+<code class="header" id="listing_5">#.aplteam.aplteam.BuildRegKeyForCurrentAPL &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> rk←BuildRegKeyForCurrentAPL</code>
+<code class="emphasize">→[1]  rk←'HKEY_CURRENT_USER\Software\Dyalog\Dyalog APL/W'</code>
+<code class="emphasize">→[2]  rk,←('64'≡¯2↑1⊃'.'⎕WG'APLVersion')/'-64'</code>
+<code class="emphasize">→[3]  rk,←' ',{⍵/⍨2&gt;+\'.'=⍵}2⊃'.'⎕WG'APLVersion'</code>
+<code class="emphasize">→[4]  rk,←(80=⎕DR' ')/' Unicode'</code>
+</div>
+<code class="header" id="listing_6">#.aplteam.aplteam.ChangeFontSize &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> ChangeFontSize←{</code>
+<code class="emphasize">→[1]      font←'⎕SE'⎕WG'Font'</code>
+<code class="emphasize">→[2]      font[1+⎕IO]+←⍵</code>
+<code class="emphasize">→[3]      _←'⎕SE'⎕WS'Font'font</code>
+<code class="emphasize">→[4]      newFont←'⎕SE'⎕WG'Font'</code>
+<code class="emphasize">→[5]      newFont[1+⎕IO]=font[1+⎕IO]:⍬</code>
+<code class="emphasize">→[6]      ∇ ⍵+⍵</code>
+<code> [7]  }</code>
+</div>
+<code class="header" id="listing_7">#.aplteam.aplteam.CheckCiderConfig &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  CheckCiderConfig cfg</code>
+<code> [1]  ⍝ * Checks the Cider config:</code>
+<code> [2]  ⍝ * Reduces the "LINK" options to the non-defaults ("watch")</code>
+<code> [3]  ⍝ * Injects [CIDER]version</code>
+<code> [4]  ⍝ * Writes `cfg` back to disk</code>
+<code class="emphasize">→[5]   path←⍎(⊃{⍺,'.',⍵}/cfg.CIDER.(parent projectSpace)),'.CiderConfig.HOME'</code>
+<code class="emphasize">→[6]   filename←path,'/cider.config'</code>
+<code class="emphasize">→[7]   :If 0=cfg.CIDER.⎕NC'version'</code>
+<code class="emphasize">→[8]       names←' '~⍨¨↓cfg.LINK.⎕NL⍳16</code>
+<code class="emphasize">→[9]       :If 'both'≢cfg.LINK.watch                  ⍝ Not on default?</code>
+<code class="emphasize">→[10]          names~←⊂'watch'</code>
+<code> [11]      :EndIf</code>
+<code class="emphasize">→[12]      noOf←≢names</code>
+<code class="emphasize">→[13]      :If 0&lt;noOf</code>
+<code class="emphasize">→[14]      :AndIf ##.CommTools.YesOrNo'Remove ',(⍕noOf),' entries in [LINK] from the Cider config file?'</code>
+<code class="emphasize">→[15]          cfg.LINK.⎕EX¨names</code>
+<code> [16]      :EndIf</code>
+<code class="emphasize">→[17]      version←{⍵↑⍨¯1+⍵⍳'+'}⎕SE.Cider.Version     ⍝ Without build number</code>
+<code class="emphasize">→[18]      :If 0=≢version~'.',⎕D                      ⍝ Only when it not a test or beta version</code>
+<code class="emphasize">→[19]          cfg.CIDER.version←version</code>
+<code class="emphasize">→[20]          json←⎕JSON⍠('Dialect' 'JSON5')('Compact' 0)⊣cfg</code>
+<code class="emphasize">→[21]          (⊂json)⎕NPUT filename 1</code>
+<code> [22]      :EndIf</code>
+<code> [23]  :EndIf</code>
+<code> [24] ⍝Done</code>
+</div>
+<code class="header" id="listing_8">#.aplteam.aplteam.CheckLICENSE &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  CheckLICENSE cfg</code>
+<code> [1]  ⍝ * Checks whether a file `LICENSE` exists and reports to the session if not</code>
+<code> [2]  ⍝ * If it does exist it checks whether it contains...</code>
+<code> [3]  ⍝   * "APL Team" and reports to the session if so</code>
+<code> [4]  ⍝   * "Copyright" and reports to the session if not</code>
+<code class="emphasize">→[5]   path←⍎(⊃{⍺,'.',⍵}/cfg.CIDER.(parent projectSpace)),'.CiderConfig.HOME'</code>
+<code class="emphasize">→[6]   :If 0=cfg.USER.⎕NC'noLicenseCheck'</code>
+<code class="emphasize">→[7]   :OrIf 1≢cfg.USER.noLicenseCheck</code>
+<code class="emphasize">→[8]       :If ⎕NEXISTS path,'/LICENSE'</code>
+<code class="emphasize">→[9]           txt←⊃⎕NGET path,'/LICENSE'</code>
+<code class="emphasize">→[10]          :If ∨/'APL Team'⍷txt</code>
+<code class="emphasize">→[11]              ⎕←'&gt;&gt;&gt; ATTENTION: The file LICENSE in ',path,' contains the string "APL Team"'</code>
+<code> [12]          :EndIf</code>
+<code class="emphasize">→[13]          :If ~∨/'copyright'⍷⎕C txt</code>
+<code class="emphasize">→[14]              ⎕←'&gt;&gt;&gt; ATTENTION: The file LICENSE in ',path,' does NOT contain "Copyright"'</code>
+<code> [15]          :EndIf</code>
+<code> [16]      :Else</code>
+<code class="emphasize">→[17]          ⎕←'&gt;&gt;&gt; ATTENTION: There is no file LICENSE in ',path</code>
+<code> [18]      :EndIf</code>
+<code> [19]  :EndIf</code>
+</div>
+<code class="header" id="listing_9">#.aplteam.aplteam.CheckMenuStructure &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  CheckMenuStructure EnforceNew</code>
+<code class="emphasize">→[1]   Version←3</code>
+<code class="emphasize">→[2]   (⎕IO ⎕ML)←1 3</code>
+<code class="emphasize">→[3]   :If 15&gt;⍎3↑2⊃'.'⎕WG'AplVersion'</code>
+<code class="emphasize">→[4]       'Needs version 15.0 or higher!'⎕SIGNAL 11</code>
+<code> [5]   :Else</code>
+<code class="emphasize">→[6]       MB←'⎕SE.mb'</code>
+<code> [7]   :EndIf</code>
+<code class="emphasize">→[8]   :If (,1)≡,EnforceNew</code>
+<code class="emphasize">→[9]       Flag←1</code>
+<code> [10]  :Else</code>
+<code class="emphasize">→[11]      :If (⊂MB,'.mb.Util')∊⎕WN MB</code>
+<code class="emphasize">→[12]      :AndIf (⊂MB,'.About')∊⎕WN MB,'.util'</code>
+<code class="emphasize">→[13]      :AndIf (⊂MB,'.F_Keys')∊⎕WN MB,'.util'</code>
+<code class="emphasize">→[14]          ⎕EX MB,'.util' ⍝ drop old version</code>
+<code> [15]      :EndIf</code>
+<code class="emphasize">→[16]      :If ~(⊂MB,'.aplteam')∊⎕WN MB          ⍝ If unknown...</code>
+<code class="emphasize">→[17]          Flag←1</code>
+<code class="emphasize">→[18]      :ElseIf ~0∊⍴a←(MB,'.aplteam')⎕WG'Data'</code>
+<code class="emphasize">→[19]      :AndIf Version&gt;a                        ⍝ ... or an old version, create new one!</code>
+<code class="emphasize">→[20]          Flag←0</code>
+<code> [21]      :Else</code>
+<code class="emphasize">→[22]          Flag←0</code>
+<code> [23]      :EndIf</code>
+<code> [24]  :EndIf</code>
+<code class="emphasize">→[25]  MB2←MB,'.aplteam'</code>
+<code class="emphasize">→[26]  :If Flag</code>
+<code class="emphasize">→[27]      ⎕EX MB2</code>
+<code class="emphasize">→[28]      MB2 ⎕WC'Menu' 'A&amp;PLTeam'</code>
+<code class="emphasize">→[29]      ∆←'Define Function Keys'('event' 'select' '⍎{}FKeys.Define ⍬')</code>
+<code class="emphasize">→[30]      (MB2,'.L_Keys')⎕WC(⊂'Menuitem'),∆</code>
+<code class="emphasize">→[31]      (MB2,'.PrintL_Keys')⎕WC'Menuitem' 'Show Function Keys'('event' 'select' '⍎ShowFKeysInBrowser')</code>
+<code class="emphasize">→[32]      (MB2,'.sep01')⎕WC'Separator'</code>
+<code class="emphasize">→[33]      :If 9=⎕NC'⎕se.aplteam'</code>
+<code class="emphasize">→[34]          ∆←⊂'Make []SE font bigger',(⎕UCS 9),'Ctrl++'</code>
+<code class="emphasize">→[35]          ∆,←⊂'Accelerator'(107 2)</code>
+<code class="emphasize">→[36]          (MB2,'.FontBigger')⎕WC(⊂'Menuitem'),∆,⊂'event' 'select' 'OnChangeFontSize' '+'</code>
+<code class="emphasize">→[37]          (MB2,'.FontBigger')⎕WS'Hint' 'Increase the size of the session font'</code>
+<code class="emphasize">→[38]          ∆←⊂'Make []SE font smaller',(⎕UCS 9),'Ctrl+-'</code>
+<code class="emphasize">→[39]          ∆,←⊂'Accelerator'(109 2)</code>
+<code class="emphasize">→[40]          (MB2,'.FontSmaller')⎕WC(⊂'Menuitem'),∆,⊂'event' 'select' 'OnChangeFontSize' '-'</code>
+<code class="emphasize">→[41]          (MB2,'.FontSmaller')⎕WS'Hint' 'Decrease the size of the session font'</code>
+<code class="emphasize">→[42]          ∆←⊂'Restore original font size',(⎕UCS 9),'Ctrl+0'</code>
+<code class="emphasize">→[43]          ∆,←⊂'Accelerator'(96 2)</code>
+<code class="emphasize">→[44]          (MB2,'.RestoreFont')⎕WC(⊂'Menuitem'),∆,⊂'event' 'select' 'OnRestoreFontSize'</code>
+<code class="emphasize">→[45]          (MB2,'.RestoreFont')⎕WS'Hint' 'Restore the font size used when APL was fires up'</code>
+<code class="emphasize">→[46]          (MB2,'.sep30')⎕WC'Separator'</code>
+<code class="emphasize">→[47]          (MB2,'.About')⎕WC'Menuitem' 'About...'('event' 'select' 'About')</code>
+<code class="emphasize">→[48]          (MB2,'.About')⎕WS'Hint' 'Display details (version-no, release-no and the like)'</code>
+<code class="emphasize">→[49]          (MB,'.help')⎕WS'Caption' '&amp;Help'</code>
+<code> [50]      :EndIf</code>
+<code class="emphasize">→[51]      :If ((MB,'.help')⎕WG'Posn')&lt;MB2 ⎕WG'Posn'</code>
+<code class="emphasize">→[52]          (MB,'.help')⎕WS'Posn' 99</code>
+<code> [53]      :EndIf</code>
+<code class="emphasize">→[54]      :If 9=⎕NC'⎕SE.cbtop.bandtb3.tb.tsm'</code>
+<code class="emphasize">→[55]          '⎕SE.cbtop.bandtb3.tb.DummyTSM'⎕WC'Label'('Visible' 0)('Event' 9999 '[ClearTSM]')</code>
+<code> [56]      :EndIf</code>
+<code> [57]  :EndIf</code>
+</div>
+<code class="header" id="listing_10">#.aplteam.aplteam.Clear &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  Clear</code>
+<code class="emphasize">→[1]   :If 9=⎕SE.⎕NC'acre'</code>
+<code class="emphasize">→[2]   :AndIf 0&lt;≢list←⎕SE.acre.Projects''</code>
+<code class="emphasize">→[3]       ⎕←'Currently opened acre-managed projects:'</code>
+<code class="emphasize">→[4]       ⎕←list</code>
+<code class="emphasize">→[5]       ⎕←''</code>
+<code class="emphasize">→[6]       :If 1 ##.CommTools.YesOrNo'Are you sure that you want to close all acre-managed projects?'</code>
+<code class="emphasize">→[7]           {}⎕SE.acre.CloseProject list[;⎕IO]</code>
+<code class="emphasize">→[8]           ⎕←'acre project',((1&lt;≢list)/'s'),' closed: '</code>
+<code class="emphasize">→[9]           ⎕←⍪list[;⎕IO]</code>
+<code> [10]      :Else</code>
+<code class="emphasize">→[11]          :Return</code>
+<code> [12]      :EndIf</code>
+<code> [13]  :EndIf</code>
+<code class="emphasize">→[14]  :If 9=⎕SE.⎕NC'Cider'</code>
+<code class="emphasize">→[15]  :AndIf 0&lt;≢list←⎕SE.Cider.ListOpenProjects 0</code>
+<code class="emphasize">→[16]      ⎕←'Currently opened Cider-managed projects:'</code>
+<code class="emphasize">→[17]      ⎕←list</code>
+<code class="emphasize">→[18]      ⎕←''</code>
+<code class="emphasize">→[19]      :If 1 ##.CommTools.YesOrNo'Are you sure that you want to close all Cider-managed projects?'</code>
+<code class="emphasize">→[20]          {}⎕SE.Cider.CloseProject ⍬</code>
+<code class="emphasize">→[21]          ⎕←'Cider project',((1&lt;≢list)/'s'),' closed: '</code>
+<code class="emphasize">→[22]          ⎕←⍪list[;⎕IO]</code>
+<code> [23]      :Else</code>
+<code class="emphasize">→[24]          :Return</code>
+<code> [25]      :EndIf</code>
+<code> [26]  :EndIf</code>
+<code class="emphasize">→[27]  :If 0&lt;≢#.⎕NL 2 3 4 9</code>
+<code class="emphasize">→[28]      ⎕←'      ⎕EX ⎕NL ⍳16    ⍝ )CLEAR causes a Rumba problem, see &lt;02006&gt;'</code>
+<code> [29]  :Else</code>
+<code class="emphasize">→[30]      ⎕←'The workspace is apparently empty'</code>
+<code> [31]  :EndIf</code>
+<code> [32] ⍝Done</code>
+</div>
+<code class="header" id="listing_11">#.aplteam.aplteam.CopySelectionAndExecInQSE &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←CopySelectionAndExecInQSE</code>
+<code> [1]  ⍝ Useful to copy the current selection, paste it in the session and execute it</code>
+<code class="emphasize">→[2]   cl←⎕NEW⊂'Clipboard'</code>
+<code class="emphasize">→[3]   :Trap 0  ⍝ Anything might go wrong here, we don't know what we are doing ;)</code>
+<code class="emphasize">→[4]       :If 0&lt;≢txt←cl.Text</code>
+<code class="emphasize">→[5]           q←'Sure you want execute:',(⎕UCS 13),txt,(⎕UCS 13),'?'</code>
+<code class="emphasize">→[6]           :If 1 ##.CommTools.YesOrNo q</code>
+<code class="emphasize">→[7]               r←'(⊂''CP''),(⊂''JP''),(⊂''PT''),(⊂''ER''),(⊂''JP'')'</code>
+<code> [8]           :Else</code>
+<code class="emphasize">→[9]               r←'Cancelled by user'</code>
+<code> [10]          :EndIf</code>
+<code> [11]      :Else</code>
+<code class="emphasize">→[12]          r←'''There is nothing that could be executed?!'</code>
+<code> [13]      :EndIf</code>
+<code> [14]  :Else</code>
+<code class="emphasize">→[15]      r←'''Something went terribly wrong...'''</code>
+<code> [16]  :EndTrap</code>
+</div>
+<code class="header" id="listing_12">#.aplteam.aplteam.CrashTheInterpreter &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> CrashTheInterpreter flag</code>
+<code class="emphasize">→[1]  :If flag</code>
+<code class="emphasize">→[2]      width←(⎕IO++∨/'-64'⍷⎕IO⊃'#'⎕WG'APLVersion')⊃'32' '64'</code>
+<code class="emphasize">→[3]      ⎕NA'dyalog',width,'|MEMCPY u4 u4 u4'</code>
+<code class="emphasize">→[4]      MEMCPY 0 0 4</code>
+<code> [5]  :EndIf</code>
+</div>
+<code class="header" id="listing_13">#.aplteam.aplteam.CreateAplcore &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  {filename}←CreateAplcore dummy</code>
+<code class="emphasize">→[1]   ⎕IO←1 ⋄ ⎕ML←1</code>
+<code class="emphasize">→[2]   :If YesOrNo'Are you sure that you want to create an aplcore from the current WS ?'</code>
+<code class="emphasize">→[3]       wsname←'aplcore_',⎕AN,'_',(,¨': ')⎕R'_'⊣##.APLTreeUtils2.FormatDateTime ⎕TS</code>
+<code class="emphasize">→[4]       :If (,'W')≡3⊃# ⎕WG'APLVersion'</code>
+<code class="emphasize">→[5]           regKey←BuildRegKeyForCurrentAPL,'\aplcorename'</code>
+<code class="emphasize">→[6]           :If ##.WinReg.DoesValueExist regKey</code>
+<code class="emphasize">→[7]               filename←(1⊃⎕NPARTS ##.WinReg.GetString regKey),wsname</code>
+<code> [8]           :Else</code>
+<code class="emphasize">→[9]               filename←##.FilesAndDirs.GetTempPath,wsname</code>
+<code> [10]          :EndIf</code>
+<code> [11]      :Else</code>
+<code class="emphasize">→[12]          filename←'/tmp/',wsname</code>
+<code> [13]      :EndIf</code>
+<code class="emphasize">→[14]      2 ⎕NQ'.' 'dumpws'filename</code>
+<code class="emphasize">→[15]      ⎕←'aplcore created: ',filename</code>
+<code> [16]  :EndIf</code>
+<code> [17] ⍝Done</code>
+</div>
+<code class="header" id="listing_14">#.aplteam.aplteam.Display &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code class="emphasize">→ Display←{⎕IO ⎕ML←0 1                        </code>
+<code> [1]  </code>
+<code class="emphasize">→[2]       box←{                                   ⍝ box with type and axes</code>
+<code class="emphasize">→[3]           vrt hrz←(¯1+⍴⍵)⍴¨'│─'               ⍝ vert. and horiz. lines</code>
+<code class="emphasize">→[4]           top←'─⊖→'[¯1↑⍺],hrz                 ⍝ upper border with axis</code>
+<code class="emphasize">→[5]           bot←(⊃⍺),hrz                        ⍝ lower border with type</code>
+<code class="emphasize">→[6]           rgt←'┐│',vrt,'┘'                    ⍝ right side with corners</code>
+<code class="emphasize">→[7]           lax←'│⌽↓'[¯1↓1↓⍺],¨⊂vrt             ⍝ left side(s) with axes,</code>
+<code class="emphasize">→[8]           lft←⍉'┌',(↑lax),'└'                 ⍝ ... and corners</code>
+<code class="emphasize">→[9]           lft,(top⍪⍵⍪bot),rgt                 ⍝ fully boxed array</code>
+<code class="emphasize">→[10]      }</code>
+<code> [11] </code>
+<code class="emphasize">→[12]      deco←{⍺←type open ⍵ ⋄ ⍺,axes ⍵}         ⍝ type and axes vector</code>
+<code class="emphasize">→[13]      axes←{(-2⌈⍴⍴⍵)↑1+×⍴⍵}                   ⍝ array axis types</code>
+<code class="emphasize">→[14]      open←{16::(1⌈⍴⍵)⍴⊂'[ref]' ⋄ (1⌈⍴⍵)⍴⍵}   ⍝ exposure of null axes</code>
+<code class="emphasize">→[15]      trim←{(~1 1⍷∧⌿⍵=' ')/⍵}                 ⍝ removal of extra blank cols</code>
+<code class="emphasize">→[16]      type←{{(1=⍴⍵)⊃'+'⍵}∪,char¨⍵}            ⍝ simple array type</code>
+<code class="emphasize">→[17]      char←{⍬≡⍴⍵:'─' ⋄ (⊃⍵∊'¯',⎕D)⊃'#~'}∘⍕    ⍝ simple scalar type</code>
+<code class="emphasize">→[18]      line←{(6≠10|⎕DR' '⍵)⊃' -'}              ⍝ underline for atom</code>
+<code> [19] </code>
+<code class="emphasize">→[20]      {                                       ⍝ recursive boxing of arrays:</code>
+<code class="emphasize">→[21]          0=≡⍵:' '⍪(open ⎕FMT ⍵)⍪line ⍵       ⍝ simple scalar</code>
+<code class="emphasize">→[22]          1 ⍬≡(≡⍵)(⍴⍵):'∇' 0 0 box ⎕FMT ⍵     ⍝ object rep: ⎕OR</code>
+<code class="emphasize">→[23]          1=≡⍵:(deco ⍵)box open ⎕FMT open ⍵   ⍝ simple array</code>
+<code class="emphasize">→[24]          ('∊'deco ⍵)box trim ⎕FMT ∇¨open ⍵   ⍝ nested array</code>
+<code class="emphasize">→[25]      }⍵</code>
+<code> [26]  }</code>
+</div>
+<code class="header" id="listing_15">#.aplteam.aplteam.EstablishDropOnSession &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> EstablishDropOnSession</code>
+<code class="emphasize">→[1]  :If 3=⎕NC'⎕se.aplteam.OnDropObjects'</code>
+<code class="emphasize">→[2]      {⍵ ⎕WS('Event' 'DropObjects' '⎕se.aplteam.OnDropObjects')('Event' 'DropFiles' '⎕se.aplteam.OnDropObjects')('AcceptFiles' 1)}¨'⎕se.cbbot.bandsb2.sb' '⎕se.cbbot.bandsb1.sb'</code>
+<code> [3]  :Else</code>
+<code class="emphasize">→[4]      ⎕←'Function "OnDropObjects" not found in ⎕SE.aplteam'</code>
+<code> [5]  :EndIf</code>
+</div>
+<code class="header" id="listing_16">#.aplteam.aplteam.FixFunctionKeyClass &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> {r}←FixFunctionKeyClass dummy</code>
+<code class="emphasize">→[1]  r←⍬</code>
+<code class="emphasize">→[2]  filename←(##.WinSys.ExpandEnv'%USERPROFILE%'),'\Documents\MyUCMDs\APLTeam\FunctionKeyDefinition.aplc'</code>
+<code class="emphasize">→[3]  :If ##.FilesAndDirs.IsFile filename</code>
+<code class="emphasize">→[4]      body←1⊃⎕NGET filename 1</code>
+<code class="emphasize">→[5]      FKeys.⎕FIX body</code>
+<code> [6]  :EndIf</code>
+<code> [7] ⍝Done</code>
+</div>
+<code class="header" id="listing_17">#.aplteam.aplteam.GetRegKey &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> rk←GetRegKey path</code>
+<code class="emphasize">→[1]  rk←'HKEY_CURRENT_USER\Software\Dyalog\Dyalog APL'</code>
+<code class="emphasize">→[2]  version←# ⎕WG'APLVersion'</code>
+<code class="emphasize">→[3]  rk,←('Win'≡3↑1⊃version)/'/W'</code>
+<code class="emphasize">→[4]  rk,←(∨/'-64'⍷1⊃version)/'-64'</code>
+<code class="emphasize">→[5]  rk,←' ',↑{⍺,'.',⍵}/2↑'.'A.Split 2⊃version</code>
+<code class="emphasize">→[6]  rk,←(80=⎕DR' ')/' Unicode'</code>
+<code class="emphasize">→[7]  rk,←((~0∊⍴path)/'\'),path</code>
+</div>
+<code class="header" id="listing_18">#.aplteam.aplteam.GetVarsFromParms &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  R←{CalledFromNamespace}GetVarsFromParms Parms</code>
+<code class="emphasize">→[1]   ⎕IO←1</code>
+<code class="emphasize">→[2]   ⎕ML←3</code>
+<code class="emphasize">→[3]   R←''</code>
+<code class="emphasize">→[4]   :If 0=⎕NC'CalledFromNamespace'</code>
+<code class="emphasize">→[5]       CalledFromNamespace←↑⎕NSI</code>
+<code> [6]   :EndIf</code>
+<code class="emphasize">→[7]   ⎕CS CalledFromNamespace            ⍝ Change to the namespace this fns was called from</code>
+<code class="emphasize">→[8]   Parms⍪←'DUMMY'⍬                    ⍝ DUMMY is added to make the statement run if Parms is empty.</code>
+<code class="emphasize">→[9]   Parms[;1]←'∆',¨Parms[;1]           ⍝ Add "∆" to avoid name conflicts.</code>
+<code class="emphasize">→[10]  ⍎(↑,/' ',¨Parms[;1]),'←Parms[;2]'  ⍝ Create external parameters.</code>
+<code class="emphasize">→[11]  R←¯1↓Parms[;1]                     ⍝ ¯1↓ drops the DUMMY.</code>
+</div>
+<code class="header" id="listing_19">#.aplteam.aplteam.GotoQLC_AndDropStop &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←GotoQLC_AndDropStop</code>
+<code> [1]  ⍝ First it drops any stop set on the current line of the currently</code>
+<code> [2]  ⍝ suspended function, then it returns "→⎕LC".</code>
+<code class="emphasize">→[3]   (⎕IO ⎕ML)←1 3</code>
+<code class="emphasize">→[4]   :If 1&lt;⍴⎕XSI</code>
+<code class="emphasize">→[5]       r←'→⎕LC'</code>
+<code class="emphasize">→[6]       cf←↑1↓⎕XSI                     ⍝ Current function</code>
+<code class="emphasize">→[7]       sv←⎕STOP cf                    ⍝ Stop vectors</code>
+<code class="emphasize">→[8]       sv~←↑1↓⎕LC                     ⍝ Drop the current line</code>
+<code class="emphasize">→[9]       sv ⎕STOP cf                    ⍝ Re-establish the (potentially reduced) stop vector</code>
+<code> [10]  :Else</code>
+<code class="emphasize">→[11]      r←⍬</code>
+<code> [12]  :EndIf</code>
+<code> [13] ⍝Done</code>
+</div>
+<code class="header" id="listing_20">#.aplteam.aplteam.GotoQLC_AndSetStopVector &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←GotoQLC_AndSetStopVector</code>
+<code> [1]  ⍝ If there is a function suspended then this function put a stop</code>
+<code> [2]  ⍝ to its current line and return the string "→⎕LC" as result.</code>
+<code> [3]  ⍝ If no function is suspended an error is thrown.</code>
+<code class="emphasize">→[4]   (⎕IO ⎕ML)←1 3</code>
+<code class="emphasize">→[5]   :If 1=⍴⎕LC</code>
+<code class="emphasize">→[6]       11 ⎕SIGNAL⍨'There is no function suspended?!'</code>
+<code> [7]   :Else</code>
+<code class="emphasize">→[8]       fn←2⊃⎕XSI</code>
+<code class="emphasize">→[9]       (∪(⎕STOP fn),2⊃⎕LC)⎕STOP fn</code>
+<code class="emphasize">→[10]      r←'→⎕LC'</code>
+<code> [11]  :EndIf</code>
+</div>
+<code class="header" id="listing_21">#.aplteam.aplteam.GotoQLC_WithStopOn &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  GotoQLC_WithStopOn←{</code>
+<code> [1]  ⍝ Set stop vector on line ⍵ of the currently suspended function and return "→⎕LC" then</code>
+<code> [2]  ⍝ If ⍵ is empty the stop vetor goes to the current line</code>
+<code class="emphasize">→[3]       (⎕IO ⎕ML)←1 3</code>
+<code class="emphasize">→[4]       1=⍴⎕XSI:'→⎕LC'                         ⍝ There is no suspended function</code>
+<code class="emphasize">→[5]       fn←↑1↓⎕XSI                             ⍝ Function name</code>
+<code class="emphasize">→[6]       sv←⎕STOP fn                            ⍝ Get current settings of ⎕STOP for "fn"</code>
+<code class="emphasize">→[7]       0∊⍴⍵:'→⎕LC'{⍺}(sv,↑1↓⎕LC)⎕STOP fn      ⍝ ⍵ is empty: Add stop on currently suspended line</code>
+<code class="emphasize">→[8]       _←(sv,⍵)⎕STOP fn                       ⍝ Add stop on desired line</code>
+<code> [9]       '→⎕LC'</code>
+<code> [10]  }</code>
+</div>
+<code class="header" id="listing_22">#.aplteam.aplteam.IsConnectedToRide &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←IsConnectedToRide</code>
+<code class="emphasize">→[1]  r←3501⌶⍬</code>
+<code> [2] ⍝Done</code>
+</div>
+<code class="header" id="listing_23">#.aplteam.aplteam.IsWindows &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←IsWindows</code>
+<code class="emphasize">→[1]  ⎕ML←1</code>
+<code class="emphasize">→[2]  r←'W'=⊃⊃'#'⎕WG'APLVersion'</code>
+<code> [3] ⍝Done</code>
+</div>
+<code class="header" id="listing_24">#.aplteam.aplteam.KaisCiderChecks &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> KaisCiderChecks cfg</code>
+<code class="emphasize">→[1]  CheckLICENSE cfg</code>
+<code> [2] ⍝ CheckCiderConfig cfg</code>
+<code> [3] ⍝Done</code>
+</div>
+<code class="header" id="listing_25">#.aplteam.aplteam.List &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  List←{</code>
+<code class="emphasize">→[1]       ⍺←1 ⍝ recurive</code>
+<code class="emphasize">→[2]       r←0 2⍴''</code>
+<code class="emphasize">→[3]       l←↓⍵.⎕NL 2</code>
+<code class="emphasize">→[4]       sn←↓⍵.⎕NL 9</code>
+<code class="emphasize">→[5]       0=+/≢¨l sn:r</code>
+<code class="emphasize">→[6]       r⍪←⍵{0=≢⍵:0 2⍴'' ⋄ ↑(⊂¨⍵),¨⊂¨(,¨⍺.⍎¨⍵)~¨⊂⎕TC}l</code>
+<code class="emphasize">→[7]       (⍺=0)∨0=≢sn:r⍪↑{0=≢sn:0 2⍴'' ⋄ (⊂¨⍵,¨':'),¨⊂⊂''}sn</code>
+<code class="emphasize">→[8]       l2←⍺ ∇¨⍵⍎¨sn</code>
+<code class="emphasize">→[9]       l2←{w←⍵ ⋄ (1⌷[2]w)←'  '∘,¨1⌷[2]⍵ ⋄ w}¨l2</code>
+<code class="emphasize">→[10]      r⍪⊃⍪/(⍉∘⍪¨(⊂¨(⍕¨sn),¨':'),¨⊂⊂'')⍪¨l2</code>
+<code> [11]  }</code>
+</div>
+<code class="header" id="listing_26">#.aplteam.aplteam.MenubarName &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> R←MenubarName</code>
+<code class="emphasize">→[1]  :If 8&gt;⍎3↑2⊃'.'⎕WG'AplVersion'</code>
+<code class="emphasize">→[2]      'Needs version 8 or higher!'⎕SIGNAL 11</code>
+<code class="emphasize">→[3]  :ElseIf 9&gt;⍎3↑2⊃'.'⎕WG'AplVersion'</code>
+<code class="emphasize">→[4]      R←'⎕SE.cbtop.bandmb.tb.mb'</code>
+<code> [5]  :Else</code>
+<code class="emphasize">→[6]      R←'⎕SE.mb'</code>
+<code> [7]  :EndIf</code>
+</div>
+<code class="header" id="listing_27">#.aplteam.aplteam.NoAcreAtAll &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> NoAcreAtAll dummy</code>
+<code class="emphasize">→[1]  rk←GetRegKey'\SALT\CommandFolder'</code>
+<code class="emphasize">→[2]  value←W.GetString rk</code>
+<code class="emphasize">→[3]  paths←⎕SE.SALT.PATHDEL{⍵⊂⍨~⍵∊⍺}value</code>
+<code class="emphasize">→[4]  (('/'=∊paths)/∊paths)←'\'</code>
+<code class="emphasize">→[5]  paths←(~∨/¨'\acre'∘⍷¨paths)/paths</code>
+<code class="emphasize">→[6]  paths←1↓↑,/(¯1↑⎕SE.SALT.PATHDEL),¨paths</code>
+<code class="emphasize">→[7]  W.PutString rk paths</code>
+<code> [8] ⍝Done</code>
+</div>
+<code class="header" id="listing_28">#.aplteam.aplteam.OnChangeFontSize &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> OnChangeFontSize←{</code>
+<code class="emphasize">→[1]      hasFocus←2 ⎕NQ'#' 'GetFocus'</code>
+<code class="emphasize">→[2]      '⎕SE'≢hasFocus:1</code>
+<code class="emphasize">→[3]      font←'⎕SE'⎕WG'Font'</code>
+<code class="emphasize">→[4]      (fontName fontSize)←2↑font</code>
+<code class="emphasize">→[5]      dir←1 ¯1['+-'⍳⍺]</code>
+<code class="emphasize">→[6]      _←ChangeFontSize dir</code>
+<code class="emphasize">→[7]      0</code>
+<code> [8]  }</code>
+</div>
+<code class="header" id="listing_29">#.aplteam.aplteam.OnDropObjects &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  OnDropObjects msg</code>
+<code> [1]  ⍝ Handles files and directories dropped onto the statusbar.\\</code>
+<code> [2]  ⍝ * For any `*.dyalog` file a SALT load command is printed.</code>
+<code> [3]  ⍝ * For any `*.dws` a )XLOAD statement is printed.</code>
+<code> [4]  ⍝ * For any `aplcore*` a )COPY statement for that aplcore is printed.</code>
+<code> [5]  ⍝ * For a filename "apl-dependencies.txt" (path is ignored) a command ]Tatin.LoadDependencies is printed.</code>
+<code> [6]  ⍝ * For any file with the extension ".demo" `]demo {thatFilename}` is printed.</code>
+<code> [7]  ⍝ * For any directory that hosts a file acre.config an `]OpenMyAcreProject` statement is printed.</code>
+<code> [8]  ⍝ * For anything else the fully qualified filename is printed.</code>
+<code> [9]  ⍝ If however the control key was pressed during the drag'n-drop operation than the current dir</code>
+<code> [10] ⍝ is changed to that directory or, in case of a file, to the directory holding that file.\\</code>
+<code> [11] ⍝ Version 2.7.1 ⋄ 2024-08-03</code>
+<code> [12] ⍝ Kai Jaeger</code>
+<code class="emphasize">→[13]  ⎕IO←1 ⋄ ⎕ML←1</code>
+<code class="emphasize">→[14]  (obj event files dummy shiftState)←5↑msg</code>
+<code class="emphasize">→[15]  extensions←1 ⎕C ⎕SE.APLTreeUtils2.Last¨files</code>
+<code class="emphasize">→[16]  :If 2=shiftState</code>
+<code class="emphasize">→[17]      :If 1&lt;⍴files</code>
+<code class="emphasize">→[18]          'I get mixed signals I''m afraid...'⎕SIGNAL 11</code>
+<code> [19]      :Else</code>
+<code class="emphasize">→[20]          :If ⎕SE.FilesAndDirs.IsDir folder←1⊃files</code>
+<code class="emphasize">→[21]              ⎕←'      ]cd ',folder</code>
+<code class="emphasize">→[22]          :ElseIf ⎕SE.FilesAndDirs.IsDir folder←{⎕IO⊃⎕SE.APLTreeUtils2.SplitPath ⍵}1⊃files</code>
+<code class="emphasize">→[23]              ⎕←'      ]cd ',folder</code>
+<code> [24]          :Else</code>
+<code class="emphasize">→[25]              11 ⎕SIGNAL⍨'Folder "',folder,'" does not exist?!'</code>
+<code> [26]          :EndIf</code>
+<code> [27]      :EndIf</code>
+<code> [28]  :Else</code>
+<code class="emphasize">→[29]      :For i :In ⍳⍴files</code>
+<code class="emphasize">→[30]          thisOne←i⊃files</code>
+<code class="emphasize">→[31]          thisExtension←i⊃extensions</code>
+<code class="emphasize">→[32]          :Select ⊃shiftState</code>
+<code class="emphasize">→[33]          :Case 0</code>
+<code class="emphasize">→[34]              :If 'apl-dependencies.txt'≡⊃{⍺,⍵}/1↓⎕NPARTS thisOne</code>
+<code class="emphasize">→[35]              :AndIf 9=⎕SE.⎕NC'Tatin'</code>
+<code class="emphasize">→[36]                  ⎕←'      ]TATIN.LoadDependencies ',(⊃⎕NPARTS thisOne),' #'</code>
+<code class="emphasize">→[37]              :ElseIf ⎕SE.FilesAndDirs.IsDir thisOne</code>
+<code class="emphasize">→[38]                  :If ⎕SE.FilesAndDirs.IsFile thisOne,'/cider.config'</code>
+<code class="emphasize">→[39]                      ⎕←'      ]Cider.OpenProject "',thisOne,'"'</code>
+<code class="emphasize">→[40]                  :ElseIf ⎕SE.FilesAndDirs.IsFile thisOne,'/apl-dependencies.txt'</code>
+<code class="emphasize">→[41]                      ⎕←'      ]TATIN.LoadDependencies "',thisOne,'" #'</code>
+<code> [42]                  :EndIf</code>
+<code> [43]              :Else</code>
+<code class="emphasize">→[44]                  :Select thisExtension</code>
+<code class="emphasize">→[45]                  :Case 'DWS'</code>
+<code class="emphasize">→[46]                      ⎕←'      )XLOAD ',{b←' '∊⍵ ⋄ (b/'"'),⍵,(b/'"')}thisOne</code>
+<code class="emphasize">→[47]                  :CaseList 'DYALOG' 'APLF' 'APLN' 'APLC' 'APLO'</code>
+<code class="emphasize">→[48]                      :If 9=⎕NC'⎕SE.SALT'</code>
+<code class="emphasize">→[49]                          :If (,'#')≡,1⊃⎕NSI</code>
+<code class="emphasize">→[50]                              tp←''''</code>
+<code> [51]                          :Else</code>
+<code class="emphasize">→[52]                              tp←' -Target=',(1⊃⎕NSI),''''</code>
+<code> [53]                          :EndIf</code>
+<code class="emphasize">→[54]                          ⎕←'      ⎕SE.SALT.Load ''',thisOne,'',tp</code>
+<code> [55]                      :EndIf</code>
+<code class="emphasize">→[56]                  :Case 'DEMO'</code>
+<code class="emphasize">→[57]                      ⎕←'      ]demo ',thisOne</code>
+<code> [58]                  :Else</code>
+<code class="emphasize">→[59]                      :If 'aplcore'{⍺≡##.APLTreeUtils2.Lowercase(⍴⍺)↑⍵}2⊃##.APLTreeUtils2.SplitPath thisOne</code>
+<code class="emphasize">→[60]                          ⎕←'      )COPY ',{b←' '∊⍵ ⋄ (b/'"'),⍵,(b/'"')}thisOne,'.'</code>
+<code> [61]                      :Else</code>
+<code class="emphasize">→[62]                          :If ##.FilesAndDirs.Exists thisOne</code>
+<code class="emphasize">→[63]                              :If ##.FilesAndDirs.IsFile thisOne,'\acre.config'</code>
+<code class="emphasize">→[64]                                  ⎕←'      ]acre.OpenProject "',thisOne,'" '</code>
+<code> [65]                              :Else</code>
+<code class="emphasize">→[66]                                  ⎕←'"',({b←' '∊⍵ ⋄ (b/'"'),⍵,(b/'"')}thisOne),'"'</code>
+<code class="emphasize">→[67]                                  list←⎕SE.SALT.List thisOne</code>
+<code class="emphasize">→[68]                                  :If 1&lt;⊃⍴list</code>
+<code class="emphasize">→[69]                                  :AndIf 1 YesOrNo'Do you want to execute SALT''s "List" command on that folder?'</code>
+<code class="emphasize">→[70]                                      ⎕←{1&lt;⊃⍴l←⎕SE.SALT.List ⍵:l ⋄ ⍵}thisOne</code>
+<code> [71]                                  :EndIf</code>
+<code> [72]                              :EndIf</code>
+<code> [73]                          :Else</code>
+<code class="emphasize">→[74]                              ⎕←thisOne</code>
+<code> [75]                          :EndIf</code>
+<code> [76]                      :EndIf</code>
+<code> [77]                  :EndSelect</code>
+<code> [78]              :EndIf</code>
+<code> [79]          :Else</code>
+<code class="emphasize">→[80]              11 ⎕SIGNAL⍨'This modifier key has no effect in this context: ',(1 2 3 4 5 6 7⍳shiftState)⊃'Shift' 'Ctrl' 'Ctrl+Shift' 'Alt' 'Alt+Shift' 'Alt+Ctrl' 'Alt+Ctrl+Shift'</code>
+<code> [81]          :EndSelect</code>
+<code> [82]      :EndFor</code>
+<code> [83]  :EndIf</code>
+</div>
+<code class="header" id="listing_30">#.aplteam.aplteam.OnRestoreFontSize &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> OnRestoreFontSize←{</code>
+<code class="emphasize">→[1]      hasFocus←2 ⎕NQ'#' 'GetFocus'</code>
+<code class="emphasize">→[2]      '⎕SE'≢hasFocus:1</code>
+<code class="emphasize">→[3]      font←'⎕SE'⎕WG'Font'</code>
+<code class="emphasize">→[4]      font[1+⎕IO]←∆OrigFontSize</code>
+<code class="emphasize">→[5]      '⎕SE'⎕WS'Font'font</code>
+<code class="emphasize">→[6]      ⍬</code>
+<code> [7]  }</code>
+</div>
+<code class="header" id="listing_31">#.aplteam.aplteam.RemoveAllStopVectors &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> RemoveAllStopVectors</code>
+<code> [1] ⍝ Remove all stop vectors from the currently suspended fns/opr.</code>
+<code> [2] ⍝ Throws an error if there is no fns/opr on the stack.</code>
+<code class="emphasize">→[3]  (⎕IO ⎕ML)←0 3</code>
+<code class="emphasize">→[4]  :If 1=⍴⎕LC</code>
+<code class="emphasize">→[5]      11 ⎕SIGNAL⍨'No fns/opr on stack?!'</code>
+<code> [6]  :Else</code>
+<code class="emphasize">→[7]      ⍬ ⎕STOP 1⊃⎕XSI</code>
+<code> [8]  :EndIf</code>
+</div>
+<code class="header" id="listing_32">#.aplteam.aplteam.Reset &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  Reset</code>
+<code> [1]  ⍝ General Reset function</code>
+<code class="emphasize">→[2]   :If 1&lt;⍴⎕LC</code>
+<code class="emphasize">→[3]       →0,⎕←'First clear SI by executing:',(⎕UCS 13),')RESET'</code>
+<code> [4]   :EndIf</code>
+<code class="emphasize">→[5]   :If 1&lt;⍴⎕TNUMS</code>
+<code class="emphasize">→[6]       →0,⎕←'First stop running threads by executing:',(⎕UCS 13),')RESET'</code>
+<code> [7]   :EndIf</code>
+<code class="emphasize">→[8]   ⎕FUNTIE ⎕FNUMS</code>
+<code class="emphasize">→[9]   ⎕NUNTIE ⎕NNUMS</code>
+<code class="emphasize">→[10]  #.CursorObj←0</code>
+<code class="emphasize">→[11]  #.Caption←''</code>
+<code class="emphasize">→[12]  :If 9=#.⎕NC'acre'</code>
+<code class="emphasize">→[13]      {}#.acre.CloseAll ⍬</code>
+<code> [14]  :EndIf</code>
+<code class="emphasize">→[15]  :If 3=#.⎕NC'Reset'</code>
+<code class="emphasize">→[16]      #.Reset</code>
+<code> [17]  :EndIf</code>
+</div>
+<code class="header" id="listing_33">#.aplteam.aplteam.ResetFunctionKeys &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←ResetFunctionKeys</code>
+<code> [1]  ⍝ Toggles between active and inactive functions keys</code>
+<code class="emphasize">→[2]   (⎕IO ⎕ML)←1 3</code>
+<code class="emphasize">→[3]   :If 0∊⍴↑,/⎕PFKEY¨⍳10</code>
+<code class="emphasize">→[4]       {}FKeys.Define ⍬</code>
+<code class="emphasize">→[5]       r←'Function keys are restored'</code>
+<code> [6]   :Else</code>
+<code class="emphasize">→[7]       {}FKeys.SetFunctionKeys(↑,/{↑(⊂⍵)∘{⍺,¨⍵}¨⊂{'F',¨¯2↑¨'00'∘,¨⍵}⍕¨⍳12}¨'' 'Ctrl+' 'Shift+' 'Ctrl+Shift+'),[1.5]⊂''</code>
+<code class="emphasize">→[8]       {}FKeys.SetFunctionKeys 1 2⍴'Ctrl+Shift+F11'(↑⎕XSI)</code>
+<code class="emphasize">→[9]       r←'All but one function keys are turned off but Ctrl+Shift+F11 will bring them back'</code>
+<code> [10]  :EndIf</code>
+</div>
+<code class="header" id="listing_34">#.aplteam.aplteam.SelectClassicLayout &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> {r}←SelectClassicLayout dummy</code>
+<code class="emphasize">→[1]  r←0</code>
+<code class="emphasize">→[2]  :If 9=⎕NC'⎕SE.mb.Layout.floating'</code>
+<code class="emphasize">→[3]      1 ⎕NQ ⎕SE.mb.Layout.floating'Select'</code>
+<code> [4]  :EndIf</code>
+</div>
+<code class="header" id="listing_35">#.aplteam.aplteam.SetFont &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  SetFont dummy</code>
+<code class="emphasize">→[1]   :If 82=⎕DR' '  ⍝ Classic?</code>
+<code class="emphasize">→[2]       ⎕SE.FontObj←'Dyalog Alt' 20 1 0 0 700 0 0</code>
+<code class="emphasize">→[3]       ∆OrigFontSize←20</code>
+<code> [4]   :Else</code>
+<code class="emphasize">→[5]       fontSize←⊃1↑##.APLTreeUtils2.ToNum 2 ⎕NQ #'GetEnvironment' 'FONTSIZE386'</code>
+<code class="emphasize">→[6]       :If 0=fontSize</code>
+<code class="emphasize">→[7]       :OrIf 0=≢fontSize</code>
+<code class="emphasize">→[8]           fontSize←18</code>
+<code> [9]       :EndIf</code>
+<code class="emphasize">→[10]      ⎕SE.FontObj←'APL386 Unicode'fontSize 1 0 0 400 0 0</code>
+<code class="emphasize">→[11]      :If 'APL386 Unicode'≢↑⎕SE.FontObj</code>
+<code class="emphasize">→[12]          fontSize←↑1↑##.APLTreeUtils2.ToNum 2 ⎕NQ #'GetEnvironment' 'FONTSIZE385'</code>
+<code class="emphasize">→[13]          :If 0=fontSize</code>
+<code class="emphasize">→[14]          :OrIf 0=≢fontSize</code>
+<code class="emphasize">→[15]              fontSize←20</code>
+<code> [16]          :EndIf</code>
+<code class="emphasize">→[17]          ⎕SE.FontObj←'APL385 Unicode'fontSize 1 0 0 400 0 0</code>
+<code> [18]      :EndIf</code>
+<code class="emphasize">→[19]      ∆OrigFontSize←fontSize</code>
+<code> [20]  :EndIf</code>
+</div>
+<code class="header" id="listing_36">#.aplteam.aplteam.SetStopVector &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←SetStopVector</code>
+<code> [1]  ⍝ If there is a function suspended then this function put a stop</code>
+<code> [2]  ⍝ to its current line and return the string "→⎕LC" as result.</code>
+<code> [3]  ⍝ If no function is suspended an error is thrown.</code>
+<code class="emphasize">→[4]   :If 1=⍴⎕LC</code>
+<code class="emphasize">→[5]       11 ⎕SIGNAL⍨'There is no function suspended?!'</code>
+<code> [6]   :Else</code>
+<code class="emphasize">→[7]       fn←2⊃⎕XSI</code>
+<code class="emphasize">→[8]       (∪(⎕STOP fn),2⊃⎕LC)⎕STOP fn</code>
+<code class="emphasize">→[9]       r←'→⎕LC'</code>
+<code> [10]  :EndIf</code>
+</div>
+<code class="header" id="listing_37">#.aplteam.aplteam.ShowFKeysInBrowser &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> ShowFKeysInBrowser</code>
+<code class="emphasize">→[1]  FKeys.ShowFunctionKeysInBrowser ⍬</code>
+</div>
+<code class="header" id="listing_38">#.aplteam.aplteam.Stamp &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> {txt}←Stamp</code>
+<code> [1] ⍝ Creates a string ⎕an,⎕TS and copies it into the function key 48</code>
+<code class="emphasize">→[2]  ts←¯3↓##.APLTreeUtils2.FormatDateTime ⎕TS</code>
+<code class="emphasize">→[3]  txt←' ⍝ ',⎕AN,' ',ts,' : '</code>
+<code class="emphasize">→[4]  {}txt ⎕PFKEY 48</code>
+<code class="emphasize">→[5]  ⎕←'Insert stamp with Ctrl+Shift+F11'</code>
+</div>
+<code class="header" id="listing_39">#.aplteam.aplteam.StartUp &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  {r}←StartUp verbose</code>
+<code> [1]   ⍝ `verbose` is a Boolean. If it is 1 (and only then) the version information is printed to the session</code>
+<code class="emphasize">→[2]   ⎕IO←1 ⋄ ⎕ML←3</code>
+<code class="emphasize">→[3]   r←⍬</code>
+<code class="emphasize">→[4]   :If IsWindows</code>
+<code class="emphasize">→[5]       ⎕SE.cbtop.bandtb5.tb.(font size).(Active Visible)←0    ⍝ Get rid of "Font" &amp; "Size"</code>
+<code class="emphasize">→[6]       ⎕SE.mb.session.⎕EX¨'sesave' 'sesaveas'                 ⍝ Get rid of the "Save" &amp; "Save as..." for session</code>
+<code class="emphasize">→[7]       SelectClassicLayout ⍬</code>
+<code class="emphasize">→[8]       2 ⎕NQ'⎕se' 'CloseSessionItem' 'Editor'</code>
+<code class="emphasize">→[9]       2 ⎕NQ'⎕se' 'CloseSessionItem' 'Debugger'</code>
+<code class="emphasize">→[10]      2 ⎕NQ'⎕se' 'CloseSessionItem' 'LanguageBar'</code>
+<code class="emphasize">→[11]      :If 'APLTEAM2'≡1 ⎕C 2 ⎕NQ #'GetEnvironment' 'Computername'</code>
+<code class="emphasize">→[12]          ⎕PW←190</code>
+<code> [13]      :EndIf</code>
+<code class="emphasize">→[14]      :If 2≥+/⎕SI[1]≡¨⎕SI</code>
+<code class="emphasize">→[15]          :If ~IsConnectedToRide</code>
+<code class="emphasize">→[16]              :Trap 0</code>
+<code class="emphasize">→[17]                  SetFont ⍬</code>
+<code> [18]              :Else</code>
+<code class="emphasize">→[19]                  ⎕←'Executing ⎕SE.aplteam.SetFont failed with a ',(1⊃⎕DM),'; details:'</code>
+<code class="emphasize">→[20]                  ⎕←2⊃⎕DM</code>
+<code> [21]              :EndTrap</code>
+<code> [22]          :EndIf</code>
+<code class="emphasize">→[23]          :Trap 0</code>
+<code class="emphasize">→[24]              FixFunctionKeyClass ⍬</code>
+<code> [25]          :Else</code>
+<code class="emphasize">→[26]              ⎕←'Executing ⎕SE.aplteam.FixFunctionKeyClass failed with a ',(1⊃⎕DM),'; details:'</code>
+<code class="emphasize">→[27]              ⎕←2⊃⎕DM</code>
+<code> [28]          :EndTrap</code>
+<code class="emphasize">→[29]          :If ~IsConnectedToRide</code>
+<code class="emphasize">→[30]              :Trap 0</code>
+<code class="emphasize">→[31]                  {}FKeys.Define ⍬</code>
+<code> [32]              :Else</code>
+<code class="emphasize">→[33]                  ⎕←'Executing ⎕SE.aplteam.FKeys.Define failed with a ',(1⊃⎕DM),'; details:'</code>
+<code class="emphasize">→[34]                  ⎕←2⊃⎕DM</code>
+<code> [35]              :EndTrap</code>
+<code> [36]          :EndIf</code>
+<code class="emphasize">→[37]          :If ~IsConnectedToRide</code>
+<code class="emphasize">→[38]              :Trap 0</code>
+<code class="emphasize">→[39]                  CheckMenuStructure 1</code>
+<code> [40]              :Else</code>
+<code class="emphasize">→[41]                  ⎕←'Executing ⎕SE.aplteam.CheckMenuStructure failed with a ',(1⊃⎕DM),'; details:'</code>
+<code class="emphasize">→[42]                  ⎕←2⊃⎕DM</code>
+<code> [43]              :EndTrap</code>
+<code> [44]          :EndIf</code>
+<code class="emphasize">→[45]          :If ~IsConnectedToRide</code>
+<code class="emphasize">→[46]              :Trap 0</code>
+<code class="emphasize">→[47]                  EstablishDropOnSession</code>
+<code> [48]              :Else</code>
+<code class="emphasize">→[49]                  ⎕←'Executing ⎕SE.aplteam.EstablishDropOnSession failed with a ',(1⊃⎕DM),'; details:'</code>
+<code class="emphasize">→[50]                  ⎕←2⊃⎕DM</code>
+<code> [51]              :EndTrap</code>
+<code> [52]          :EndIf</code>
+<code class="emphasize">→[53]          2 ⎕NQ'⎕SE' 'Create'</code>
+<code> [54]      :EndIf</code>
+<code> [55]  :EndIf</code>
+<code class="emphasize">→[56]  {}⎕SE.UCMD'Rows on'</code>
+<code class="emphasize">→[57]  :If ((,1)≡,verbose)∧0=≢⎕LX</code>
+<code class="emphasize">→[58]      About2</code>
+<code> [59]  :EndIf</code>
+</div>
+<code class="header" id="listing_40">#.aplteam.aplteam.UCMD &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←{THIS}UCMD Input</code>
+<code> [1]   ⍝ User Command Processor. The result may be assigned to a global variable.</code>
+<code> [2]   ⍝ Most of the implementation is in ⎕SE.SALTUtils.Spice; this function only implements</code>
+<code> [3]   ⍝ "assignment syntax", i.e. ]varname←ucmd   and   ]⎕←ucmd</code>
+<code> [4]   ⍝ plus the "show-in-editor" syntaxL:  ]⎕ed ucmd</code>
+<code> [5]  </code>
+<code class="emphasize">→[6]   rlb←{(+/∧\' '=⍵)↓⍵}</code>
+<code> [7]  </code>
+<code class="emphasize">→[8]   :If edFlag←'⎕ed '{⍺≡{2::0(819⌶)⍵ ⋄ ¯1 ⎕C ⍵}(⍴⍺)↑⍵}Input</code>
+<code class="emphasize">→[9]       Input←(⍴'⎕ed ')↓Input</code>
+<code> [10]  :EndIf</code>
+<code> [11] </code>
+<code class="emphasize">→[12]  in←rlb Input</code>
+<code class="emphasize">→[13]  cmd←'"[^"]*"|''[^'']*''' ' *(⍝.*)?$'⎕R'&amp;' ''⊢in</code>
+<code> [14] </code>
+<code class="emphasize">→[15]  :Select cmd</code>
+<code class="emphasize">→[16]  :Case '' ⍝ ] now gives general help</code>
+<code class="emphasize">→[17]      in←'??'</code>
+<code class="emphasize">→[18]  :Case '-?' ⍝ ] -? is like ]?</code>
+<code class="emphasize">→[19]      in←,'?'</code>
+<code class="emphasize">→[20]  :CaseList '??' '-??' ⍝ ]?? and ] -?? now gives more help on each cmd</code>
+<code class="emphasize">→[21]      in←'?+'</code>
+<code class="emphasize">→[22]  :Case '?+'</code>
+<code class="emphasize">→[23]      ⎕←']?+ is deprecated. Please use ]??'</code>
+<code class="emphasize">→[24]      →0</code>
+<code> [25]  :EndSelect</code>
+<code> [26] </code>
+<code class="emphasize">→[27]  :If 0=⎕NC'THIS' ⋄ THIS←⎕IO⊃⎕RSI ⋄ :EndIf     ⍝ record calling environment</code>
+<code> [28] </code>
+<code> [29]  ⍝ ]var←Cmd accepted; see if it makes sense if present. No spaces allowed.</code>
+<code class="emphasize">→[30]  notQ←'⎕←'≢nma←(~' '∊nma)/nma←(⌽∨\⌽&lt;\('←'=in)&gt;∨\in∊'''"')/in</code>
+<code class="emphasize">→[31]  dcl←'*'∊4⍴⎕STACK                             ⍝ were we at Desk Calculator Level?</code>
+<code class="emphasize">→[32]  :If notQ∧(1&lt;⍴nma)&gt;0 2 9∊⍨THIS.⎕NC ¯1↓nma     ⍝ is the assignment legal?</code>
+<code class="emphasize">→[33]      ur←'* assignment syntax error' ⋄ ur ⎕SIGNAL dcl↓2 ⋄ ⎕←ur ⋄ →</code>
+<code> [34]  :EndIf</code>
+<code class="emphasize">→[35]  →(⍴in←(⍴nma)↓in)↓0                           ⍝ ]v← is the same as ]</code>
+<code> [36] </code>
+<code class="emphasize">→[37]  ur←(dcl,⍨dcl≤notQ×⍴nma)⎕SE.SALTUtils.Spice in</code>
+<code class="emphasize">→[38]  :If 17≤⊃(//)⎕VFI{⍵/⍨2&gt;+\'.'=⍵}(⎕IO+1)⊃'#'⎕WG'APLVersion'</code>
+<code class="emphasize">→[39]      ⎕SIGNAL 0                                ⍝ reset ⎕DM</code>
+<code> [40]  :EndIf</code>
+<code class="emphasize">→[41]  BS←⎕UCS 8</code>
+<code class="emphasize">→[42]  :If (0 2∊⍨10|⎕DR ur)∧1∊⍴⍴ur</code>
+<code class="emphasize">→[43]  :AndIf (2↑ur)≡BS,'*'                         ⍝ error signature</code>
+<code class="emphasize">→[44]      ur~←BS</code>
+<code class="emphasize">→[45]      ur ⎕SIGNAL dcl↓911 ⋄ ⎕←ur ⋄ →0           ⍝ signal error only if called by a program</code>
+<code> [46]  :EndIf</code>
+<code> [47] </code>
+<code class="emphasize">→[48]  →(1=⍴nma)⍴0                                  ⍝ ]←cmd    discard result</code>
+<code class="emphasize">→[49]  :If edFlag</code>
+<code class="emphasize">→[50]      {{}(#.⎕NS'').(⎕ED⍠('ReadOnly' 1)&amp;{'ed'}ed←⍵)}ur</code>
+<code class="emphasize">→[51]      r←''</code>
+<code class="emphasize">→[52]  :ElseIf 0∊⍴nma</code>
+<code class="emphasize">→[53]      r←ur                                     ⍝ no '←'   return result by this fn</code>
+<code class="emphasize">→[54]  :ElseIf ~notQ</code>
+<code class="emphasize">→[55]      {⎕←⌽rlb⌽⍵}¨↓⎕FMT ur                      ⍝ ]⎕←      display line by line</code>
+<code> [56]  :Else</code>
+<code class="emphasize">→[57]      {THIS⍎nma,'⍵'}ur                         ⍝ ]xx←cmd  store result in xx in calling namespace</code>
+<code> [58]  :EndIf</code>
+</div>
+<code class="header" id="listing_41">#.aplteam.aplteam.Version &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←Version</code>
+<code> [1]  ⍝ See also `History`</code>
+<code class="emphasize">→[2]  r←'7.23.0+138'</code>
+</div>
+<code class="header" id="listing_42">#.aplteam.aplteam.cmpx &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code class="emphasize">→ cmpx←{                                      </code>
+<code class="emphasize">→[1]       1=≡,⍵:∇⊂,⍵                              ⍝ single expression: enclose.</code>
+<code class="emphasize">→[2]       1{                                      ⍝ starting with one,</code>
+<code class="emphasize">→[3]           ⍬⍴2↓(⍎⍵)-⎕AI                        ⍝ time ⍺ expr-iterations.</code>
+<code class="emphasize">→[4]       }{⎕IO ⎕ML←0                             ⍝ local sysvars (see Notes).</code>
+<code class="emphasize">→[5]           times←⍺ ⍺⍺{                         ⍝ time each expression.</code>
+<code class="emphasize">→[6]               ⍺ ⍺⍺'{0&lt;⍵:∇⍵-1{⍺}(',⍵,')⋄⎕AI}⍺'  ⍝ execute expression in ⍺-loop.</code>
+<code class="emphasize">→[7]           }¨⍵                                 ⍝ ... for each expression.</code>
+<code class="emphasize">→[8]           1000&gt;+/times÷⍴,⍵:(⍺×2)∇ ⍵           ⍝ too quick: reiterate × 2.</code>
+<code class="emphasize">→[9]           null←'{0&lt;⍵:∇⍵-{⍵}(1)⋄⎕AI}⍺'         ⍝ null loop for "control" time.</code>
+<code class="emphasize">→[10]          nett←times-⍺ ⍺⍺ null                ⍝ times - null loop overhead.</code>
+<code class="emphasize">→[11]          hist←↑40{(⌊0.5+⍺×⍵÷⌈/⍵)⍴¨'⎕'}nett   ⍝ simple histogram.</code>
+<code class="emphasize">→[12]          secs←⍺{↑6 ¯2∘⍕¨⍵÷⍺×1000}nett        ⍝ e-format seconds.</code>
+<code class="emphasize">→[13]          rels←⌊100×¯1+nett÷1⌈⊃nett           ⍝ percentages relative to 1st.</code>
+<code class="emphasize">→[14]          sign←{(1+×⍵)⊃'- +'}                 ⍝ sign: - +.</code>
+<code class="emphasize">→[15]          fpcs←⌽↑{'%',⌽(sign ⍵),⍕|⍵}¨rels     ⍝ formatted percentages.</code>
+<code class="emphasize">→[16]          diff←{⍵⊃' *'}¨×{⍵⍳⍵},⍵⍵¨⍵           ⍝ result differences.</code>
+<code class="emphasize">→[17]          exps←diff,' ',↑⍵                    ⍝ exprs with diff markers.</code>
+<code class="emphasize">→[18]          pref←{↑⍺∘,¨↓⍵}                      ⍝ ⍺-prefix of rows of matrix ⍵.</code>
+<code class="emphasize">→[19]          cmps←' | 'pref fpcs,' ',hist        ⍝ percents and histogram.</code>
+<code class="emphasize">→[20]          exps,' → 'pref secs,(1&lt;⍴,⍵)/cmps    ⍝ [*] expr → secs[ | %s histogram].</code>
+<code class="emphasize">→[21]      }{                                      ⍝ right operand:</code>
+<code class="emphasize">→[22]          ⍎⍵                                  ⍝ execute expr in its native envt.</code>
+<code class="emphasize">→[23]      }⍵                                      ⍝ vector of subject expressions.</code>
+<code> [24]  }</code>
+</div>
+<code class="header" id="listing_43">#.aplteam.aplteam.FKeys.CalcWidth &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  CalcWidth←{</code>
+<code class="emphasize">→[1]       ref←⍺</code>
+<code class="emphasize">→[2]       (size weight)←⍵</code>
+<code class="emphasize">→[3]       noOfChars←20+⌈/↑∘⍴¨ref.buffer</code>
+<code class="emphasize">→[4]       myFnt←⎕NEW'Font'(('PName' 'APL385 Unicode')('Size'size)('Weight'weight))</code>
+<code class="emphasize">→[5]       myForm←⎕NEW'Form'(('FontObj'myFnt)('Visible' 0)('Size'(1 1))('Coord' 'Pixel'))</code>
+<code class="emphasize">→[6]       2⊃myForm.GetTextSize noOfChars⍴'9'</code>
+<code> [7]  ⍝ Calculates the size for the number of chars ruled by the strings in ref.buffer:</code>
+<code> [8]  ⍝ The longest one rules the day.</code>
+<code> [9]   }</code>
+</div>
+<code class="header" id="listing_44">#.aplteam.aplteam.FKeys.CollectFkeys &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←CollectFkeys ns</code>
+<code> [1]  ⍝ Collect the function keys, either from global ∆FKeys or from ⎕PFKEY if that does not exist</code>
+<code> [2]  ⍝ "ns" is an unnamed namespace. This function creates a vars "buffer" inside this namespace.</code>
+<code> [3]  ⍝ This is used to stores the actual settings (without HTML) and this in turn is used later</code>
+<code> [4]  ⍝ to calculate the width of the tables.</code>
+<code class="emphasize">→[5]   r←0⍴b←' '</code>
+<code class="emphasize">→[6]   k←1</code>
+<code class="emphasize">→[7]   ns.buffer←''</code>
+<code class="emphasize">→[8]   :For j :In ⍳4</code>
+<code class="emphasize">→[9]       (row col)←j⊃(1 1)(1 2)(2 1)(2 2)</code>
+<code class="emphasize">→[10]      r,←b,'&lt;div id="cont',(⍕(row×row≠1)+col),'"&gt;',CrNl</code>
+<code class="emphasize">→[11]      r,←(2⍴b),'&lt;table&gt;',CrNl</code>
+<code class="emphasize">→[12]      r,←(2⍴b),'&lt;thead&gt;',CrNl</code>
+<code class="emphasize">→[13]      r,←(3⍴b),'&lt;tr&gt;',CrNl</code>
+<code class="emphasize">→[14]      r,←(4⍴b),'&lt;th colspan="2"&gt;',(GetCaption row col),'&lt;/th&gt;',CrNl</code>
+<code class="emphasize">→[15]      r,←(3⍴b),'&lt;/tr&gt;',CrNl</code>
+<code class="emphasize">→[16]      r,←(2⍴b),'&lt;/thead&gt;',CrNl</code>
+<code class="emphasize">→[17]      r,←(2⍴b),'&lt;tbody&gt;',CrNl</code>
+<code class="emphasize">→[18]      :For i :In ⍳12</code>
+<code class="emphasize">→[19]          no←i+(24×row-1)+12×col-1</code>
+<code class="emphasize">→[20]          this←GetFunctionKey no</code>
+<code class="emphasize">→[21]          this{⍵&gt;⍴,⍺:⍺ ⋄ ((⍵-3)↑⍺),'...'}←44</code>
+<code class="emphasize">→[22]          ns.buffer,←⊂this</code>
+<code class="emphasize">→[23]          r,←(3⍴b),'&lt;tr&gt;',CrNl</code>
+<code class="emphasize">→[24]          r,←(4⍴b),'&lt;td&gt;',('F',(¯2↑'00',⍕i)),(4⍴b),'&lt;/td&gt;',CrNl</code>
+<code class="emphasize">→[25]          r,←(4⍴b),'&lt;td&gt;',this,'&lt;/td&gt;',CrNl</code>
+<code class="emphasize">→[26]          r,←(3⍴b),'&lt;/tr&gt;',CrNl</code>
+<code class="emphasize">→[27]          (i k)←i k+1</code>
+<code> [28]      :EndFor</code>
+<code class="emphasize">→[29]      r,←(2⍴b),'&lt;/tbody&gt;',CrNl</code>
+<code class="emphasize">→[30]      r,←(2⍴b),'&lt;/table&gt;',CrNl</code>
+<code class="emphasize">→[31]      r,←b,'&lt;/div&gt;',CrNl</code>
+<code> [32]  :EndFor</code>
+</div>
+<code class="header" id="listing_45">#.aplteam.aplteam.FKeys.CrNl &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←CrNl</code>
+<code class="emphasize">→[1]  r←⎕UCS 13 10</code>
+</div>
+<code class="header" id="listing_46">#.aplteam.aplteam.FKeys.Define &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←Define dummy</code>
+<code> [1] ⍝ (Re(-define all PFKEY definitions.</code>
+<code class="emphasize">→[2]  r←SetFunctionKeys FunctionKeyDefinition.DefineFunctionKeys</code>
+</div>
+<code class="header" id="listing_47">#.aplteam.aplteam.FKeys.GetCaption &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> GetCaption←{</code>
+<code> [1] ⍝ Returns a proper header for an F-Key block</code>
+<code class="emphasize">→[2]      (row col)←⍵</code>
+<code class="emphasize">→[3]      captions←2 2⍴'' 'Shift' 'Ctrl' 'Ctrl+Shift'</code>
+<code class="emphasize">→[4]      caption←↑captions[row;col]</code>
+<code class="emphasize">→[5]      nos←↑(2 2⍴'1-12' '13-24' '25-36' '37-48')[row;col]</code>
+<code class="emphasize">→[6]      caption,((2&lt;row+col)/'+'),'F-Keys ',nos</code>
+<code> [7]  }</code>
+</div>
+<code class="header" id="listing_48">#.aplteam.aplteam.FKeys.GetFunctionKey &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> GetFunctionKey←{</code>
+<code class="emphasize">→[1]      (2=⎕NC'∆FKeys'):({(0 1∊⍨≡⍵):⍵ ⋄ ⍵/⍨0=≡¨⍵}3⊃∆FKeys[no;])</code>
+<code class="emphasize">→[2]      A.dtb{0∊⍴⍵:'' ⋄ ⊃,/⍵}showCommandFlag{0∊⍴⍵:'' ⋄ 0 1∊⍨b←≡⍵:⍵ ⋄ ~⍺:{b←0=≡¨⍵ ⋄ b\b/⍵}⍵ ⋄ {0=≡⍵:⍵ ⋄ ' "',⍵,'" '}¨⍵}⎕PFKEY no</code>
+<code> [3]  }</code>
+</div>
+<code class="header" id="listing_49">#.aplteam.aplteam.FKeys.GetHeader &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  GetHeader←{</code>
+<code class="emphasize">→[1]       ⍺←6</code>
+<code class="emphasize">→[2]       ns←⍵</code>
+<code class="emphasize">→[3]       printSize←⍺</code>
+<code class="emphasize">→[4]       header←'&lt;head&gt;',CrNl</code>
+<code class="emphasize">→[5]       header,←'&lt;title&gt;Dyalog Function Key Setting&lt;/title&gt;',CrNl</code>
+<code class="emphasize">→[6]       header,←'&lt;meta charset="utf-8"&gt;',CrNl</code>
+<code class="emphasize">→[7]       width←ns CalcWidth 16 800</code>
+<code class="emphasize">→[8]       header,←('&lt;style type="text/css" media="screen"&gt;',CrNl),(GetScreenCss width),'&lt;/style&gt;',CrNl</code>
+<code class="emphasize">→[9]       header,←('&lt;style type="text/css" media="print"&gt;',CrNl),(GetPrintCss printSize),'&lt;/style&gt;',CrNl</code>
+<code class="emphasize">→[10]      header,←'&lt;/head&gt;',CrNl</code>
+<code class="emphasize">→[11]      header</code>
+<code> [12]  }</code>
+</div>
+<code class="header" id="listing_50">#.aplteam.aplteam.FKeys.GetPrintCss &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  GetPrintCss←{</code>
+<code class="emphasize">→[1]       size←⍵</code>
+<code class="emphasize">→[2]       r←''</code>
+<code class="emphasize">→[3]       r,←'html {font-size: 6pt; margin:0; padding:0; }',CrNl</code>
+<code class="emphasize">→[4]       r,←'table {',CrNl</code>
+<code class="emphasize">→[5]       r,←'        border-collapse:collapse; margin:0; padding:0; border: 1pt solid black; }',CrNl</code>
+<code class="emphasize">→[6]       r,←'div#cont1, div#cont2, div#cont3, div#cont4 {float:left; margin:10pt 10pt 20pt 0;}',CrNl</code>
+<code class="emphasize">→[7]       r,←'h1 {font-family: "Verdana, Helvetica"; padding-bottom:10pt; font-size: 120%; margin:0;}',CrNl</code>
+<code class="emphasize">→[8]       r,←'th {text-align: left; border: 1pt solid black; }',CrNl</code>
+<code class="emphasize">→[9]       r,←'th, td {font-family: "APL385 Unicode"; font-size:',(⍕size),'pt; font-weight:200; padding:2pt;}',CrNl</code>
+<code class="emphasize">→[10]      r,←'tr:nth-child(even) {color:black; background-color:#F9F9F9;}',CrNl</code>
+<code class="emphasize">→[11]      r,←'tr:nth-child(odd)  {color:black; background-color:#FFFFFF;}',CrNl</code>
+<code class="emphasize">→[12]      r</code>
+<code> [13]  }</code>
+</div>
+<code class="header" id="listing_51">#.aplteam.aplteam.FKeys.GetScreenCss &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  GetScreenCss←{</code>
+<code class="emphasize">→[1]       width←⍵</code>
+<code class="emphasize">→[2]       r←''</code>
+<code class="emphasize">→[3]       r,←'html {background-color:#fffdee; ; margin:0; padding:0; margin:0; padding:0;}',CrNl</code>
+<code class="emphasize">→[4]       r,←'h1 {font-family: "Verdana, Helvetica"; padding:10px 0 0 10px; font-size:20px;}',CrNl</code>
+<code class="emphasize">→[5]       r,←'table {',CrNl</code>
+<code class="emphasize">→[6]       r,←'        border-collapse:collapse; margin:0; padding:0; border: 1px solid #98bf21; ',CrNl</code>
+<code class="emphasize">→[7]       r,←'        width:',(⍕width),'px;} ',CrNl</code>
+<code class="emphasize">→[8]       r,←'div#cont1, div#cont2, div#cont3, div#cont4 {float:left; margin:10px 10px 20px 10px;}',CrNl</code>
+<code class="emphasize">→[9]       r,←'div#cont3 {clear:both;}',CrNl</code>
+<code class="emphasize">→[10]      r,←'th, td {',CrNl</code>
+<code class="emphasize">→[11]      r,←'              font-family: "APL385 Unicode"; font-size:16px; font-weight:800; padding:5px; border: 1px solid black;}',CrNl</code>
+<code class="emphasize">→[12]      r,←'th {text-align: left; background-color: #A7C942;}',CrNl</code>
+<code class="emphasize">→[13]      r,←'tr:nth-child(even) {color: #000000; background-color: #EAF2D3;}',CrNl</code>
+<code class="emphasize">→[14]      r,←'tr:nth-child(odd) {color:black; background-color: #FFFFFF}',CrNl</code>
+<code class="emphasize">→[15]      r</code>
+<code> [16]  }</code>
+</div>
+<code class="header" id="listing_52">#.aplteam.aplteam.FKeys.PrintFunctionKeys &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  {r}←{showCommandFlag}PrintFunctionKeys y</code>
+<code> [1]  ⍝ Creates a file that contains HTML describing the current function key settings.</code>
+<code> [2]  ⍝ If "filename" does not specify an extension it defaults to ".html".</code>
+<code> [3]  ⍝ Needs ∆FKeys.</code>
+<code class="emphasize">→[4]   ⎕IO←1 ⋄ ⎕WX←⎕ML←3</code>
+<code class="emphasize">→[5]   A←##.##.APLTreeUtils2</code>
+<code class="emphasize">→[6]   showCommandFlag←{0&lt;⎕NC ⍵:⍎⍵ ⋄ 0}'showCommandFlag'</code>
+<code class="emphasize">→[7]   y←(⊂⍣(↑0 1∊⍨≡y))y</code>
+<code class="emphasize">→[8]   (filename printSize)←2↑y,(⍴y)↓'' 6</code>
+<code class="emphasize">→[9]   filename{⍵:¯4↓##.##.FilesAndDirs.GetTempFilename'' ⋄ ⍺}←0=≢filename</code>
+<code class="emphasize">→[10]  filename,←(~'.'∊filename)/'.html'</code>
+<code class="emphasize">→[11]  html←'&lt;h1&gt;Function key settings for Dyalog Version '</code>
+<code class="emphasize">→[12]  html,←{⍵/⍨2&gt;+\⍵='.'}2⊃# ⎕WG'APLVersion'</code>
+<code class="emphasize">→[13]  html,←'&lt;/h1&gt;',CrNl</code>
+<code class="emphasize">→[14]  html,←CollectFkeys ref←⎕NS''</code>
+<code class="emphasize">→[15]  html←'&lt;body&gt;',CrNl,'&lt;div&gt;',html,'&lt;/div&gt;&lt;/body&gt;',CrNl</code>
+<code class="emphasize">→[16]  html←'&lt;html&gt;',CrNl,(printSize GetHeader ref),html,'&lt;/html&gt;',CrNl</code>
+<code class="emphasize">→[17]  html←'&lt;!DOCTYPE html&gt;',CrNl,html</code>
+<code class="emphasize">→[18]  (⊂html)⎕NPUT filename</code>
+<code class="emphasize">→[19]  r←'*** Done - now run:',(⎕UCS 13),' ⎕SE.APLTreeUtils2.GoToWebPage ''file:///',filename,''''</code>
+</div>
+<code class="header" id="listing_53">#.aplteam.aplteam.FKeys.SetFunctionKeys &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  {r}←SetFunctionKeys def</code>
+<code> [1]  ⍝ Takes a matrix with two columns as right argument:</code>
+<code> [2]  ⍝ [;1] = something like 'F09' or 'Shift+F01' or 'Ctrl+F12'.</code>
+<code> [3]  ⍝ [;2] = The F-key definition.</code>
+<code> [4]  ⍝ [;3] = Alternative description (optional); used by PrintFunctionKeys.</code>
+<code> [5]  ⍝ Typically the right argument stems from the result of "DefineKeys".</code>
+<code> [6]  ⍝ For display and print purposes of F-keys see "PrintFunctionKeys" as</code>
+<code> [7]  ⍝ well as ShowFunctionKeysInBrowser.</code>
+<code> [8]  ⍝ Sets a global ∆FKeys with a description.</code>
+<code class="emphasize">→[9]   (⎕IO ⎕ML)←0 3</code>
+<code class="emphasize">→[10]  make←{61::shy←⍬ ⋄ shy←⍺ ⎕PFKEY⍨⍵}   ⍝ 61 is KEY NOT RECOGNIZED. Can happen in case a key was newly introduced in the latest version of Dyalog</code>
+<code class="emphasize">→[11]  :For key code :In ↓def[;⍳2]</code>
+<code class="emphasize">→[12]      key←key~' '</code>
+<code class="emphasize">→[13]      no←⍎¯2↑key</code>
+<code class="emphasize">→[14]      fkey←(112+⍳12)[no-1]</code>
+<code class="emphasize">→[15]      mod←+/(∨/¨'Shift' 'Ctrl'⍷¨⊂key)/1 2</code>
+<code class="emphasize">→[16]      no+←12×mod</code>
+<code class="emphasize">→[17]      no make code</code>
+<code> [18]  :EndFor</code>
+<code class="emphasize">→[19]  ∆FKeys←def</code>
+<code class="emphasize">→[20]  r←'*** Function keys are defined'</code>
+</div>
+<code class="header" id="listing_54">#.aplteam.aplteam.FKeys.ShowFunctionKeysInBrowser &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> ShowFunctionKeysInBrowser size</code>
+<code class="emphasize">→[1]  fn←(¯4↓##.##.FilesAndDirs.GetTempFilename''),'.html'</code>
+<code class="emphasize">→[2]  {}PrintFunctionKeys fn size</code>
+<code class="emphasize">→[3]  ##.##.APLTreeUtils2.GoToWebPage'file:///',fn</code>
+<code> [4] ⍝Done</code>
+</div>
+<code class="header" id="listing_55">#.aplteam.aplteam.FKeys.FunctionKeyDefinition.Version &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←Version</code>
+<code class="emphasize">→[1]  r←'FunctionKeyDefinition' '4.9.0.0' '2025-01-19'</code>
+</div>
+<code class="header" id="listing_56">#.aplteam.aplteam.FKeys.FunctionKeyDefinition.DefineFunctionKeys &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  {r}←DefineFunctionKeys</code>
+<code> [1]   :Access Public Shared</code>
+<code class="emphasize">→[2]   r←0 3⍴''</code>
+<code> [3]  ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝</code>
+<code class="emphasize">→[4]   r⍪←'F01'('')('(Reserved for help)')</code>
+<code class="emphasize">→[5]   r⍪←'F02'('⎕TRAP←0 ''S''')'⎕TRAP←0 ''S'''</code>
+<code class="emphasize">→[6]   r⍪←'F03'(NX)('Show next hit (NX)')</code>
+<code class="emphasize">→[7]   r⍪←'F04'(LL,'⎕se.aplteam.Display ')('Display')</code>
+<code class="emphasize">→[8]   r⍪←'F05'('⍎(1=≢⎕tnums)/''→⎕LC''',ER)('→⎕LC (current thread only)')</code>
+<code class="emphasize">→[9]   r⍪←'F06'('')('Continue all threads (MA, defined in config)')</code>
+<code class="emphasize">→[10]  r⍪←'F07'('⍝',ER,'⍎⎕SE.aplteam.GotoQLC_AndSetStopVector',ER)('→⎕LC &amp; set ⎕STOP')</code>
+<code class="emphasize">→[11]  r⍪←'F08'('⍝',ER,'⍎⎕SE.aplteam.GotoQLC_AndDropStop',ER)('→⎕LC &amp; drop stop')</code>
+<code class="emphasize">→[12]  r⍪←'F09'(LL,'⍝',ER)('⍝')</code>
+<code class="emphasize">→[13]  r⍪←'F10'(LL,'⎕THIS ⍝',ER)('⎕THIS')</code>
+<code class="emphasize">→[14]  r⍪←'F11'('')('Full screen (Ride only)')</code>
+<code class="emphasize">→[15]  r⍪←'F12'('')('Inspect object (Ride only)')</code>
+<code> [16] </code>
+<code class="emphasize">→[17]  r⍪←'Shift+F01' '' '' ⍝ Cannot be used  in Ride anyway, so we leave it undefined</code>
+<code class="emphasize">→[18]  r⍪←'Shift+F02'(FT)('Toggle between TOC, "Find" and &amp; edit pane')</code>
+<code class="emphasize">→[19]  r⍪←'Shift+F03'(']Listobjects')(']ListObjects ',ER)</code>
+<code class="emphasize">→[20]  r⍪←'Shift+F04'(']latest')(']Latest ')</code>
+<code class="emphasize">→[21]  r⍪←'Shift+F05'('∘∘∘ ')('Inject break point (∘∘∘)')</code>
+<code class="emphasize">→[22]  r⍪←'Shift+F06'(BH,ER)('Run to exit')</code>
+<code class="emphasize">→[23]  r⍪←'Shift+F07'('⎕TRAP')('⎕TRAP')</code>
+<code class="emphasize">→[24]  r⍪←'Shift+F08'('')('Toggle language bar (Ride only)')</code>
+<code class="emphasize">→[25]  r⍪←'Shift+F09'('')('')  ⍝ Shift+F09 does not work for some reason</code>
+<code class="emphasize">→[26]  r⍪←'Shift+F10'('')('(Reserved for context menu)')</code>
+<code class="emphasize">→[27]  r⍪←'Shift+F11'('⎕DMX.(⍪{⍵(⍎⍵)}¨⎕NL-2) ⍝',ER)('List contents of ⎕DMX')</code>
+<code class="emphasize">→[28]  r⍪←'Shift+F12'('⎕SE.aplteam.Clear',ER)('Close (acre∨Cider) &amp; )Clear')</code>
+<code> [29] </code>
+<code class="emphasize">→[30]  r⍪←'Ctrl+F01'('')('')</code>
+<code class="emphasize">→[31]  r⍪←'Ctrl+F02'(TT)('Toggle tree view in editor')</code>
+<code class="emphasize">→[32]  r⍪←'Ctrl+F03'(PV)('Show previous hit (PV)')</code>
+<code class="emphasize">→[33]  r⍪←'Ctrl+F04'(LL,'⊣⎕SE.Link.Expunge ''''',LC)('⎕SE.Link.Expunge')</code>
+<code class="emphasize">→[34]  r⍪←'Ctrl+F05'(AC)('Align comments (AC)')</code>
+<code class="emphasize">→[35]  r⍪←'Ctrl+F06'(CP,JP,PT,ER,JP)('Copy &amp; execute in session')</code>
+<code class="emphasize">→[36]  r⍪←'Ctrl+F07'(BP)('Toggle stop (BP)')</code>
+<code class="emphasize">→[37]  r⍪←'Ctrl+F08'('⎕SE.aplteam.Box',ER)('Toggle boxing')</code>
+<code class="emphasize">→[38]  r⍪←'Ctrl+F09'(LL,']Udebug ')('Toggle Udebug')</code>
+<code class="emphasize">→[39]  r⍪←'Ctrl+F10'(' ⍝TODO⍝ ')('⍝TODO⍝')</code>
+<code class="emphasize">→[40]  r⍪←'Ctrl+F11'(LL,'{{}(#.⎕NS'''').(⎕ED⍠(''ReadOnly'' 1)&amp;{''ed''}ed←⍵)}')('⎕ED vars (read-only)')</code>
+<code class="emphasize">→[41]  r⍪←'Ctrl+F12'('')('Show log file (Ride only)')</code>
+<code> [42] </code>
+<code class="emphasize">→[43]  r⍪←'Ctrl+Shift+F01'(LL,']Cider.')(']Cider.')</code>
+<code class="emphasize">→[44]  r⍪←'Ctrl+Shift+F02'(LL,']Cider.OpenProject ')(']Cider.OpenProject')</code>
+<code class="emphasize">→[45]  r⍪←'Ctrl+Shift+F03'(LL,']Cider.ListOpenProjects',ER)(']Cider.ListProjects')</code>
+<code class="emphasize">→[46]  r⍪←'Ctrl+Shift+F04'(LL,']Cider.CloseProject ')(']Cider.CloseProject')</code>
+<code class="emphasize">→[47]  r⍪←'Ctrl+Shift+F05'(LL,']GitHub.')(']GitHub.')</code>
+<code class="emphasize">→[48]  r⍪←'Ctrl+Shift+F06'(LL,']APLGit2.')(']APLGit2.')</code>
+<code class="emphasize">→[49]  r⍪←'Ctrl+Shift+F07'(LL,']APLGit2.Status ')(']Git.Status')</code>
+<code class="emphasize">→[50]  r⍪←'Ctrl+Shift+F08'(LL,']APLGit2.OpenGitShell')(']Git.OpenGitShell')</code>
+<code class="emphasize">→[51]  r⍪←'Ctrl+Shift+F09'(LL,']APLGit2.Commit -m=""',LC)(']Git.Commit -m=""')</code>
+<code class="emphasize">→[52]  r⍪←'Ctrl+Shift+F10'(LL,']Tatin.')(']Tatin.')</code>
+<code class="emphasize">→[53]  r⍪←'Ctrl+Shift+F11'(LL,']Tatin.ListTatinDependencies',ER)(']Tatin.ListTatinDependencies')</code>
+<code class="emphasize">→[54]  r⍪←'Ctrl+Shift+F12'(LL,']Tatin.ListRegistries',ER)(']Tatin.ListRegistries')</code>
+<code class="emphasize">→[55]  Check r</code>
+</div>
+<code class="header" id="listing_57">#.aplteam.aplteam.FKeys.FunctionKeyDefinition.Check &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  Check r</code>
+<code class="emphasize">→[1]   rk←CompileRegistryKey</code>
+<code class="emphasize">→[2]   :If 0≠≢shortcuts←⎕SE.WinReg.GetTreeWithValues rk</code>
+<code class="emphasize">→[3]   :AndIf 0≠≢shortcuts←1↓shortcuts</code>
+<code class="emphasize">→[4]   :AndIf 0≠≢shortcuts←((↑¨shortcuts[;3])∊111+⍳12)⌿shortcuts</code>
+<code class="emphasize">→[5]       allFkeys←(≢r)↑↑,/(4⍴⊂111+⍳12),¨¨⊂¨,¨0 1 2 3</code>
+<code class="emphasize">→[6]       shortcuts←((2↑¨shortcuts[;3])∊allFkeys)⌿shortcuts</code>
+<code class="emphasize">→[7]       ind←(allFkeys)⍳2↑¨shortcuts[;3]</code>
+<code class="emphasize">→[8]       bool←0&lt;↑∘⍴¨r[;2]</code>
+<code class="emphasize">→[9]       :If 1∊bool[ind]</code>
+<code class="emphasize">→[10]          ⎕←'Defined as F-KEY but also defined in Dyalog config ("Keyboard Shortcuts" tab):'</code>
+<code class="emphasize">→[11]          ind2←bool/(2↑¨shortcuts[;3])⍳allFkeys</code>
+<code class="emphasize">→[12]          bool2←ind2≤1↑⍴shortcuts</code>
+<code class="emphasize">→[13]          ⎕←'  F-Keys: ',↑{⍺,',',⍵}/bool[ind]/r[ind;1]</code>
+<code class="emphasize">→[14]          ⎕←'  Shortcuts: ',↑{⍺,',',⍵}/2⊃¨⎕NPARTS¨((2↑¨shortcuts[;3])∊(0&lt;↑∘⍴¨r[;2])⌿allFkeys)⌿shortcuts[;2]</code>
+<code class="emphasize">→[15]          ∘∘∘             ⍝ deliberate stop: you need to sort this out!</code>
+<code> [16]      :EndIf</code>
+<code class="emphasize">→[17]      :If 1∊bool←0=↑∘⍴¨r[ind;3]</code>
+<code class="emphasize">→[18]          r[bool/ind;3]←'Executes: '∘,¨'\'##.##.##.APLTreeUtils2.Last¨bool/shortcuts[;2]</code>
+<code> [19]      :EndIf</code>
+<code> [20]  :EndIf</code>
+</div>
+<code class="header" id="listing_58">#.aplteam.aplteam.FKeys.FunctionKeyDefinition.CompileRegistryKey &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> rk←CompileRegistryKey</code>
+<code class="emphasize">→[1]  rk←'Software\Dyalog\Dyalog APL/W'</code>
+<code class="emphasize">→[2]  rk,←'-64'/⍨∨/'64'⍷⎕IO⊃'#'⎕WG'APLVersion'</code>
+<code class="emphasize">→[3]  rk,←,' ',{⍵/⍨1≥+\'.'=⍵}(⎕IO+1)⊃'#'⎕WG'APLVersion'</code>
+<code class="emphasize">→[4]  rk,←' Unicode'/⍨80=⎕DR' '</code>
+<code class="emphasize">→[5]  rk,←'\KeyboardShortcuts\keys'</code>
+<code> [6]       ⍝Done</code>
+</div>
+<code class="header" id="listing_59">#.aplteam.aplteam.Check_FunctionKeyDefinition &mdash; 15%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  {r}←Check_FunctionKeyDefinition</code>
+<code> [1]   r←⍬</code>
+<code> [2]   filename←(⎕SE.WinSys.ExpandEnv'%USERPROFILE%'),'\Documents\MyUCMDs\FunctionKeyDefinition.aplc'</code>
+<code> [3]   :If ⎕SE.FilesAndDirs.IsFile filename</code>
+<code class="emphasize">→[4]       my←⊃⊃('type' 3)⎕SE.FilesAndDirs.Dir filename</code>
+<code class="emphasize">→[5]       sourceFilename←'APLSource\aplteam\FKeys\FunctionKeyDefinition.aplc'</code>
+<code class="emphasize">→[6]       :If ⎕SE.FilesAndDirs.IsFile sourceFilename</code>
+<code> [7]           ⍝ We are in development mode</code>
+<code class="emphasize">→[8]           proj←⊃⊃('type' 3)⎕SE.FilesAndDirs.Dir sourceFilename</code>
+<code> [9]       :Else</code>
+<code class="emphasize">→[10]          sourceFilename←(⎕SE.UCMD'getacreprojectpath'),'APLTeam\APLTeam_DSE\APLSource\aplteam\FKeys\FunctionKeyDefinition.aplc'</code>
+<code class="emphasize">→[11]          proj←⊃⊃('type' 3)⎕SE.FilesAndDirs.Dir sourceFilename</code>
+<code> [12]      :EndIf</code>
+<code class="emphasize">→[13]      format←{⍎,⊃,/'ZI4' 'ZI2' 'ZI2' 'ZI2' 'ZI2' 'ZI2' 'ZI4'⎕FMT¨⍵}</code>
+<code class="emphasize">→[14]      my_ts←format my</code>
+<code class="emphasize">→[15]      proj_ts←format proj</code>
+<code class="emphasize">→[16]      :If my_ts&gt;proj_ts</code>
+<code class="emphasize">→[17]          ⎕←'Function key definition found in:'</code>
+<code class="emphasize">→[18]          ⎕←⊃⎕NPARTS filename</code>
+<code class="emphasize">→[19]          ⎕←'is better then the project''s one and therefore loaded!'</code>
+<code class="emphasize">→[20]          body←⊃⎕NGET filename</code>
+<code class="emphasize">→[21]          FKeys.⎕FIX body</code>
+<code class="emphasize">→[22]          :If YesOrNo'Would you like to execute acre''s "SetChanged" to make this version part of the project?'</code>
+<code class="emphasize">→[23]              ⎕SE.UCMD'acre.SetChanged #._aplteam.aplteam.FKeys.FunctionKeyDefinition'</code>
+<code> [24]          :EndIf</code>
+<code> [25]      :EndIf</code>
+<code> [26]  :EndIf</code>
+<code> [27]  ⍝Done</code>
+</div>
+<code class="header" id="listing_60">#.aplteam.aplteam.Assert &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> Assert←{⍺←'' ⋄ (,1)≡,⍵:r←1 ⋄ ⎕ML←3 ⋄ ⍺ ⎕SIGNAL 1↓(↑∊⍵),11}</code>
+</div>
+<code class="header" id="listing_61">#.aplteam.aplteam.IsScript &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> IsScript←{16::0 ⋄ 1⊣⎕SRC ⍵}</code>
+</div>
+<div id="footer">
+<hr>
+<p>Created by "CodeCoverage" version 0.10.7+52 from 2024-06-05</p>
+</div>
+
+</body>
+</html>
