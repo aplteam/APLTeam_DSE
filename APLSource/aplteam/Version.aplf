@@ -1,3 +1,3 @@
  r←Version
-⍝ See also `History`
- r←'aplteam' '7.22.0+138' '2025-03-12'
+ ⍝ See also `History`
+ r←'7.23.0+138'

@@ -1,4 +1,6 @@
 (
+ '* 7.23.0 ⋄ 2025-04-05'
+ '  * The `Version` function now returns just a char vector with the versionm number'
  '* 7.22.0 ⋄ 2025-03-12'
  '  * Selects menu item "Layout > Classic" automatically if it exists'
  '* 7.21.1 ⋄ 2025-03-10'
