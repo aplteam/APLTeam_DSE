@@ -5,9 +5,9 @@
 
 ## General
 
-This project needs Dyalog 18.0 Unicode or better; Classic is not supported.
+This project needs Dyalog 18.2 Unicode or better; Classic is not supported.
 
-18.0 and later copy from the WS `aplteam18.dws`; see `Setup.dyalog`. 
+18.2 and later versions copy from the WS `aplteam18.dws`; see `Setup.dyalog`. 
 
 That WS is created by the following steps:
 
@@ -18,3 +18,4 @@ That WS is created by the following steps:
 Which implies that all development is made in the project of course: _**don't** change anything in the workspace `DSE\aplteam18.dws`!_
 
 Kai Jaeger ⋄ 2023-02-11
+Latest update 2025-04-05
