@@ -1,4 +1,4 @@
- {refToMakeHelpers}Make flag;M;C;path;zipFilename;res;parms;cfg;noOf;answer;q;aplVersion;copyToPath;myUcmdFolder;name;targetPath
+ {refToMakeHelpers}Make flag;M;C;path;zipFilename;res;parms;noOf;answer;q;aplVersion;copyToPath;myUcmdFolder;name;targetPath
 ⍝ "Make"s this projects.
 ⍝ You may pass a ref pointing to `MakeHelpers` as `⍺`.
 ⍝ If you don't, the function checks whether it's available in `⎕SE`.
