@@ -1,5 +1,6 @@
  r←CopySelectionAndExecInQSE;cl;q;txt
 ⍝ Useful to copy the current selection, paste it in the session and execute it
+⍝ Tried a lot but could not get it to work
  cl←⎕NEW⊂'Clipboard'
  :Trap 0  ⍝ Anything might go wrong here, we don't know what we are doing ;)
      :If 0<≢txt←cl.Text

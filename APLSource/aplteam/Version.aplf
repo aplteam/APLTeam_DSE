@@ -1,3 +1,4 @@
  r←Version
- ⍝ See also `History`
- r←'7.23.0+138'
+⍝ Returns the version number
+⍝ See also `History`
+r←'APLTeam_DSE' '7.25.0' '2025-05-06'

@@ -127,7 +127,7 @@ ul li, ol li {margin: 8pt 3pt;}
 <tr><th>Executed at</th><th>APLVersion</th><th>Memory (MB)</th></tr>
 </thead>
 <tbody>
-<tr><td>2025-04-05 19:39:26</td><td>Windows-64 ⋄ 19.0.50771.0 ⋄ W ⋄ Development ⋄ Unicode</td><td>114</td></tr>
+<tr><td>2025-04-10 10:54:38</td><td>Windows-64 ⋄ 19.0.51432.0 ⋄ W ⋄ Development ⋄ Unicode</td><td>112</td></tr>
 </tbody>
 </table>
 <p>Overall 0% of the testable code is covered.</p>
@@ -179,7 +179,7 @@ ul li, ol li {margin: 8pt 3pt;}
 <tr class="uncovered"><td><a href="#listing_38" title="Link to listing">#.aplteam.aplteam.Stamp</a></td><td>4←≢2-5</td><td>0</td><td>4</td></tr>
 <tr class="uncovered"><td><a href="#listing_39" title="Link to listing">#.aplteam.aplteam.StartUp</a></td><td>40←≢2-12,14-17,19-20,23-24,26-27,29-31,33-34,37-39,41-42,45-47,49-50,53,56-58</td><td>0</td><td>40</td></tr>
 <tr class="uncovered"><td><a href="#listing_40" title="Link to listing">#.aplteam.aplteam.UCMD</a></td><td>38←≢6,8-9,12-13,15-24,27,30-33,35,37-39,41-45,48-55,57</td><td>0</td><td>38</td></tr>
-<tr class="uncovered"><td><a href="#listing_41" title="Link to listing">#.aplteam.aplteam.Version</a></td><td>2</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_41" title="Link to listing">#.aplteam.aplteam.Version</a></td><td>5←≢3-6,10</td><td>0</td><td>5</td></tr>
 <tr class="uncovered"><td><a href="#listing_42" title="Link to listing">#.aplteam.aplteam.cmpx</a></td><td>24←≢0-23</td><td>0</td><td>24</td></tr>
 <tr class="uncovered"><td><a href="#listing_43" title="Link to listing">#.aplteam.aplteam.FKeys.CalcWidth</a></td><td>6←≢1-6</td><td>0</td><td>6</td></tr>
 <tr class="uncovered"><td><a href="#listing_44" title="Link to listing">#.aplteam.aplteam.FKeys.CollectFkeys</a></td><td>26←≢5-27,29-31</td><td>0</td><td>26</td></tr>
@@ -317,7 +317,7 @@ $(document).ready(function() {
 </div>
 <code class="header" id="listing_2">#.aplteam.aplteam.About2 &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
 <div class="code-block"><code> R←About2</code>
-<code class="emphasize">→[1]  R←'⎕SE of Kai Jaeger ⋄ Version ',((1+⎕IO)⊃Version),' from ',(2+⎕IO)⊃Version</code>
+<code class="emphasize">→[1]  R←'⎕SE of Kai Jaeger ⋄ Version ',Version</code>
 </div>
 <code class="header" id="listing_3">#.aplteam.aplteam.AcreUserExit &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
 <div class="code-block"><code> r←acreConfig AcreUserExit y</code>
@@ -1040,9 +1040,18 @@ $(document).ready(function() {
 <code> [58]  :EndIf</code>
 </div>
 <code class="header" id="listing_41">#.aplteam.aplteam.Version &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
-<div class="code-block"><code> r←Version</code>
-<code> [1]  ⍝ See also `History`</code>
-<code class="emphasize">→[2]  r←'7.23.0+138'</code>
+<div class="code-block"><code>  r←Version</code>
+<code> [1]  ⍝ Returns the version number from `TatinVars` if possible.</code>
+<code> [2]  ⍝ See also `History`</code>
+<code class="emphasize">→[3]   :If 0&lt;⎕NC'TatinVars.CONFIG'</code>
+<code class="emphasize">→[4]       r←(⎕JSON⍠('Dialect' 'JSON5')⊢TatinVars.CONFIG).version</code>
+<code class="emphasize">→[5]   :ElseIf 0&lt;##.⎕NC'TatinVars.CONFIG'</code>
+<code class="emphasize">→[6]       r←(⎕JSON⍠('Dialect' 'JSON5')⊢##.TatinVars.CONFIG).version</code>
+<code> [7]   :Else</code>
+<code> [8]  ⍝ When a script was not loaded with Tatin, there will be no namespace `TatinVars`.</code>
+<code> [9]  ⍝ In such cases we cannot provide a version number, so we return just ''.</code>
+<code class="emphasize">→[10]      r←''</code>
+<code> [11]  :EndIf</code>
 </div>
 <code class="header" id="listing_42">#.aplteam.aplteam.cmpx &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
 <div class="code-block"><code class="emphasize">→ cmpx←{                                      </code>
