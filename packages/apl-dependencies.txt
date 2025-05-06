@@ -1,10 +1,10 @@
 aplteam-APLTreeUtils2-1.4.1
-aplteam-CompareSimple-7.0.0
+aplteam-CompareSimple-7.1.0
 aplteam-WinReg-6.0.0
-aplteam-WinSys-6.0.0
+aplteam-WinSys-6.0.1
 aplteam-OS-4.0.0
 aplteam-Execute-4.0.0
-aplteam-ShowChmHelp-4.0.0
-aplteam-DotNetZip-3.0.1
+aplteam-ShowChmHelp-4.1.1
+aplteam-DotNetZip-3.1.0
 aplteam-FilesAndDirs-7.0.0
 aplteam-CommTools-2.0.1
