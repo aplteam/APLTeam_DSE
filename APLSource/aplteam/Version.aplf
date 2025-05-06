@@ -1,4 +1,4 @@
  r←Version
 ⍝ Returns the version number
 ⍝ See also `History`
-r←'APLTeam_DSE' '7.24.0' '2025-04-10'
+r←'APLTeam_DSE' '7.25.0' '2025-05-06'
