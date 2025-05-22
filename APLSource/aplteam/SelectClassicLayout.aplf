@@ -1,5 +1,10 @@
- {r}←SelectClassicLayout dummy
- r←0
+ r←SelectClassicLayout dummy;noOf
+ r←1
  :If 9=⎕NC'⎕SE.mb.Layout.floating'
-     1 ⎕NQ ⎕SE.mb.Layout.floating'Select'
+     :If 0=noOf←2037⌶2
+         1 ⎕NQ ⎕SE.mb.Layout.floating'Select'
+     :Else
+         ⎕←'Could not change the session layout because there are ',(⍕noOf),' trace/edit windows open'
+         r←0
+     :EndIf
  :EndIf

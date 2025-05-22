@@ -1,4 +1,6 @@
 (
+ '* 7.26.0 ⋄ 2025-05-22'
+ '  * Problem in 20.0 fixed when edit/trace windows were open'
  '* 7.25.0 ⋄ 2025-05-06'
  '  * Packages updated'
  '* 7.24.0 ⋄ 2025-04-10'
