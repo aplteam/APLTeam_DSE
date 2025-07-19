@@ -1,10 +1,10 @@
  r←SelectClassicLayout dummy;noOf
  r←1
  :If 9=⎕NC'⎕SE.mb.Layout.floating'
-     :If 0=noOf←2037⌶2
+     :If 1≥noOf←2037⌶2  ⍝ Session counts as one window
          1 ⎕NQ ⎕SE.mb.Layout.floating'Select'
      :Else
-         ⎕←'Could not change the session layout because there are ',(⍕noOf),' trace/edit windows open'
+         ⎕←'Could not change the session layout because there are ',(⍕noOf-1),' trace/edit windows open'
          r←0
      :EndIf
  :EndIf

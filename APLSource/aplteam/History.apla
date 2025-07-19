@@ -1,4 +1,6 @@
 (
+ '* 7.26.1 ⋄ 2025-07-19'
+ '  * Layout switch did not work due to a wrong usage of 2037⌶2'
  '* 7.26.0 ⋄ 2025-05-22'
  '  * Problem in 20.0 fixed when edit/trace windows were open'
  '* 7.25.0 ⋄ 2025-05-06'
